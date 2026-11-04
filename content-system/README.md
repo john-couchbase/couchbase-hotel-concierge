@@ -60,19 +60,13 @@ Review states: draft → technical review → editorial review → ready. These 
 
 Refresh when a referenced product/SDK changes, a setup step breaks, a model is retired, pricing changes or a reader reports a mismatch. Keep prior benchmark evidence versioned rather than rewriting historical results.
 
-## What we learned from Qdrant
+## Why standardization matters
 
-Reviewed November 4, 2026. Qdrant's public site repository documents Markdown content with front matter, Hugo archetypes, branch/PR contributions and automatic deployment after merge. Its blog archetype includes metadata for descriptions, authors, tags and preview images. Netlify configuration separates production and deploy-preview contexts. Workflows check internal links and generated snippet consistency/typechecking. No reusable `SKILL.md` was found in the inspected public repository tree; these AI authoring skills are our addition, not a claimed copy of Qdrant's internal process.
+A shared content system makes AI Data Plane articles consistent, easier to review and easier to maintain. Use versioned Markdown, common metadata, reusable templates and linked code revisions so readers can reliably move from an explanation to a working example.
 
-Borrow the architecture: versioned content, consistent metadata, reusable scaffolds, code/content alignment and reviews. Our templates use `draft: true` by default. We are not copying Qdrant's theme, branding, article text or infrastructure configuration.
+Keep drafts clearly marked, record technical and editorial reviews, and refresh content when product behavior changes. Add automated link, metadata and snippet checks as the publishing workflow matures.
 
-Sources:
-
-- [Repository authoring instructions](https://github.com/qdrant/landing_page)
-- [Blog archetype](https://github.com/qdrant/landing_page/blob/master/qdrant-landing/archetypes/blog-post.md)
-- [Netlify build and preview configuration](https://github.com/qdrant/landing_page/blob/master/netlify.toml)
-- [Snippet workflow](https://github.com/qdrant/landing_page/blob/master/.github/workflows/snippets.yml)
-- [Internal link workflow](https://github.com/qdrant/landing_page/blob/master/.github/workflows/internal-dead-links.yml)
+Keep repository content focused on Couchbase and reader needs. Do not name or compare competing companies in articles, skills, roadmap text or commit messages unless explicitly requested later.
 
 ## Next automation increment
 
