@@ -10,7 +10,7 @@ Fix documentation and expectation mismatches first. Then package the strongest e
 
 ## Scope and evidence
 
-This review covers public product messaging, component references, SDK/package interfaces, repositories, selected technical articles, benchmark publications and YouTube metadata. The source register contains 44 entries, including comparative references and the research framework. The channel inventory contains 30 visible video cards; 11 videos received deeper metadata/description review. These are not a complete channel census and the videos were not watched end to end. Descriptions and chapters support topic and navigation assessment, not judgments about presentation quality.
+This review covers public product messaging, component references, SDK/package interfaces, repositories, selected technical articles, benchmark publications and YouTube metadata. The source register contains 42 entries, including the research framework. The channel inventory contains 30 visible video cards; 11 videos received deeper metadata/description review. These are not a complete channel census and the videos were not watched end to end. Descriptions and chapters support topic and navigation assessment, not judgments about presentation quality.
 
 One current SDK interface mismatch was reproduced locally. Earlier lab results are clearly marked as prior evidence; the managed-memory service and its economics have not been tested. No paid deployment or model call was started for this audit. The existing $30 cumulative budget remains the constraint; this report does not certify the historical invoice total.
 
@@ -299,7 +299,7 @@ Our earlier lab rejected tfidf. Current docs specify tf-idf. The earlier rejecti
 
 **Evidence:** Discovery and comparison gap.
 
-Three index families and their controls are documented, but evaluators coming from Qdrant need a translation into workload choices.
+Three index families and their controls are documented, but evaluators need a translation into workload choices.
 
 **Why it matters:** HNSW, IVF, quantization and hybrid search can be conflated.
 
@@ -313,19 +313,19 @@ Three index families and their controls are documented, but evaluators coming fr
 
 ### G16 · P2 · Clarify sparse and late-interaction support
 
-**Evidence:** Unverified competitive capability.
+**Evidence:** Capability documentation question.
 
-Qdrant documents learned sparse retrieval, fusion and ColBERT-style multistage queries. This audit did not find an equally explicit Couchbase native capability matrix.
+This audit did not find an explicit Couchbase matrix classifying learned sparse retrieval, multivectors, fusion and multistage reranking as native, integrated, application-built or unsupported.
 
 **Why it matters:** A missing explanation may be mistaken for a missing feature, or an application workaround for native support.
 
 **Action:** Ask PM to classify sparse/SPLADE, multivectors, RRF/DBSF and rerankers as native, connector-supported, application-built or unsupported.
 
-**Suggested owner:** Search PM + Competitive Marketing.
+**Suggested owner:** Search PM + Technical Marketing.
 
 **Acceptance check:** Publish source-backed classifications; do not label features absent solely from search results.
 
-**Sources:** [Qdrant hybrid and multistage query reference](https://qdrant.tech/documentation/hybrid-queries/); [Search scoring and hybrid query semantics](https://docs.couchbase.com/cloud/search/run-searches.html).
+**Sources:** [Search scoring and hybrid query semantics](https://docs.couchbase.com/cloud/search/run-searches.html).
 
 ### G17 · P2 · Hosted inference and workflow models need distinct explanations
 
@@ -601,7 +601,7 @@ Memory token reductions, cache call reductions and overall billing savings are d
 ## Evidence artifacts
 
 - `findings.json`: 30 structured findings with source IDs and acceptance checks.
-- `source-register.json`: 44 linked sources.
+- `source-register.json`: 42 linked sources.
 - `sdk-recheck.json`: current local Agent Catalog interface probe.
 - `source-fetch.json`: downloaded-source status and hashes.
 - `channel-visible-videos.json`: 30 sampled channel cards.
@@ -653,8 +653,6 @@ The content-strategy framework found through the supplied directory was read and
 - **press:** [October 20 announcement and token claims](https://www.prnewswire.com/news-releases/couchbase-ai-data-plane-cuts-the-cost-of-running-production-ai-agents-at-enterprise-scale-302913871.html)
 - **esg:** [Commissioned ESG technical validation January 2025](https://info.couchbase.com/rs/302-GJY-034/images/ESG-Technical-Validation-Couchbase-Capella-FINAL-Jan-2025.pdf)
 - **fankave:** [FanKave customer case study](https://info.couchbase.com/rs/302-GJY-034/images/COU_1378-FanKave_Customer_case_study.pdf?version=0)
-- **qdrant:** [Qdrant hybrid and multistage query reference](https://qdrant.tech/documentation/hybrid-queries/)
-- **qdrant-inference:** [Qdrant Cloud Inference](https://qdrant.tech/documentation/embeddings/qdrant-cloud-inference/)
 - **directory:** [User-supplied AI TLDR tools directory](https://ai-tldr.dev/tools/?cat=productivity-writing&sub=writing-marketing)
 - **skill:** [Content strategy skill used for prioritization](https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md)
 - **channel:** [Couchbase YouTube channel videos](https://www.youtube.com/channel/UCGUDXCRwJi-fuQp7sJyIZmg/videos)
