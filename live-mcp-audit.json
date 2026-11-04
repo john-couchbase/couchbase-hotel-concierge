@@ -1,0 +1,1361 @@
+{
+  "date": "2026-11-03",
+  "scope": "Live read-only MCP audit of original travel-sample cluster; this assistant selects tools, not the deployed Capella model.",
+  "baseline": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"server_name\":\"couchbase-operational\",\"server_id\":\"operational\",\"version\":\"1.1.0\",\"status\":\"running\",\"configuration\":{\"connection_string\":\"couchbases://YOUR_CLUSTER\",\"username\":\"ai-demo-reader\",\"password_configured\":true,\"ca_cert_path_configured\":false,\"client_cert_path_configured\":false,\"client_key_path_configured\":false,\"read_only_mode\":true,\"disabled_tools\":[\"discover_tool_input_values\",\"get_active_queries\",\"get_bucket_config\",\"get_cluster_health_snapshot\",\"get_cluster_metrics\",\"get_cluster_query_vitals\",\"get_cluster_system_events\",\"get_cluster_tasks\",\"get_index_stats\"],\"confirmation_required_tools\":[],\"oauth_enabled\":false,\"oauth_jwks_uri\":null,\"oauth_issuer\":null,\"oauth_audience\":null,\"oauth_algorithm\":\"RS256\",\"oauth_mcp_base_url\":null,\"oauth_scope_read_label\":\"couchbase-mcp:read\",\"oauth_scope_write_label\":\"couchbase-mcp:write\"},\"logging\":{\"level\":\"INFO\",\"sinks\":[\"stderr\"],\"log_files\":null,\"max_bytes\":null,\"backup_counts\":null,\"server_config_file\":null},\"audit\":{\"enabled\":false,\"sinks\":[\"console\"],\"file\":null,\"process_file\":null,\"rotation_max_size_mb\":10.0,\"rotation_interval\":\"1d\",\"max_backups\":10,\"tool_args\":false,\"disabled_events\":[],\"active\":false},\"connections\":{\"cluster_connected\":false}}"
+          }
+        ],
+        "structuredContent": {
+          "server_name": "couchbase-operational",
+          "server_id": "operational",
+          "version": "1.1.0",
+          "status": "running",
+          "configuration": {
+            "connection_string": "couchbases://YOUR_CLUSTER",
+            "username": "ai-demo-reader",
+            "password_configured": true,
+            "ca_cert_path_configured": false,
+            "client_cert_path_configured": false,
+            "client_key_path_configured": false,
+            "read_only_mode": true,
+            "disabled_tools": [
+              "discover_tool_input_values",
+              "get_active_queries",
+              "get_bucket_config",
+              "get_cluster_health_snapshot",
+              "get_cluster_metrics",
+              "get_cluster_query_vitals",
+              "get_cluster_system_events",
+              "get_cluster_tasks",
+              "get_index_stats"
+            ],
+            "confirmation_required_tools": [],
+            "oauth_enabled": false,
+            "oauth_jwks_uri": null,
+            "oauth_issuer": null,
+            "oauth_audience": null,
+            "oauth_algorithm": "RS256",
+            "oauth_mcp_base_url": null,
+            "oauth_scope_read_label": "couchbase-mcp:read",
+            "oauth_scope_write_label": "couchbase-mcp:write"
+          },
+          "logging": {
+            "level": "INFO",
+            "sinks": [
+              "stderr"
+            ],
+            "log_files": null,
+            "max_bytes": null,
+            "backup_counts": null,
+            "server_config_file": null
+          },
+          "audit": {
+            "enabled": false,
+            "sinks": [
+              "console"
+            ],
+            "file": null,
+            "process_file": null,
+            "rotation_max_size_mb": 10,
+            "rotation_interval": "1d",
+            "max_backups": 10,
+            "tool_args": false,
+            "disabled_events": [],
+            "active": false
+          },
+          "connections": {
+            "cluster_connected": false
+          }
+        },
+        "isError": false
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"success\",\"cluster_connected\":true,\"bucket_connected\":true,\"bucket_name\":\"travel-sample\",\"message\":\"Successfully connected to Couchbase cluster\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "success",
+          "cluster_connected": true,
+          "bucket_connected": true,
+          "bucket_name": "travel-sample",
+          "message": "Successfully connected to Couchbase cluster"
+        },
+        "isError": false
+      }
+    }
+  ],
+  "discovery": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "inventory",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"inventory\":[\"route\",\"landmark\",\"hotel\",\"airport\",\"airline\"]}"
+            }
+          ],
+          "structuredContent": {
+            "inventory": [
+              "route",
+              "landmark",
+              "hotel",
+              "airport",
+              "airline"
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "indexes",
+        "result": {
+          "content": [],
+          "structuredContent": {
+            "result": []
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "search_indexes",
+        "result": {
+          "content": [],
+          "structuredContent": {
+            "result": []
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "legacy_search",
+        "result": {
+          "content": [],
+          "structuredContent": {
+            "result": []
+          },
+          "isError": false
+        }
+      }
+    }
+  ],
+  "samples": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "airport",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"d\":{\"airportname\":\"Calais Dunkerque\",\"city\":\"Calais\",\"country\":\"France\",\"faa\":\"CQF\",\"geo\":{\"alt\":12.0,\"lat\":50.962097,\"lon\":1.954764},\"icao\":\"LFAC\",\"id\":1254,\"type\":\"airport\",\"tz\":\"Europe/Paris\"},\"id\":\"airport_1254\"}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "d": {
+                  "airportname": "Calais Dunkerque",
+                  "city": "Calais",
+                  "country": "France",
+                  "faa": "CQF",
+                  "geo": {
+                    "alt": 12,
+                    "lat": 50.962097,
+                    "lon": 1.954764
+                  },
+                  "icao": "LFAC",
+                  "id": 1254,
+                  "type": "airport",
+                  "tz": "Europe/Paris"
+                },
+                "id": "airport_1254"
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "hotel",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"d\":{\"address\":\"Capstone Road, ME7 3JE\",\"alias\":null,\"checkin\":null,\"checkout\":null,\"city\":\"Medway\",\"country\":\"United Kingdom\",\"description\":\"40 bed summer hostel about 3 miles from Gillingham, housed in a districtive converted Oast House in a semi-rural setting.\",\"directions\":null,\"email\":null,\"fax\":null,\"free_breakfast\":true,\"free_internet\":false,\"free_parking\":true,\"geo\":{\"accuracy\":\"RANGE_INTERPOLATED\",\"lat\":51.35785,\"lon\":0.55818},\"id\":10025,\"name\":\"Medway Youth Hostel\",\"pets_ok\":true,\"phone\":\"+44 870 770 5964\",\"price\":null,\"public_likes\":[\"Julius Tromp I\",\"Corrine Hilll\",\"Jaeden McKenzie\",\"Vallie Ryan\",\"Brian Kilback\",\"Lilian McLaughlin\",\"Ms. Moses Feeney\",\"Elnora Trantow\"],\"reviews\":[{\"author\":\"Ozella Sipes\",\"content\":\"This was our 2nd trip here and we enjoyed it as much or more than last year. Excellent location across from the French Market and just across the street from the streetcar stop. Very convenient to several small but good restaurants. Very clean and well maintained. Housekeeping and other staff are all friendly and helpful. We really enjoyed sitting on the 2nd floor terrace over the entrance and \\\"people-watching\\\" on Esplanade Ave., also talking with our fellow guests. Some furniture could use a little updating or replacement, but nothing major.\",\"date\":\"2013-06-22 18:33:50 +0300\",\"ratings\":{\"Cleanliness\":5.0,\"Location\":4.0,\"Overall\":4.0,\"Rooms\":3.0,\"Service\":5.0,\"Value\":4.0}},{\"author\":\"Barton Marks\",\"content\":\"We found the hotel de la Monnaie through Interval and we thought we'd give it a try while we attended a conference in New Orleans. This place was a perfect location and it definitely beat staying downtown at the Hilton with the rest of the attendees. We were right on the edge of the French Quarter withing walking distance of the whole area. The location on Esplanade is more of a residential area so you are near the fun but far enough away to enjoy some quiet downtime. We loved the trolly car right across the street and we took that down to the conference center for the conference days we attended. We also took it up Canal Street and nearly delivered to the WWII museum. From there we were able to catch a ride to the Garden District - a must see if you love old architecture - beautiful old homes(mansions). We at lunch ate Joey K's there and it was excellent. We ate so many places in the French Quarter I can't remember all the names. My husband loved all the NOL foods - gumbo, jambalya and more. I'm glad we found the Louisiana Pizza Kitchen right on the other side of the U.S. Mint (across the street from Monnaie). Small little spot but excellent pizza! The day we arrived was a huge jazz festival going on across the street. However, once in our rooms, you couldn't hear any outside noise. Just the train at night blowin it's whistle! We enjoyed being so close to the French Market and within walking distance of all the sites to see. And you can't pass up the Cafe du Monde down the street - a busy happenning place with the best French dougnuts!!!Delicious! We will defintely come back and would stay here again. We were not hounded to purchase anything. My husband only received one phone call regarding timeshare and the woman was very pleasant. The staff was laid back and friendly. My only complaint was the very firm bed. Other than that, we really enjoyed our stay. Thanks Hotel de la Monnaie!\",\"date\":\"2015-03-02 19:56:13 +0300\",\"ratings\":{\"Business service (e.g., internet access)\":4.0,\"Check in / front desk\":4.0,\"Cleanliness\":4.0,\"Location\":4.0,\"Overall\":4.0,\"Rooms\":3.0,\"Service\":3.0,\"Value\":5.0}}],\"state\":null,\"title\":\"Gillingham (Kent)\",\"tollfree\":null,\"type\":\"hotel\",\"url\":\"http://www.yha.org.uk\",\"vacancy\":true},\"id\":\"hotel_10025\"}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "d": {
+                  "address": "Capstone Road, ME7 3JE",
+                  "alias": null,
+                  "checkin": null,
+                  "checkout": null,
+                  "city": "Medway",
+                  "country": "United Kingdom",
+                  "description": "40 bed summer hostel about 3 miles from Gillingham, housed in a districtive converted Oast House in a semi-rural setting.",
+                  "directions": null,
+                  "email": null,
+                  "fax": null,
+                  "free_breakfast": true,
+                  "free_internet": false,
+                  "free_parking": true,
+                  "geo": {
+                    "accuracy": "RANGE_INTERPOLATED",
+                    "lat": 51.35785,
+                    "lon": 0.55818
+                  },
+                  "id": 10025,
+                  "name": "Medway Youth Hostel",
+                  "pets_ok": true,
+                  "phone": "+44 870 770 5964",
+                  "price": null,
+                  "public_likes": [
+                    "Julius Tromp I",
+                    "Corrine Hilll",
+                    "Jaeden McKenzie",
+                    "Vallie Ryan",
+                    "Brian Kilback",
+                    "Lilian McLaughlin",
+                    "Ms. Moses Feeney",
+                    "Elnora Trantow"
+                  ],
+                  "reviews": [
+                    {
+                      "author": "Ozella Sipes",
+                      "content": "This was our 2nd trip here and we enjoyed it as much or more than last year. Excellent location across from the French Market and just across the street from the streetcar stop. Very convenient to several small but good restaurants. Very clean and well maintained. Housekeeping and other staff are all friendly and helpful. We really enjoyed sitting on the 2nd floor terrace over the entrance and \"people-watching\" on Esplanade Ave., also talking with our fellow guests. Some furniture could use a little updating or replacement, but nothing major.",
+                      "date": "2013-06-22 18:33:50 +0300",
+                      "ratings": {
+                        "Cleanliness": 5,
+                        "Location": 4,
+                        "Overall": 4,
+                        "Rooms": 3,
+                        "Service": 5,
+                        "Value": 4
+                      }
+                    },
+                    {
+                      "author": "Barton Marks",
+                      "content": "We found the hotel de la Monnaie through Interval and we thought we'd give it a try while we attended a conference in New Orleans. This place was a perfect location and it definitely beat staying downtown at the Hilton with the rest of the attendees. We were right on the edge of the French Quarter withing walking distance of the whole area. The location on Esplanade is more of a residential area so you are near the fun but far enough away to enjoy some quiet downtime. We loved the trolly car right across the street and we took that down to the conference center for the conference days we attended. We also took it up Canal Street and nearly delivered to the WWII museum. From there we were able to catch a ride to the Garden District - a must see if you love old architecture - beautiful old homes(mansions). We at lunch ate Joey K's there and it was excellent. We ate so many places in the French Quarter I can't remember all the names. My husband loved all the NOL foods - gumbo, jambalya and more. I'm glad we found the Louisiana Pizza Kitchen right on the other side of the U.S. Mint (across the street from Monnaie). Small little spot but excellent pizza! The day we arrived was a huge jazz festival going on across the street. However, once in our rooms, you couldn't hear any outside noise. Just the train at night blowin it's whistle! We enjoyed being so close to the French Market and within walking distance of all the sites to see. And you can't pass up the Cafe du Monde down the street - a busy happenning place with the best French dougnuts!!!Delicious! We will defintely come back and would stay here again. We were not hounded to purchase anything. My husband only received one phone call regarding timeshare and the woman was very pleasant. The staff was laid back and friendly. My only complaint was the very firm bed. Other than that, we really enjoyed our stay. Thanks Hotel de la Monnaie!",
+                      "date": "2015-03-02 19:56:13 +0300",
+                      "ratings": {
+                        "Business service (e.g., internet access)": 4,
+                        "Check in / front desk": 4,
+                        "Cleanliness": 4,
+                        "Location": 4,
+                        "Overall": 4,
+                        "Rooms": 3,
+                        "Service": 3,
+                        "Value": 5
+                      }
+                    }
+                  ],
+                  "state": null,
+                  "title": "Gillingham (Kent)",
+                  "tollfree": null,
+                  "type": "hotel",
+                  "url": "http://www.yha.org.uk",
+                  "vacancy": true
+                },
+                "id": "hotel_10025"
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "route",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"d\":{\"airline\":\"AF\",\"airlineid\":\"airline_137\",\"destinationairport\":\"MRS\",\"distance\":2881.617376098415,\"equipment\":\"320\",\"id\":10000,\"schedule\":[{\"day\":0,\"flight\":\"AF198\",\"utc\":\"10:13:00\"},{\"day\":0,\"flight\":\"AF547\",\"utc\":\"19:14:00\"},{\"day\":0,\"flight\":\"AF943\",\"utc\":\"01:31:00\"},{\"day\":1,\"flight\":\"AF356\",\"utc\":\"12:40:00\"},{\"day\":1,\"flight\":\"AF480\",\"utc\":\"08:58:00\"},{\"day\":1,\"flight\":\"AF250\",\"utc\":\"12:59:00\"},{\"day\":1,\"flight\":\"AF130\",\"utc\":\"04:45:00\"},{\"day\":2,\"flight\":\"AF997\",\"utc\":\"00:31:00\"},{\"day\":2,\"flight\":\"AF223\",\"utc\":\"19:41:00\"},{\"day\":2,\"flight\":\"AF890\",\"utc\":\"15:14:00\"},{\"day\":2,\"flight\":\"AF399\",\"utc\":\"00:30:00\"},{\"day\":2,\"flight\":\"AF328\",\"utc\":\"16:18:00\"},{\"day\":3,\"flight\":\"AF074\",\"utc\":\"23:50:00\"},{\"day\":3,\"flight\":\"AF556\",\"utc\":\"11:33:00\"},{\"day\":4,\"flight\":\"AF064\",\"utc\":\"13:23:00\"},{\"day\":4,\"flight\":\"AF596\",\"utc\":\"12:09:00\"},{\"day\":4,\"flight\":\"AF818\",\"utc\":\"08:02:00\"},{\"day\":5,\"flight\":\"AF967\",\"utc\":\"11:33:00\"},{\"day\":5,\"flight\":\"AF730\",\"utc\":\"19:42:00\"},{\"day\":6,\"flight\":\"AF882\",\"utc\":\"17:07:00\"},{\"day\":6,\"flight\":\"AF485\",\"utc\":\"17:03:00\"},{\"day\":6,\"flight\":\"AF898\",\"utc\":\"10:01:00\"},{\"day\":6,\"flight\":\"AF496\",\"utc\":\"07:00:00\"}],\"sourceairport\":\"TLV\",\"stops\":0,\"type\":\"route\"},\"id\":\"route_10000\"}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "d": {
+                  "airline": "AF",
+                  "airlineid": "airline_137",
+                  "destinationairport": "MRS",
+                  "distance": 2881.617376098415,
+                  "equipment": "320",
+                  "id": 10000,
+                  "schedule": [
+                    {
+                      "day": 0,
+                      "flight": "AF198",
+                      "utc": "10:13:00"
+                    },
+                    {
+                      "day": 0,
+                      "flight": "AF547",
+                      "utc": "19:14:00"
+                    },
+                    {
+                      "day": 0,
+                      "flight": "AF943",
+                      "utc": "01:31:00"
+                    },
+                    {
+                      "day": 1,
+                      "flight": "AF356",
+                      "utc": "12:40:00"
+                    },
+                    {
+                      "day": 1,
+                      "flight": "AF480",
+                      "utc": "08:58:00"
+                    },
+                    {
+                      "day": 1,
+                      "flight": "AF250",
+                      "utc": "12:59:00"
+                    },
+                    {
+                      "day": 1,
+                      "flight": "AF130",
+                      "utc": "04:45:00"
+                    },
+                    {
+                      "day": 2,
+                      "flight": "AF997",
+                      "utc": "00:31:00"
+                    },
+                    {
+                      "day": 2,
+                      "flight": "AF223",
+                      "utc": "19:41:00"
+                    },
+                    {
+                      "day": 2,
+                      "flight": "AF890",
+                      "utc": "15:14:00"
+                    },
+                    {
+                      "day": 2,
+                      "flight": "AF399",
+                      "utc": "00:30:00"
+                    },
+                    {
+                      "day": 2,
+                      "flight": "AF328",
+                      "utc": "16:18:00"
+                    },
+                    {
+                      "day": 3,
+                      "flight": "AF074",
+                      "utc": "23:50:00"
+                    },
+                    {
+                      "day": 3,
+                      "flight": "AF556",
+                      "utc": "11:33:00"
+                    },
+                    {
+                      "day": 4,
+                      "flight": "AF064",
+                      "utc": "13:23:00"
+                    },
+                    {
+                      "day": 4,
+                      "flight": "AF596",
+                      "utc": "12:09:00"
+                    },
+                    {
+                      "day": 4,
+                      "flight": "AF818",
+                      "utc": "08:02:00"
+                    },
+                    {
+                      "day": 5,
+                      "flight": "AF967",
+                      "utc": "11:33:00"
+                    },
+                    {
+                      "day": 5,
+                      "flight": "AF730",
+                      "utc": "19:42:00"
+                    },
+                    {
+                      "day": 6,
+                      "flight": "AF882",
+                      "utc": "17:07:00"
+                    },
+                    {
+                      "day": 6,
+                      "flight": "AF485",
+                      "utc": "17:03:00"
+                    },
+                    {
+                      "day": 6,
+                      "flight": "AF898",
+                      "utc": "10:01:00"
+                    },
+                    {
+                      "day": 6,
+                      "flight": "AF496",
+                      "utc": "07:00:00"
+                    }
+                  ],
+                  "sourceairport": "TLV",
+                  "stops": 0,
+                  "type": "route"
+                },
+                "id": "route_10000"
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "landmark",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"d\":{\"activity\":\"see\",\"address\":\"Prince Arthur Road, ME4 4UG\",\"alt\":null,\"city\":\"Gillingham\",\"content\":\"Adult - \u00a36.99 for an Adult ticket that allows you to come back for further visits within a year (children's and concessionary tickets also available). Museum on military engineering and the history of the British Empire. A quite extensive collection that takes about half a day to see. Of most interest to fans of British and military history or civil engineering. The outside collection of tank mounted bridges etc can be seen for free. There is also an extensive series of themed special event weekends, admission to which is included in the cost of the annual ticket.\",\"country\":\"United Kingdom\",\"directions\":null,\"email\":null,\"geo\":{\"accuracy\":\"RANGE_INTERPOLATED\",\"lat\":51.39184,\"lon\":0.53616},\"hours\":\"Tues - Fri 9.00am to 5.00pm, Sat - Sun 11.30am - 5.00pm\",\"id\":10019,\"image\":null,\"name\":\"Royal Engineers Museum\",\"phone\":\"+44 1634 822839\",\"price\":null,\"state\":null,\"title\":\"Gillingham (Kent)\",\"tollfree\":null,\"type\":\"landmark\",\"url\":\"http://www.remuseum.org.uk\"},\"id\":\"landmark_10019\"}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "d": {
+                  "activity": "see",
+                  "address": "Prince Arthur Road, ME4 4UG",
+                  "alt": null,
+                  "city": "Gillingham",
+                  "content": "Adult - \u00a36.99 for an Adult ticket that allows you to come back for further visits within a year (children's and concessionary tickets also available). Museum on military engineering and the history of the British Empire. A quite extensive collection that takes about half a day to see. Of most interest to fans of British and military history or civil engineering. The outside collection of tank mounted bridges etc can be seen for free. There is also an extensive series of themed special event weekends, admission to which is included in the cost of the annual ticket.",
+                  "country": "United Kingdom",
+                  "directions": null,
+                  "email": null,
+                  "geo": {
+                    "accuracy": "RANGE_INTERPOLATED",
+                    "lat": 51.39184,
+                    "lon": 0.53616
+                  },
+                  "hours": "Tues - Fri 9.00am to 5.00pm, Sat - Sun 11.30am - 5.00pm",
+                  "id": 10019,
+                  "image": null,
+                  "name": "Royal Engineers Museum",
+                  "phone": "+44 1634 822839",
+                  "price": null,
+                  "state": null,
+                  "title": "Gillingham (Kent)",
+                  "tollfree": null,
+                  "type": "landmark",
+                  "url": "http://www.remuseum.org.uk"
+                },
+                "id": "landmark_10019"
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "airline",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"d\":{\"callsign\":\"MILE-AIR\",\"country\":\"United States\",\"iata\":\"Q5\",\"icao\":\"MLA\",\"id\":10,\"name\":\"40-Mile Air\",\"type\":\"airline\"},\"id\":\"airline_10\"}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "d": {
+                  "callsign": "MILE-AIR",
+                  "country": "United States",
+                  "iata": "Q5",
+                  "icao": "MLA",
+                  "id": 10,
+                  "name": "40-Mile Air",
+                  "type": "airline"
+                },
+                "id": "airline_10"
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    }
+  ],
+  "queries": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "france_airports",
+        "query": "SELECT airportname,city FROM airport WHERE country=$country ORDER BY airportname LIMIT 5",
+        "named_parameters": {
+          "country": "France"
+        },
+        "elapsedMs": 12298,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"airportname\":\"Abbeville\",\"city\":\"Abbeville\"},{\"airportname\":\"Aire Sur L Adour\",\"city\":\"Aire-sur-l'adour\"},{\"airportname\":\"Aix Les Bains\",\"city\":\"Chambery\"},{\"airportname\":\"Aix Les Milles\",\"city\":\"Aix-les-milles\"},{\"airportname\":\"All Airports\",\"city\":\"Paris\"}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "airportname": "Abbeville",
+                "city": "Abbeville"
+              },
+              {
+                "airportname": "Aire Sur L Adour",
+                "city": "Aire-sur-l'adour"
+              },
+              {
+                "airportname": "Aix Les Bains",
+                "city": "Chambery"
+              },
+              {
+                "airportname": "Aix Les Milles",
+                "city": "Aix-les-milles"
+              },
+              {
+                "airportname": "All Airports",
+                "city": "Paris"
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "london_ambiguity",
+        "query": "SELECT country,COUNT(*) AS count FROM airport WHERE city=$city GROUP BY country ORDER BY country",
+        "named_parameters": {
+          "city": "London"
+        },
+        "elapsedMs": 9893,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"count\":13,\"country\":\"United Kingdom\"},{\"count\":1,\"country\":\"United States\"}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "count": 13,
+                "country": "United Kingdom"
+              },
+              {
+                "count": 1,
+                "country": "United States"
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "no_matches",
+        "query": "SELECT airportname FROM airport WHERE country=$country LIMIT 5",
+        "named_parameters": {
+          "country": "Atlantis"
+        },
+        "elapsedMs": 4476,
+        "result": {
+          "content": [],
+          "structuredContent": {
+            "result": []
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "parameter_safety",
+        "query": "SELECT airportname FROM airport WHERE country=$country LIMIT 5",
+        "named_parameters": {
+          "country": "France' OR TRUE --"
+        },
+        "elapsedMs": 20828,
+        "result": {
+          "content": [],
+          "structuredContent": {
+            "result": []
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "hotel_filters",
+        "query": "SELECT name,city,country FROM hotel WHERE pets_ok=true AND free_parking=true AND free_breakfast=true ORDER BY name LIMIT 5",
+        "named_parameters": {},
+        "elapsedMs": 14496,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"city\":\"San Francisco\",\"country\":\"United States\",\"name\":\"Adelaide Hostel\"},{\"city\":\"London\",\"country\":\"United Kingdom\",\"name\":\"Ambassadors Hotel\"},{\"city\":\"Santa Monica\",\"country\":\"United States\",\"name\":\"Ambrose Hotel\"},{\"city\":\"Avignon\",\"country\":\"France\",\"name\":\"Avignon Hotel Monclar\"},{\"city\":\"Llanaber\",\"country\":\"United Kingdom\",\"name\":\"Beautiful Wales Sea View Luxury Holiday Barns\"}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "city": "San Francisco",
+                "country": "United States",
+                "name": "Adelaide Hostel"
+              },
+              {
+                "city": "London",
+                "country": "United Kingdom",
+                "name": "Ambassadors Hotel"
+              },
+              {
+                "city": "Santa Monica",
+                "country": "United States",
+                "name": "Ambrose Hotel"
+              },
+              {
+                "city": "Avignon",
+                "country": "France",
+                "name": "Avignon Hotel Monclar"
+              },
+              {
+                "city": "Llanaber",
+                "country": "United Kingdom",
+                "name": "Beautiful Wales Sea View Luxury Holiday Barns"
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "hotel_quality",
+        "query": "SELECT COUNT(*) AS total, SUM(CASE WHEN price IS NULL THEN 1 ELSE 0 END) AS null_price,SUM(CASE WHEN price IS MISSING THEN 1 ELSE 0 END) AS missing_price FROM hotel",
+        "named_parameters": {},
+        "elapsedMs": 7699,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"missing_price\":0,\"null_price\":437,\"total\":917}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "missing_price": 0,
+                "null_price": 437,
+                "total": 917
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "route_join",
+        "query": "SELECT r.sourceairport,r.destinationairport,a.name AS airline,ARRAY_LENGTH(r.schedule) AS schedule_entries FROM route r JOIN airline a ON KEYS r.airlineid WHERE r.sourceairport=$source ORDER BY r.destinationairport LIMIT 5",
+        "named_parameters": {
+          "source": "TLV"
+        },
+        "elapsedMs": 17607,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"airline\":\"easyJet\",\"destinationairport\":\"BSL\",\"schedule_entries\":17,\"sourceairport\":\"TLV\"},{\"airline\":\"Air France\",\"destinationairport\":\"CDG\",\"schedule_entries\":17,\"sourceairport\":\"TLV\"},{\"airline\":\"United Airlines\",\"destinationairport\":\"EWR\",\"schedule_entries\":25,\"sourceairport\":\"TLV\"},{\"airline\":\"easyJet\",\"destinationairport\":\"FCO\",\"schedule_entries\":17,\"sourceairport\":\"TLV\"},{\"airline\":\"easyJet\",\"destinationairport\":\"GVA\",\"schedule_entries\":22,\"sourceairport\":\"TLV\"}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "airline": "easyJet",
+                "destinationairport": "BSL",
+                "schedule_entries": 17,
+                "sourceairport": "TLV"
+              },
+              {
+                "airline": "Air France",
+                "destinationairport": "CDG",
+                "schedule_entries": 17,
+                "sourceairport": "TLV"
+              },
+              {
+                "airline": "United Airlines",
+                "destinationairport": "EWR",
+                "schedule_entries": 25,
+                "sourceairport": "TLV"
+              },
+              {
+                "airline": "easyJet",
+                "destinationairport": "FCO",
+                "schedule_entries": 17,
+                "sourceairport": "TLV"
+              },
+              {
+                "airline": "easyJet",
+                "destinationairport": "GVA",
+                "schedule_entries": 22,
+                "sourceairport": "TLV"
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "landmark_keyword",
+        "query": "SELECT name,city FROM landmark WHERE LOWER(content) LIKE $pattern ORDER BY name LIMIT 5",
+        "named_parameters": {
+          "pattern": "%military%"
+        },
+        "elapsedMs": 24321,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"city\":\"Falkirk\",\"name\":\"Antonine Wall\"},{\"city\":\"South Shields\",\"name\":\"Arbeia Roman Fort\"},{\"city\":\"Beaumaris\",\"name\":\"Beaumaris Castle\"},{\"city\":\"La Cambe\",\"name\":\"Cimeti\u00e8re Militaire Allemand\"},{\"city\":\"London\",\"name\":\"Cleopatra's Needle\"}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "city": "Falkirk",
+                "name": "Antonine Wall"
+              },
+              {
+                "city": "South Shields",
+                "name": "Arbeia Roman Fort"
+              },
+              {
+                "city": "Beaumaris",
+                "name": "Beaumaris Castle"
+              },
+              {
+                "city": "La Cambe",
+                "name": "Cimeti\u00e8re Militaire Allemand"
+              },
+              {
+                "city": "London",
+                "name": "Cleopatra's Needle"
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "counts",
+        "query": "SELECT 'airport' AS collection,COUNT(*) AS count FROM airport UNION ALL SELECT 'airline' AS collection,COUNT(*) AS count FROM airline UNION ALL SELECT 'hotel' AS collection,COUNT(*) AS count FROM hotel UNION ALL SELECT 'landmark' AS collection,COUNT(*) AS count FROM landmark UNION ALL SELECT 'route' AS collection,COUNT(*) AS count FROM route",
+        "named_parameters": {},
+        "elapsedMs": 27404,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Error calling tool 'run_sql_plus_plus_query': 3000: syntax error - line 1, column 21, near 'SELECT 'airport' AS ', at: collection (reserved word)"
+            }
+          ],
+          "isError": true
+        }
+      }
+    }
+  ],
+  "additional": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "counts_corrected",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Error calling tool 'run_sql_plus_plus_query': 3000: syntax error - line 1, column 21, near 'SELECT 'airport' AS ', at: dataset (reserved word)"
+            }
+          ],
+          "isError": true
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "exact_lookup",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"id\":10,\"type\":\"airline\",\"name\":\"40-Mile Air\",\"iata\":\"Q5\",\"icao\":\"MLA\",\"callsign\":\"MILE-AIR\",\"country\":\"United States\"}"
+            }
+          ],
+          "structuredContent": {
+            "id": 10,
+            "type": "airline",
+            "name": "40-Mile Air",
+            "iata": "Q5",
+            "icao": "MLA",
+            "callsign": "MILE-AIR",
+            "country": "United States"
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "partial_document",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"get\":{\"name\":{\"value\":\"Medway Youth Hostel\"},\"price\":{\"value\":null},\"geo.lat\":{\"value\":51.35785}},\"count\":{\"reviews\":{\"value\":2}}}"
+            }
+          ],
+          "structuredContent": {
+            "get": {
+              "name": {
+                "value": "Medway Youth Hostel"
+              },
+              "price": {
+                "value": null
+              },
+              "geo.lat": {
+                "value": 51.35785
+              }
+            },
+            "count": {
+              "reviews": {
+                "value": 2
+              }
+            }
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "missing_document",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Error calling tool 'get_document_by_id': DocumentNotFoundException(<ec=101, category=couchbase.key_value, message=Operation failed, context=KeyValueErrorContext:{'key': 'audit_intentionally_missing_20261103', 'bucket_name': 'travel-sample', 'scope_name': 'inventory', 'collection_name': 'airline', 'opaque': 43, 'status_code': 1, 'retry_attempts': 0, 'retry_reasons': set()}, C Source=/private/var/folders/8_/twt0_jw52sv9fm930llg2yk40000gn/T/pip-req-build-njz7cgwf/src/connection.hxx:395>)"
+            }
+          ],
+          "isError": true
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "query_plan",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"query\":\"SELECT airportname,city FROM airport WHERE country='France' ORDER BY airportname LIMIT 5\",\"explain_statement\":\"EXPLAIN SELECT airportname,city FROM airport WHERE country='France' ORDER BY airportname LIMIT 5\",\"query_context\":{\"bucket_name\":\"travel-sample\",\"scope_name\":\"inventory\"},\"plan\":{\"#operator\":\"Sequence\",\"~children\":[{\"#operator\":\"Sequence\",\"~children\":[{\"#operator\":\"PrimaryScan3\",\"bucket\":\"travel-sample\",\"index\":\"def_inventory_airport_primary\",\"index_projection\":{\"primary_key\":true},\"keyspace\":\"airport\",\"namespace\":\"default\",\"optimizer_estimates\":{\"cardinality\":1968,\"cost\":677.4749619966433,\"fr_cost\":12.33814784654301,\"size\":12},\"scope\":\"inventory\",\"using\":\"gsi\"},{\"#operator\":\"Fetch\",\"bucket\":\"travel-sample\",\"early_projection\":[\"airportname\",\"city\",\"country\"],\"keyspace\":\"airport\",\"namespace\":\"default\",\"optimizer_estimates\":{\"cardinality\":1968,\"cost\":4112.324301362897,\"fr_cost\":26.07740055963562,\"size\":250},\"scope\":\"inventory\"},{\"#operator\":\"Parallel\",\"~child\":{\"#operator\":\"Sequence\",\"~children\":[{\"#operator\":\"Filter\",\"condition\":\"((`airport`.`country`) = \\\"France\\\")\"},{\"#operator\":\"InitialProject\",\"preserve_order\":true,\"result_terms\":[{\"expr\":\"(`airport`.`airportname`)\"},{\"expr\":\"(`airport`.`city`)\"}]}]}}]},{\"#operator\":\"Order\",\"flags\":6,\"limit\":\"5\",\"sort_terms\":[{\"expr\":\"(`airport`.`airportname`)\"}]},{\"#operator\":\"Limit\",\"expr\":\"5\"}]},\"plan_evaluation\":{\"summary\":\"Plan has optimization opportunities.\",\"operators\":[\"Fetch\",\"Filter\",\"InitialProject\",\"Limit\",\"Order\",\"Parallel\",\"PrimaryScan3\",\"Sequence\"],\"operator_counts\":{\"Sequence\":3,\"PrimaryScan3\":1,\"Fetch\":1,\"Parallel\":1,\"Filter\":1,\"InitialProject\":1,\"Order\":1,\"Limit\":1},\"indexes_used\":[\"def_inventory_airport_primary\"],\"keyspaces\":[\"airport\"],\"findings\":[{\"severity\":\"warning\",\"issue\":\"primary_index_scan\",\"message\":\"Primary index scan detected. Consider creating a targeted secondary index for better selectivity.\"}]}}"
+            }
+          ],
+          "structuredContent": {
+            "query": "SELECT airportname,city FROM airport WHERE country='France' ORDER BY airportname LIMIT 5",
+            "explain_statement": "EXPLAIN SELECT airportname,city FROM airport WHERE country='France' ORDER BY airportname LIMIT 5",
+            "query_context": {
+              "bucket_name": "travel-sample",
+              "scope_name": "inventory"
+            },
+            "plan": {
+              "#operator": "Sequence",
+              "~children": [
+                {
+                  "#operator": "Sequence",
+                  "~children": [
+                    {
+                      "#operator": "PrimaryScan3",
+                      "bucket": "travel-sample",
+                      "index": "def_inventory_airport_primary",
+                      "index_projection": {
+                        "primary_key": true
+                      },
+                      "keyspace": "airport",
+                      "namespace": "default",
+                      "optimizer_estimates": {
+                        "cardinality": 1968,
+                        "cost": 677.4749619966433,
+                        "fr_cost": 12.33814784654301,
+                        "size": 12
+                      },
+                      "scope": "inventory",
+                      "using": "gsi"
+                    },
+                    {
+                      "#operator": "Fetch",
+                      "bucket": "travel-sample",
+                      "early_projection": [
+                        "airportname",
+                        "city",
+                        "country"
+                      ],
+                      "keyspace": "airport",
+                      "namespace": "default",
+                      "optimizer_estimates": {
+                        "cardinality": 1968,
+                        "cost": 4112.324301362897,
+                        "fr_cost": 26.07740055963562,
+                        "size": 250
+                      },
+                      "scope": "inventory"
+                    },
+                    {
+                      "#operator": "Parallel",
+                      "~child": {
+                        "#operator": "Sequence",
+                        "~children": [
+                          {
+                            "#operator": "Filter",
+                            "condition": "((`airport`.`country`) = \"France\")"
+                          },
+                          {
+                            "#operator": "InitialProject",
+                            "preserve_order": true,
+                            "result_terms": [
+                              {
+                                "expr": "(`airport`.`airportname`)"
+                              },
+                              {
+                                "expr": "(`airport`.`city`)"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "#operator": "Order",
+                  "flags": 6,
+                  "limit": "5",
+                  "sort_terms": [
+                    {
+                      "expr": "(`airport`.`airportname`)"
+                    }
+                  ]
+                },
+                {
+                  "#operator": "Limit",
+                  "expr": "5"
+                }
+              ]
+            },
+            "plan_evaluation": {
+              "summary": "Plan has optimization opportunities.",
+              "operators": [
+                "Fetch",
+                "Filter",
+                "InitialProject",
+                "Limit",
+                "Order",
+                "Parallel",
+                "PrimaryScan3",
+                "Sequence"
+              ],
+              "operator_counts": {
+                "Sequence": 3,
+                "PrimaryScan3": 1,
+                "Fetch": 1,
+                "Parallel": 1,
+                "Filter": 1,
+                "InitialProject": 1,
+                "Order": 1,
+                "Limit": 1
+              },
+              "indexes_used": [
+                "def_inventory_airport_primary"
+              ],
+              "keyspaces": [
+                "airport"
+              ],
+              "findings": [
+                {
+                  "severity": "warning",
+                  "issue": "primary_index_scan",
+                  "message": "Primary index scan detected. Consider creating a targeted secondary index for better selectivity."
+                }
+              ]
+            }
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "vector_configuration_probe",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"success\":false,\"error\":\"CB_MCP_EMBEDDING_MODEL_PROVIDER is not configured. Set it to one of: bedrock, capella, cohere, openai, voyage.\",\"bucket_name\":\"travel-sample\",\"scope_name\":\"inventory\",\"collection_name\":\"hotel\"}"
+            }
+          ],
+          "structuredContent": {
+            "success": false,
+            "error": "CB_MCP_EMBEDDING_MODEL_PROVIDER is not configured. Set it to one of: bedrock, capella, cohere, openai, voyage.",
+            "bucket_name": "travel-sample",
+            "scope_name": "inventory",
+            "collection_name": "hotel"
+          },
+          "isError": false
+        }
+      }
+    }
+  ],
+  "verification": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "counts_final",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[{\"collection\":\"route\",\"n\":24024},{\"collection\":\"hotel\",\"n\":917},{\"collection\":\"airport\",\"n\":1968},{\"collection\":\"airline\",\"n\":187},{\"collection\":\"landmark\",\"n\":4495}]"
+            }
+          ],
+          "structuredContent": {
+            "result": [
+              {
+                "collection": "route",
+                "n": 24024
+              },
+              {
+                "collection": "hotel",
+                "n": 917
+              },
+              {
+                "collection": "airport",
+                "n": 1968
+              },
+              {
+                "collection": "airline",
+                "n": 187
+              },
+              {
+                "collection": "landmark",
+                "n": 4495
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "schema",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"collection_name\":\"airline\",\"schema\":[{\"#docs\":187,\"$schema\":\"http://json-schema.org/draft-06/schema\",\"Flavor\":\"\",\"properties\":{\"callsign\":{\"#docs\":[15,172],\"%docs\":[8.02,91.97],\"nestingDepth\":0,\"samples\":[null,[]],\"type\":[\"null\",\"string\"]},\"country\":{\"#docs\":187,\"%docs\":100,\"nestingDepth\":0,\"type\":\"string\"},\"iata\":{\"#docs\":[32,155],\"%docs\":[17.11,82.88],\"nestingDepth\":0,\"samples\":[null,[]],\"type\":[\"null\",\"string\"]},\"icao\":{\"#docs\":187,\"%docs\":100,\"nestingDepth\":0,\"type\":\"string\"},\"id\":{\"#docs\":187,\"%docs\":100,\"nestingDepth\":0,\"type\":\"number\"},\"name\":{\"#docs\":187,\"%docs\":100,\"nestingDepth\":0,\"type\":\"string\"},\"type\":{\"#docs\":187,\"%docs\":100,\"nestingDepth\":0,\"type\":\"string\"},\"~meta\":{\"#docs\":187,\"%docs\":100,\"nestingDepth\":0,\"properties\":{\"id\":{\"#docs\":187,\"%docs\":100,\"nestingDepth\":1,\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}]}"
+            }
+          ],
+          "structuredContent": {
+            "collection_name": "airline",
+            "schema": [
+              {
+                "#docs": 187,
+                "$schema": "http://json-schema.org/draft-06/schema",
+                "Flavor": "",
+                "properties": {
+                  "callsign": {
+                    "#docs": [
+                      15,
+                      172
+                    ],
+                    "%docs": [
+                      8.02,
+                      91.97
+                    ],
+                    "nestingDepth": 0,
+                    "samples": [
+                      null,
+                      []
+                    ],
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "country": {
+                    "#docs": 187,
+                    "%docs": 100,
+                    "nestingDepth": 0,
+                    "type": "string"
+                  },
+                  "iata": {
+                    "#docs": [
+                      32,
+                      155
+                    ],
+                    "%docs": [
+                      17.11,
+                      82.88
+                    ],
+                    "nestingDepth": 0,
+                    "samples": [
+                      null,
+                      []
+                    ],
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "icao": {
+                    "#docs": 187,
+                    "%docs": 100,
+                    "nestingDepth": 0,
+                    "type": "string"
+                  },
+                  "id": {
+                    "#docs": 187,
+                    "%docs": 100,
+                    "nestingDepth": 0,
+                    "type": "number"
+                  },
+                  "name": {
+                    "#docs": 187,
+                    "%docs": 100,
+                    "nestingDepth": 0,
+                    "type": "string"
+                  },
+                  "type": {
+                    "#docs": 187,
+                    "%docs": 100,
+                    "nestingDepth": 0,
+                    "type": "string"
+                  },
+                  "~meta": {
+                    "#docs": 187,
+                    "%docs": 100,
+                    "nestingDepth": 0,
+                    "properties": {
+                      "id": {
+                        "#docs": 187,
+                        "%docs": 100,
+                        "nestingDepth": 1,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            ]
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "advisor",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"current_used_indexes\":[{\"index\":\"CREATE PRIMARY INDEX def_inventory_airport_primary ON `default`:`travel-sample`.`inventory`.`airport`\",\"statements\":[{\"run_count\":1,\"statement\":\"SELECT airportname,city FROM airport WHERE country='France' ORDER BY airportname LIMIT 5\"}]}],\"recommended_indexes\":[{\"index\":\"CREATE INDEX adv_country ON `default`:`travel-sample`.`inventory`.`airport`(`country`)\",\"statements\":[{\"run_count\":1,\"statement\":\"SELECT airportname,city FROM airport WHERE country='France' ORDER BY airportname LIMIT 5\"}],\"update_statistics\":\"UPDATE STATISTICS FOR `default`:`travel-sample`.`inventory`.`airport`(`country`)\"}],\"recommended_covering_indexes\":[{\"index\":\"CREATE INDEX adv_country_airportname_city ON `default`:`travel-sample`.`inventory`.`airport`(`country`,`airportname`,`city`)\",\"statements\":[{\"run_count\":1,\"statement\":\"SELECT airportname,city FROM airport WHERE country='France' ORDER BY airportname LIMIT 5\"}],\"update_statistics\":\"UPDATE STATISTICS FOR `default`:`travel-sample`.`inventory`.`airport`(`country`)\"}],\"summary\":{\"current_indexes_count\":1,\"recommended_indexes_count\":1,\"recommended_covering_indexes_count\":1,\"has_recommendations\":true}}"
+            }
+          ],
+          "structuredContent": {
+            "current_used_indexes": [
+              {
+                "index": "CREATE PRIMARY INDEX def_inventory_airport_primary ON `default`:`travel-sample`.`inventory`.`airport`",
+                "statements": [
+                  {
+                    "run_count": 1,
+                    "statement": "SELECT airportname,city FROM airport WHERE country='France' ORDER BY airportname LIMIT 5"
+                  }
+                ]
+              }
+            ],
+            "recommended_indexes": [
+              {
+                "index": "CREATE INDEX adv_country ON `default`:`travel-sample`.`inventory`.`airport`(`country`)",
+                "statements": [
+                  {
+                    "run_count": 1,
+                    "statement": "SELECT airportname,city FROM airport WHERE country='France' ORDER BY airportname LIMIT 5"
+                  }
+                ],
+                "update_statistics": "UPDATE STATISTICS FOR `default`:`travel-sample`.`inventory`.`airport`(`country`)"
+              }
+            ],
+            "recommended_covering_indexes": [
+              {
+                "index": "CREATE INDEX adv_country_airportname_city ON `default`:`travel-sample`.`inventory`.`airport`(`country`,`airportname`,`city`)",
+                "statements": [
+                  {
+                    "run_count": 1,
+                    "statement": "SELECT airportname,city FROM airport WHERE country='France' ORDER BY airportname LIMIT 5"
+                  }
+                ],
+                "update_statistics": "UPDATE STATISTICS FOR `default`:`travel-sample`.`inventory`.`airport`(`country`)"
+              }
+            ],
+            "summary": {
+              "current_indexes_count": 1,
+              "recommended_indexes_count": 1,
+              "recommended_covering_indexes_count": 1,
+              "has_recommendations": true
+            }
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "health",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"status\":\"success\",\"data\":{\"version\":2,\"id\":\"016395-2ed1-7748-a688-aac4b08c93cb90\",\"sdk\":\"cxx/1.3.2;Darwin/arm64\",\"services\":{\"key_value\":[{\"type\":\"key_value\",\"id\":\"351845-dd17-3d4c-0b36-784ce43215d936\",\"remote\":\"77.113.236.239:11207\",\"local\":\"192.168.1.101:49793\",\"state\":\"ok\",\"bucket\":\"travel-sample\",\"latency_us\":62315}]}}}"
+            }
+          ],
+          "structuredContent": {
+            "status": "success",
+            "data": {
+              "version": 2,
+              "id": "016395-2ed1-7748-a688-aac4b08c93cb90",
+              "sdk": "cxx/1.3.2;Darwin/arm64",
+              "services": {
+                "key_value": [
+                  {
+                    "type": "key_value",
+                    "id": "351845-dd17-3d4c-0b36-784ce43215d936",
+                    "remote": "77.113.236.239:11207",
+                    "local": "192.168.1.101:49793",
+                    "state": "ok",
+                    "bucket": "travel-sample",
+                    "latency_us": 62315
+                  }
+                ]
+              }
+            }
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "index_catalog_crosscheck",
+        "result": {
+          "content": [],
+          "structuredContent": {
+            "result": []
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "search_vector_configuration_probe",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"success\":false,\"error\":\"CB_MCP_EMBEDDING_MODEL_PROVIDER is not configured. Set it to one of: bedrock, capella, cohere, openai, voyage.\",\"index_name\":\"audit_intentionally_unconfigured\"}"
+            }
+          ],
+          "structuredContent": {
+            "success": false,
+            "error": "CB_MCP_EMBEDDING_MODEL_PROVIDER is not configured. Set it to one of: bedrock, capella, cohere, openai, voyage.",
+            "index_name": "audit_intentionally_unconfigured"
+          },
+          "isError": false
+        }
+      }
+    }
+  ]
+}
