@@ -1,0 +1,706 @@
+[
+  {
+    "test": "lost_update_without_cas",
+    "actual": 120,
+    "correct_if_both_applied": 130,
+    "expected_demonstration": 120
+  },
+  {
+    "test": "cas_rejects_stale_write",
+    "passed": true
+  },
+  {
+    "test": "atomic_subdocument_update",
+    "passed": true
+  },
+  {
+    "test": "subdocument_rollback",
+    "error_type": "PathNotFoundException",
+    "passed": true
+  },
+  {
+    "test": "duplicate_insert",
+    "passed": true
+  },
+  {
+    "test": "ttl_expiry",
+    "passed": true
+  },
+  {
+    "test": "load",
+    "collection": "orders_100",
+    "documents": 100,
+    "seconds": 0.18230516699986765,
+    "documents_per_second": 548.5308049446157,
+    "json_bytes_sample": 305
+  },
+  {
+    "test": "count_verification",
+    "collection": "orders_100",
+    "expected": 100,
+    "actual": 100,
+    "passed": true
+  },
+  {
+    "test": "filtered_query",
+    "collection": "orders_100",
+    "index": "primary",
+    "passed": true,
+    "rows": 5,
+    "client_median_ms": 85.65291600098135,
+    "server_median_ms": 8.543000000000001,
+    "client_samples_ms": [
+      92.68291700027476,
+      85.38379200035706,
+      85.65291600098135,
+      85.35120799933793,
+      124.74041699897498
+    ]
+  },
+  {
+    "test": "filtered_query",
+    "collection": "orders_100",
+    "index": "covering",
+    "passed": true,
+    "rows": 5,
+    "client_median_ms": 81.8264170011389,
+    "server_median_ms": 2.621,
+    "client_samples_ms": [
+      82.52691599955142,
+      81.24354199935624,
+      80.41720799883478,
+      110.02845899929525,
+      81.8264170011389
+    ]
+  },
+  {
+    "test": "point_read",
+    "collection": "orders_100",
+    "method": "kv",
+    "passed": true,
+    "client_median_ms": 77.70133350004471,
+    "client_samples_ms": [
+      123.0507909986045,
+      74.48562500030675,
+      78.27708299919323,
+      75.19770899853029,
+      178.70500000026368,
+      91.90258300077403,
+      76.0199169999396,
+      76.54420899962133,
+      77.45583299947612,
+      75.95941699946707,
+      77.82991699968989,
+      77.63725000040722,
+      75.22262499878707,
+      78.32374999998137,
+      83.68683399930887,
+      74.40237500122748,
+      78.21283299927018,
+      74.60920799894666,
+      77.7654169996822,
+      78.99949999955425
+    ]
+  },
+  {
+    "test": "point_read",
+    "collection": "orders_100",
+    "method": "sql_use_keys",
+    "passed": true,
+    "client_median_ms": 77.797291499337,
+    "client_samples_ms": [
+      326.6007090005587,
+      76.38425000004645,
+      77.45362500099873,
+      75.92408399978012,
+      81.80050000009942,
+      82.63962500132038,
+      77.9456250002113,
+      79.3532919997233,
+      77.85733299897402,
+      77.49337499990361,
+      90.76000000095519,
+      77.58720799938601,
+      76.35325000046578,
+      77.85333299943886,
+      74.64875000005122,
+      80.56337500056543,
+      73.96562499889114,
+      77.74124999923515,
+      76.31625000067288,
+      102.97691699997813
+    ]
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_100",
+    "workers": 1,
+    "operations": 160,
+    "ops_per_second": 12.583949278541718,
+    "client_median_ms": 77.00631250008882,
+    "client_p95_ms": 87.54170800057182,
+    "passed": true
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_100",
+    "workers": 4,
+    "operations": 160,
+    "ops_per_second": 50.34789213435456,
+    "client_median_ms": 77.08247899972775,
+    "client_p95_ms": 85.84591599901614,
+    "passed": true
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_100",
+    "workers": 8,
+    "operations": 160,
+    "ops_per_second": 101.58861578922334,
+    "client_median_ms": 77.94602099966141,
+    "client_p95_ms": 86.0398749991873,
+    "passed": true
+  },
+  {
+    "test": "missing_vs_null",
+    "collection": "orders_100",
+    "actual": {
+      "missing_count": 33,
+      "null_count": 34,
+      "total": 100
+    },
+    "passed": true
+  },
+  {
+    "test": "bound_parameter_injection",
+    "collection": "orders_100",
+    "passed": true,
+    "actual": [
+      0
+    ]
+  },
+  {
+    "test": "array_query",
+    "collection": "orders_100",
+    "actual": 4,
+    "expected": 4,
+    "passed": true,
+    "client_ms": 83.9844579986675,
+    "server_ms": 2.127
+  },
+  {
+    "test": "read_after_write",
+    "collection": "orders_100",
+    "trials": 10,
+    "default_stale_reads": 0,
+    "request_plus_current_reads": 10,
+    "passed": true
+  },
+  {
+    "test": "load",
+    "collection": "orders_10k",
+    "documents": 10000,
+    "seconds": 1.2963729170005536,
+    "documents_per_second": 7713.829769860681,
+    "json_bytes_sample": 305
+  },
+  {
+    "test": "count_verification",
+    "collection": "orders_10k",
+    "expected": 10000,
+    "actual": 10000,
+    "passed": true
+  },
+  {
+    "test": "filtered_query",
+    "collection": "orders_10k",
+    "index": "primary",
+    "passed": true,
+    "rows": 20,
+    "client_median_ms": 401.3028339995799,
+    "server_median_ms": 315.232,
+    "client_samples_ms": [
+      396.57762499882665,
+      347.36775000055786,
+      431.55145899982017,
+      401.3028339995799,
+      431.44691700035764
+    ]
+  },
+  {
+    "test": "filtered_query",
+    "collection": "orders_10k",
+    "index": "covering",
+    "passed": true,
+    "rows": 20,
+    "client_median_ms": 82.34141700086184,
+    "server_median_ms": 2.6870000000000003,
+    "client_samples_ms": [
+      82.34141700086184,
+      81.99824999974226,
+      86.1497080004483,
+      82.57658299953619,
+      81.92766699903586
+    ]
+  },
+  {
+    "test": "point_read",
+    "collection": "orders_10k",
+    "method": "kv",
+    "passed": true,
+    "client_median_ms": 77.61783349997131,
+    "client_samples_ms": [
+      77.04137499968056,
+      76.98937500026659,
+      78.03787499869941,
+      76.90183399972739,
+      96.87875000054191,
+      74.2989589998615,
+      163.89995899953647,
+      104.19145800005936,
+      76.80404200073099,
+      132.5438750009198,
+      74.45541600100114,
+      76.99208399935742,
+      74.937499999578,
+      74.59154100070009,
+      77.42091699947196,
+      77.81475000047067,
+      77.90704199942411,
+      80.12616700034414,
+      83.31179099877772,
+      79.35433300008299
+    ]
+  },
+  {
+    "test": "point_read",
+    "collection": "orders_10k",
+    "method": "sql_use_keys",
+    "passed": true,
+    "client_median_ms": 95.99443800016161,
+    "client_samples_ms": [
+      317.4707079997461,
+      81.38695900015591,
+      77.78441600021324,
+      77.93820799997775,
+      78.71691699983785,
+      77.27554200027953,
+      79.09691599888902,
+      78.83195899921702,
+      79.53816599911079,
+      103.88583399981144,
+      300.963583000339,
+      88.10304200051178,
+      132.32595800036506,
+      152.9155839998566,
+      87.59825000015553,
+      153.06908300044597,
+      159.53683299994736,
+      150.98762499837903,
+      190.1180419990851,
+      156.87770800104772
+    ]
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_10k",
+    "workers": 1,
+    "operations": 160,
+    "ops_per_second": 7.996406514867497,
+    "client_median_ms": 78.32539600076416,
+    "client_p95_ms": 318.387667000934,
+    "passed": true
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_10k",
+    "workers": 4,
+    "operations": 160,
+    "ops_per_second": 51.34868251744192,
+    "client_median_ms": 77.65387499966891,
+    "client_p95_ms": 81.3265840006352,
+    "passed": true
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_10k",
+    "workers": 8,
+    "operations": 160,
+    "ops_per_second": 98.61774137784887,
+    "client_median_ms": 77.2520419995999,
+    "client_p95_ms": 94.47654200084799,
+    "passed": true
+  },
+  {
+    "test": "missing_vs_null",
+    "collection": "orders_10k",
+    "actual": {
+      "missing_count": 3333,
+      "null_count": 3334,
+      "total": 10000
+    },
+    "passed": true
+  },
+  {
+    "test": "bound_parameter_injection",
+    "collection": "orders_10k",
+    "passed": true,
+    "actual": [
+      0
+    ]
+  },
+  {
+    "test": "array_query",
+    "collection": "orders_10k",
+    "actual": 400,
+    "expected": 400,
+    "passed": true,
+    "client_ms": 79.20979200025613,
+    "server_ms": 2.3770000000000002
+  },
+  {
+    "test": "read_after_write",
+    "collection": "orders_10k",
+    "trials": 10,
+    "default_stale_reads": 0,
+    "request_plus_current_reads": 10,
+    "passed": true
+  },
+  {
+    "test": "load",
+    "collection": "orders_100k",
+    "documents": 100000,
+    "seconds": 10.537879083998632,
+    "documents_per_second": 9489.57557805405,
+    "json_bytes_sample": 305
+  },
+  {
+    "test": "count_verification",
+    "collection": "orders_100k",
+    "expected": 100000,
+    "actual": 100000,
+    "passed": true
+  },
+  {
+    "test": "filtered_query",
+    "collection": "orders_100k",
+    "index": "primary",
+    "passed": true,
+    "rows": 20,
+    "client_median_ms": 2849.025334000544,
+    "server_median_ms": 2766.2529999999997,
+    "client_samples_ms": [
+      3216.125834000195,
+      2849.025334000544,
+      2817.7632499991887,
+      2844.7745419998682,
+      2863.0587909992755
+    ]
+  },
+  {
+    "test": "filtered_query",
+    "collection": "orders_100k",
+    "index": "covering",
+    "passed": true,
+    "rows": 20,
+    "client_median_ms": 84.02637500148558,
+    "server_median_ms": 2.7950000000000004,
+    "client_samples_ms": [
+      92.91479100102151,
+      81.08716599963373,
+      83.51958300045226,
+      143.62141600031464,
+      84.02637500148558
+    ]
+  },
+  {
+    "test": "point_read",
+    "collection": "orders_100k",
+    "method": "kv",
+    "passed": true,
+    "client_median_ms": 77.27527050064964,
+    "client_samples_ms": [
+      108.45583299851569,
+      76.38041700010945,
+      76.5025839991722,
+      76.08279099986248,
+      77.24662500004342,
+      102.6426669995999,
+      78.06879199961259,
+      75.46787499995844,
+      155.02712499983318,
+      102.42691699932038,
+      76.77129200055788,
+      75.77412499995262,
+      77.30391600125586,
+      77.57616700109793,
+      75.69316599983722,
+      128.6572499993781,
+      74.77012500021374,
+      77.0438749987079,
+      77.73166700098955,
+      77.30529099899286
+    ]
+  },
+  {
+    "test": "point_read",
+    "collection": "orders_100k",
+    "method": "sql_use_keys",
+    "passed": true,
+    "client_median_ms": 78.51525000023685,
+    "client_samples_ms": [
+      317.03762500001176,
+      77.23854199866764,
+      79.92150000063702,
+      76.05258299918205,
+      77.65970800028299,
+      188.0793750005978,
+      86.48262499991688,
+      77.13054099986039,
+      78.63637499940523,
+      77.3586659997818,
+      76.78474999920581,
+      78.72991699878185,
+      79.0500000002794,
+      76.40154200089455,
+      77.77629100019112,
+      79.45537500017963,
+      75.01479200072936,
+      107.1332909996272,
+      81.57187500000873,
+      78.39412500106846
+    ]
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_100k",
+    "workers": 1,
+    "operations": 160,
+    "ops_per_second": 12.640230894356629,
+    "client_median_ms": 77.26206249935785,
+    "client_p95_ms": 82.62475000083214,
+    "passed": true
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_100k",
+    "workers": 4,
+    "operations": 160,
+    "ops_per_second": 50.951075463759004,
+    "client_median_ms": 77.74964650070615,
+    "client_p95_ms": 86.13037500072096,
+    "passed": true
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_100k",
+    "workers": 8,
+    "operations": 160,
+    "ops_per_second": 96.46689252481512,
+    "client_median_ms": 80.71420799933549,
+    "client_p95_ms": 98.94945800078858,
+    "passed": true
+  },
+  {
+    "test": "missing_vs_null",
+    "collection": "orders_100k",
+    "actual": {
+      "missing_count": 33333,
+      "null_count": 33334,
+      "total": 100000
+    },
+    "passed": true
+  },
+  {
+    "test": "bound_parameter_injection",
+    "collection": "orders_100k",
+    "passed": true,
+    "actual": [
+      0
+    ]
+  },
+  {
+    "test": "array_query",
+    "collection": "orders_100k",
+    "actual": 4000,
+    "expected": 4000,
+    "passed": true,
+    "client_ms": 81.64025000041875,
+    "server_ms": 4.475
+  },
+  {
+    "test": "read_after_write",
+    "collection": "orders_100k",
+    "trials": 10,
+    "default_stale_reads": 0,
+    "request_plus_current_reads": 10,
+    "passed": true
+  },
+  {
+    "test": "load",
+    "collection": "orders_1m",
+    "documents": 1000000,
+    "seconds": 102.35095445799925,
+    "documents_per_second": 9770.30458871158,
+    "json_bytes_sample": 305
+  },
+  {
+    "test": "count_verification",
+    "collection": "orders_1m",
+    "expected": 1000000,
+    "actual": 1000000,
+    "passed": true
+  },
+  {
+    "test": "runner_failure",
+    "error_type": "UnAmbiguousTimeoutException",
+    "message": "Primary-scan query at 1 million documents exceeded server timeout 59.5 seconds (SDK timeout 60 seconds). Original local log retained privately."
+  },
+  {
+    "test": "filtered_query",
+    "collection": "orders_1m",
+    "index": "covering",
+    "passed": true,
+    "rows": 20,
+    "client_median_ms": 80.45175000006566,
+    "server_median_ms": 2.767,
+    "client_samples_ms": [
+      78.02295799956482,
+      84.78833399931318,
+      78.35399999930814,
+      82.2716250004305,
+      80.45175000006566
+    ]
+  },
+  {
+    "test": "point_read",
+    "collection": "orders_1m",
+    "method": "kv",
+    "passed": true,
+    "client_median_ms": 77.05906299906928,
+    "client_samples_ms": [
+      155.86824999991222,
+      75.07004199942457,
+      76.5213330014376,
+      78.28408300156298,
+      75.99775000016962,
+      77.09691699892574,
+      77.02120899921283,
+      100.2407089999906,
+      76.90333299979102,
+      74.58362499892246,
+      77.136125000834,
+      76.28683399889269,
+      77.10737500019604,
+      77.4047499999142,
+      77.60112500000105,
+      75.58370799961267,
+      75.87212500038731,
+      78.40358400062541,
+      78.35820800028159,
+      75.11529099974723
+    ]
+  },
+  {
+    "test": "point_read",
+    "collection": "orders_1m",
+    "method": "sql_use_keys",
+    "passed": true,
+    "client_median_ms": 81.8802500007223,
+    "client_samples_ms": [
+      339.26133400018443,
+      85.31145899905823,
+      78.7443750014063,
+      114.4365830004972,
+      100.34066700063704,
+      83.01954200032924,
+      80.92804200168757,
+      77.49395800055936,
+      77.79525000114518,
+      84.36512499974924,
+      80.31812499939406,
+      79.5596249990922,
+      80.36858400009805,
+      82.80462500079011,
+      80.37487500041607,
+      91.44720900076209,
+      80.49583299907681,
+      99.39066600054502,
+      106.8578329995944,
+      80.95587500065449
+    ]
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_1m",
+    "workers": 1,
+    "operations": 160,
+    "ops_per_second": 12.081776714170653,
+    "client_median_ms": 77.14243749978777,
+    "client_p95_ms": 111.30116700041981,
+    "passed": true
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_1m",
+    "workers": 4,
+    "operations": 160,
+    "ops_per_second": 51.663936629094025,
+    "client_median_ms": 77.03889550066378,
+    "client_p95_ms": 82.26783300051466,
+    "passed": true
+  },
+  {
+    "test": "concurrent_reads",
+    "collection": "orders_1m",
+    "workers": 8,
+    "operations": 160,
+    "ops_per_second": 95.54134186486948,
+    "client_median_ms": 77.26493749942165,
+    "client_p95_ms": 105.69095900063985,
+    "passed": true
+  },
+  {
+    "test": "missing_vs_null",
+    "collection": "orders_1m",
+    "status": "not_run_at_1m",
+    "reason": "Avoid another full scan; verified at 100, 10k, 100k"
+  },
+  {
+    "test": "bound_parameter_injection",
+    "collection": "orders_1m",
+    "passed": true,
+    "actual": [
+      0
+    ]
+  },
+  {
+    "test": "read_after_write",
+    "collection": "orders_1m",
+    "trials": 10,
+    "default_stale_reads": 0,
+    "request_plus_current_reads": 10,
+    "passed": true
+  },
+  {
+    "test": "runner_failure",
+    "error_type": "NameError",
+    "message": "name 'customers' is not defined"
+  },
+  {
+    "test": "embedded_vs_reference",
+    "actual": [
+      {
+        "embedded_tier": "gold",
+        "referenced_tier": "platinum"
+      }
+    ],
+    "passed": true,
+    "client_ms": 104.26833299970895,
+    "server_ms": 10.798
+  },
+  {
+    "test": "complete",
+    "utc": "2026-11-04T03:11:30.607484+00:00"
+  }
+]

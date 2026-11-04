@@ -1,0 +1,32 @@
+[
+  {
+    "test": "mixed_json_types",
+    "actual": [
+      {
+        "amount_type": "number",
+        "id": "schema1"
+      },
+      {
+        "amount_type": "string",
+        "id": "schema2"
+      },
+      {
+        "amount_type": "null",
+        "id": "schema3"
+      },
+      {
+        "amount_type": "missing",
+        "id": "schema4"
+      }
+    ],
+    "passed": true
+  },
+  {
+    "test": "atomic_counter_concurrency",
+    "operations": 100,
+    "workers": 8,
+    "actual": 100,
+    "passed": true,
+    "client_ms": 1098.0187080003816
+  }
+]

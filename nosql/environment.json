@@ -1,0 +1,20 @@
+{
+  "utc": "2026-11-04T03:09:03.827051+00:00",
+  "server": "8.0.3",
+  "nodes": 1,
+  "vcpus": 4,
+  "ram_gib": 16,
+  "disk_gb": 50,
+  "replicas": 0,
+  "bucket_memory_mib": 100,
+  "bucket_stats": {
+    "diskUsedInMib": 942,
+    "itemCount": 1171223,
+    "memoryUsedInMib": 92,
+    "opsPerSecond": 9803
+  },
+  "storage_backend": "magma",
+  "other_workloads": "Retained hotel and 10k/50k vector datasets and indexes",
+  "budget_limit_usd": 30,
+  "billed_total": "Not available in real time; no resize or new paid service"
+}

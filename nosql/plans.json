@@ -1,0 +1,967 @@
+{
+  "orders_100_primary": [
+    {
+      "optimizer_hints": {
+        "hints_followed": [
+          "INDEX(`o` `primary_orders`)"
+        ]
+      },
+      "plan": {
+        "#operator": "Sequence",
+        "~children": [
+          {
+            "#operator": "Sequence",
+            "~children": [
+              {
+                "#operator": "PrimaryScan3",
+                "as": "o",
+                "bucket": "vector-learning",
+                "index": "primary_orders",
+                "index_projection": {
+                  "primary_key": true
+                },
+                "keyspace": "orders_100",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103",
+                "using": "gsi"
+              },
+              {
+                "#operator": "Fetch",
+                "as": "o",
+                "bucket": "vector-learning",
+                "early_projection": [
+                  "order_id",
+                  "shipping",
+                  "status",
+                  "total_cents"
+                ],
+                "keyspace": "orders_100",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103"
+              },
+              {
+                "#operator": "Parallel",
+                "~child": {
+                  "#operator": "Sequence",
+                  "~children": [
+                    {
+                      "#operator": "Filter",
+                      "condition": "(((`o`.`status`) = $status) and (((`o`.`shipping`).`country`) = $country))"
+                    },
+                    {
+                      "#operator": "InitialProject",
+                      "preserve_order": true,
+                      "result_terms": [
+                        {
+                          "expr": "(`o`.`order_id`)"
+                        },
+                        {
+                          "expr": "(`o`.`total_cents`)"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "#operator": "Order",
+            "flags": 6,
+            "limit": "20",
+            "sort_terms": [
+              {
+                "expr": "(`o`.`order_id`)"
+              }
+            ]
+          },
+          {
+            "#operator": "Limit",
+            "expr": "20"
+          }
+        ]
+      },
+      "text": "SELECT o.order_id,o.total_cents FROM `vector-learning`.`nosql_lab_20261103`.`orders_100` o USE INDEX (primary_orders USING GSI) WHERE o.status=$status AND o.shipping.country=$country ORDER BY o.order_id LIMIT 20"
+    }
+  ],
+  "orders_100_covering": [
+    {
+      "optimizer_hints": {
+        "hints_followed": [
+          "INDEX(`o` `status_country_cover`)"
+        ]
+      },
+      "plan": {
+        "#operator": "Sequence",
+        "~children": [
+          {
+            "#operator": "Sequence",
+            "~children": [
+              {
+                "#operator": "IndexScan3",
+                "as": "o",
+                "bucket": "vector-learning",
+                "covers": [
+                  "cover ((`o`.`status`))",
+                  "cover (((`o`.`shipping`).`country`))",
+                  "cover ((`o`.`order_id`))",
+                  "cover ((`o`.`total_cents`))",
+                  "cover ((meta(`o`).`id`))"
+                ],
+                "index": "status_country_cover",
+                "index_id": "5407b761212c9768",
+                "index_order": [
+                  {
+                    "keypos": 2
+                  }
+                ],
+                "index_projection": {
+                  "entry_keys": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ]
+                },
+                "keyspace": "orders_100",
+                "limit": "20",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103",
+                "spans": [
+                  {
+                    "exact": true,
+                    "range": [
+                      {
+                        "high": "$status",
+                        "inclusion": 3,
+                        "index_key": "`status`",
+                        "low": "$status"
+                      },
+                      {
+                        "high": "$country",
+                        "inclusion": 3,
+                        "index_key": "(`shipping`.`country`)",
+                        "low": "$country"
+                      }
+                    ]
+                  }
+                ],
+                "using": "gsi"
+              },
+              {
+                "#operator": "Parallel",
+                "maxParallelism": 1,
+                "~child": {
+                  "#operator": "Sequence",
+                  "~children": [
+                    {
+                      "#operator": "Filter",
+                      "condition": "((cover ((`o`.`status`)) = $status) and (cover (((`o`.`shipping`).`country`)) = $country))"
+                    },
+                    {
+                      "#operator": "InitialProject",
+                      "preserve_order": true,
+                      "result_terms": [
+                        {
+                          "expr": "cover ((`o`.`order_id`))"
+                        },
+                        {
+                          "expr": "cover ((`o`.`total_cents`))"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "#operator": "Limit",
+            "expr": "20"
+          }
+        ]
+      },
+      "text": "SELECT o.order_id,o.total_cents FROM `vector-learning`.`nosql_lab_20261103`.`orders_100` o USE INDEX (status_country_cover USING GSI) WHERE o.status=$status AND o.shipping.country=$country ORDER BY o.order_id LIMIT 20"
+    }
+  ],
+  "orders_100_array": [
+    {
+      "plan": {
+        "#operator": "Sequence",
+        "~children": [
+          {
+            "#operator": "IndexScan3",
+            "bucket": "vector-learning",
+            "covers": [
+              "cover (\"\")",
+              "cover (\"\")",
+              "cover (count(*))"
+            ],
+            "filter_covers": {
+              "cover (any `i` in (`orders_100`.`items`) satisfies ((`i`.`sku`) = $sku) end)": true
+            },
+            "index": "item_sku",
+            "index_group_aggs": {
+              "aggregates": [
+                {
+                  "aggregate": "COUNT",
+                  "expr": "1",
+                  "id": 2,
+                  "keypos": -1
+                }
+              ]
+            },
+            "index_id": "9d1f07eb0483b93",
+            "index_projection": {
+              "entry_keys": [
+                2
+              ]
+            },
+            "keyspace": "orders_100",
+            "namespace": "default",
+            "scope": "nosql_lab_20261103",
+            "spans": [
+              {
+                "exact": true,
+                "range": [
+                  {
+                    "high": "$sku",
+                    "inclusion": 3,
+                    "index_key": "(distinct (array (`i`.`sku`) for `i` in `items` end))",
+                    "low": "$sku"
+                  }
+                ]
+              }
+            ],
+            "using": "gsi"
+          },
+          {
+            "#operator": "Parallel",
+            "~child": {
+              "#operator": "Sequence",
+              "~children": [
+                {
+                  "#operator": "InitialProject",
+                  "discard_original": true,
+                  "preserve_order": true,
+                  "raw": true,
+                  "result_terms": [
+                    {
+                      "expr": "cover (count(*))"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "text": "SELECT RAW COUNT(*) FROM `vector-learning`.`nosql_lab_20261103`.`orders_100` WHERE ANY i IN items SATISFIES i.sku=$sku END"
+    }
+  ],
+  "orders_10k_primary": [
+    {
+      "optimizer_hints": {
+        "hints_followed": [
+          "INDEX(`o` `primary_orders`)"
+        ]
+      },
+      "plan": {
+        "#operator": "Sequence",
+        "~children": [
+          {
+            "#operator": "Sequence",
+            "~children": [
+              {
+                "#operator": "PrimaryScan3",
+                "as": "o",
+                "bucket": "vector-learning",
+                "index": "primary_orders",
+                "index_projection": {
+                  "primary_key": true
+                },
+                "keyspace": "orders_10k",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103",
+                "using": "gsi"
+              },
+              {
+                "#operator": "Fetch",
+                "as": "o",
+                "bucket": "vector-learning",
+                "early_projection": [
+                  "order_id",
+                  "shipping",
+                  "status",
+                  "total_cents"
+                ],
+                "keyspace": "orders_10k",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103"
+              },
+              {
+                "#operator": "Parallel",
+                "~child": {
+                  "#operator": "Sequence",
+                  "~children": [
+                    {
+                      "#operator": "Filter",
+                      "condition": "(((`o`.`status`) = $status) and (((`o`.`shipping`).`country`) = $country))"
+                    },
+                    {
+                      "#operator": "InitialProject",
+                      "preserve_order": true,
+                      "result_terms": [
+                        {
+                          "expr": "(`o`.`order_id`)"
+                        },
+                        {
+                          "expr": "(`o`.`total_cents`)"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "#operator": "Order",
+            "flags": 6,
+            "limit": "20",
+            "sort_terms": [
+              {
+                "expr": "(`o`.`order_id`)"
+              }
+            ]
+          },
+          {
+            "#operator": "Limit",
+            "expr": "20"
+          }
+        ]
+      },
+      "text": "SELECT o.order_id,o.total_cents FROM `vector-learning`.`nosql_lab_20261103`.`orders_10k` o USE INDEX (primary_orders USING GSI) WHERE o.status=$status AND o.shipping.country=$country ORDER BY o.order_id LIMIT 20"
+    }
+  ],
+  "orders_10k_covering": [
+    {
+      "optimizer_hints": {
+        "hints_followed": [
+          "INDEX(`o` `status_country_cover`)"
+        ]
+      },
+      "plan": {
+        "#operator": "Sequence",
+        "~children": [
+          {
+            "#operator": "Sequence",
+            "~children": [
+              {
+                "#operator": "IndexScan3",
+                "as": "o",
+                "bucket": "vector-learning",
+                "covers": [
+                  "cover ((`o`.`status`))",
+                  "cover (((`o`.`shipping`).`country`))",
+                  "cover ((`o`.`order_id`))",
+                  "cover ((`o`.`total_cents`))",
+                  "cover ((meta(`o`).`id`))"
+                ],
+                "index": "status_country_cover",
+                "index_id": "dd9fec7b8ac92f5e",
+                "index_order": [
+                  {
+                    "keypos": 2
+                  }
+                ],
+                "index_projection": {
+                  "entry_keys": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ]
+                },
+                "keyspace": "orders_10k",
+                "limit": "20",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103",
+                "spans": [
+                  {
+                    "exact": true,
+                    "range": [
+                      {
+                        "high": "$status",
+                        "inclusion": 3,
+                        "index_key": "`status`",
+                        "low": "$status"
+                      },
+                      {
+                        "high": "$country",
+                        "inclusion": 3,
+                        "index_key": "(`shipping`.`country`)",
+                        "low": "$country"
+                      }
+                    ]
+                  }
+                ],
+                "using": "gsi"
+              },
+              {
+                "#operator": "Parallel",
+                "maxParallelism": 1,
+                "~child": {
+                  "#operator": "Sequence",
+                  "~children": [
+                    {
+                      "#operator": "Filter",
+                      "condition": "((cover ((`o`.`status`)) = $status) and (cover (((`o`.`shipping`).`country`)) = $country))"
+                    },
+                    {
+                      "#operator": "InitialProject",
+                      "preserve_order": true,
+                      "result_terms": [
+                        {
+                          "expr": "cover ((`o`.`order_id`))"
+                        },
+                        {
+                          "expr": "cover ((`o`.`total_cents`))"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "#operator": "Limit",
+            "expr": "20"
+          }
+        ]
+      },
+      "text": "SELECT o.order_id,o.total_cents FROM `vector-learning`.`nosql_lab_20261103`.`orders_10k` o USE INDEX (status_country_cover USING GSI) WHERE o.status=$status AND o.shipping.country=$country ORDER BY o.order_id LIMIT 20"
+    }
+  ],
+  "orders_10k_array": [
+    {
+      "plan": {
+        "#operator": "Sequence",
+        "~children": [
+          {
+            "#operator": "IndexScan3",
+            "bucket": "vector-learning",
+            "covers": [
+              "cover (\"\")",
+              "cover (\"\")",
+              "cover (count(*))"
+            ],
+            "filter_covers": {
+              "cover (any `i` in (`orders_10k`.`items`) satisfies ((`i`.`sku`) = $sku) end)": true
+            },
+            "index": "item_sku",
+            "index_group_aggs": {
+              "aggregates": [
+                {
+                  "aggregate": "COUNT",
+                  "expr": "1",
+                  "id": 2,
+                  "keypos": -1
+                }
+              ]
+            },
+            "index_id": "adcf866b44e96b36",
+            "index_projection": {
+              "entry_keys": [
+                2
+              ]
+            },
+            "keyspace": "orders_10k",
+            "namespace": "default",
+            "scope": "nosql_lab_20261103",
+            "spans": [
+              {
+                "exact": true,
+                "range": [
+                  {
+                    "high": "$sku",
+                    "inclusion": 3,
+                    "index_key": "(distinct (array (`i`.`sku`) for `i` in `items` end))",
+                    "low": "$sku"
+                  }
+                ]
+              }
+            ],
+            "using": "gsi"
+          },
+          {
+            "#operator": "Parallel",
+            "~child": {
+              "#operator": "Sequence",
+              "~children": [
+                {
+                  "#operator": "InitialProject",
+                  "discard_original": true,
+                  "preserve_order": true,
+                  "raw": true,
+                  "result_terms": [
+                    {
+                      "expr": "cover (count(*))"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "text": "SELECT RAW COUNT(*) FROM `vector-learning`.`nosql_lab_20261103`.`orders_10k` WHERE ANY i IN items SATISFIES i.sku=$sku END"
+    }
+  ],
+  "orders_100k_primary": [
+    {
+      "optimizer_hints": {
+        "hints_followed": [
+          "INDEX(`o` `primary_orders`)"
+        ]
+      },
+      "plan": {
+        "#operator": "Sequence",
+        "~children": [
+          {
+            "#operator": "Sequence",
+            "~children": [
+              {
+                "#operator": "PrimaryScan3",
+                "as": "o",
+                "bucket": "vector-learning",
+                "index": "primary_orders",
+                "index_projection": {
+                  "primary_key": true
+                },
+                "keyspace": "orders_100k",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103",
+                "using": "gsi"
+              },
+              {
+                "#operator": "Fetch",
+                "as": "o",
+                "bucket": "vector-learning",
+                "early_projection": [
+                  "order_id",
+                  "shipping",
+                  "status",
+                  "total_cents"
+                ],
+                "keyspace": "orders_100k",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103"
+              },
+              {
+                "#operator": "Parallel",
+                "~child": {
+                  "#operator": "Sequence",
+                  "~children": [
+                    {
+                      "#operator": "Filter",
+                      "condition": "(((`o`.`status`) = $status) and (((`o`.`shipping`).`country`) = $country))"
+                    },
+                    {
+                      "#operator": "InitialProject",
+                      "preserve_order": true,
+                      "result_terms": [
+                        {
+                          "expr": "(`o`.`order_id`)"
+                        },
+                        {
+                          "expr": "(`o`.`total_cents`)"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "#operator": "Order",
+            "flags": 6,
+            "limit": "20",
+            "sort_terms": [
+              {
+                "expr": "(`o`.`order_id`)"
+              }
+            ]
+          },
+          {
+            "#operator": "Limit",
+            "expr": "20"
+          }
+        ]
+      },
+      "text": "SELECT o.order_id,o.total_cents FROM `vector-learning`.`nosql_lab_20261103`.`orders_100k` o USE INDEX (primary_orders USING GSI) WHERE o.status=$status AND o.shipping.country=$country ORDER BY o.order_id LIMIT 20"
+    }
+  ],
+  "orders_100k_covering": [
+    {
+      "optimizer_hints": {
+        "hints_followed": [
+          "INDEX(`o` `status_country_cover`)"
+        ]
+      },
+      "plan": {
+        "#operator": "Sequence",
+        "~children": [
+          {
+            "#operator": "Sequence",
+            "~children": [
+              {
+                "#operator": "IndexScan3",
+                "as": "o",
+                "bucket": "vector-learning",
+                "covers": [
+                  "cover ((`o`.`status`))",
+                  "cover (((`o`.`shipping`).`country`))",
+                  "cover ((`o`.`order_id`))",
+                  "cover ((`o`.`total_cents`))",
+                  "cover ((meta(`o`).`id`))"
+                ],
+                "index": "status_country_cover",
+                "index_id": "9d200f90a3bfa1cf",
+                "index_order": [
+                  {
+                    "keypos": 2
+                  }
+                ],
+                "index_projection": {
+                  "entry_keys": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ]
+                },
+                "keyspace": "orders_100k",
+                "limit": "20",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103",
+                "spans": [
+                  {
+                    "exact": true,
+                    "range": [
+                      {
+                        "high": "$status",
+                        "inclusion": 3,
+                        "index_key": "`status`",
+                        "low": "$status"
+                      },
+                      {
+                        "high": "$country",
+                        "inclusion": 3,
+                        "index_key": "(`shipping`.`country`)",
+                        "low": "$country"
+                      }
+                    ]
+                  }
+                ],
+                "using": "gsi"
+              },
+              {
+                "#operator": "Parallel",
+                "maxParallelism": 1,
+                "~child": {
+                  "#operator": "Sequence",
+                  "~children": [
+                    {
+                      "#operator": "Filter",
+                      "condition": "((cover ((`o`.`status`)) = $status) and (cover (((`o`.`shipping`).`country`)) = $country))"
+                    },
+                    {
+                      "#operator": "InitialProject",
+                      "preserve_order": true,
+                      "result_terms": [
+                        {
+                          "expr": "cover ((`o`.`order_id`))"
+                        },
+                        {
+                          "expr": "cover ((`o`.`total_cents`))"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "#operator": "Limit",
+            "expr": "20"
+          }
+        ]
+      },
+      "text": "SELECT o.order_id,o.total_cents FROM `vector-learning`.`nosql_lab_20261103`.`orders_100k` o USE INDEX (status_country_cover USING GSI) WHERE o.status=$status AND o.shipping.country=$country ORDER BY o.order_id LIMIT 20"
+    }
+  ],
+  "orders_100k_array": [
+    {
+      "plan": {
+        "#operator": "Sequence",
+        "~children": [
+          {
+            "#operator": "IndexScan3",
+            "bucket": "vector-learning",
+            "covers": [
+              "cover (\"\")",
+              "cover (\"\")",
+              "cover (count(*))"
+            ],
+            "filter_covers": {
+              "cover (any `i` in (`orders_100k`.`items`) satisfies ((`i`.`sku`) = $sku) end)": true
+            },
+            "index": "item_sku",
+            "index_group_aggs": {
+              "aggregates": [
+                {
+                  "aggregate": "COUNT",
+                  "expr": "1",
+                  "id": 2,
+                  "keypos": -1
+                }
+              ]
+            },
+            "index_id": "2e257ff816bf10b",
+            "index_projection": {
+              "entry_keys": [
+                2
+              ]
+            },
+            "keyspace": "orders_100k",
+            "namespace": "default",
+            "scope": "nosql_lab_20261103",
+            "spans": [
+              {
+                "exact": true,
+                "range": [
+                  {
+                    "high": "$sku",
+                    "inclusion": 3,
+                    "index_key": "(distinct (array (`i`.`sku`) for `i` in `items` end))",
+                    "low": "$sku"
+                  }
+                ]
+              }
+            ],
+            "using": "gsi"
+          },
+          {
+            "#operator": "Parallel",
+            "~child": {
+              "#operator": "Sequence",
+              "~children": [
+                {
+                  "#operator": "InitialProject",
+                  "discard_original": true,
+                  "preserve_order": true,
+                  "raw": true,
+                  "result_terms": [
+                    {
+                      "expr": "cover (count(*))"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "text": "SELECT RAW COUNT(*) FROM `vector-learning`.`nosql_lab_20261103`.`orders_100k` WHERE ANY i IN items SATISFIES i.sku=$sku END"
+    }
+  ],
+  "orders_1m_primary": [
+    {
+      "optimizer_hints": {
+        "hints_followed": [
+          "INDEX(`o` `primary_orders`)"
+        ]
+      },
+      "plan": {
+        "#operator": "Sequence",
+        "~children": [
+          {
+            "#operator": "Sequence",
+            "~children": [
+              {
+                "#operator": "PrimaryScan3",
+                "as": "o",
+                "bucket": "vector-learning",
+                "index": "primary_orders",
+                "index_projection": {
+                  "primary_key": true
+                },
+                "keyspace": "orders_1m",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103",
+                "using": "gsi"
+              },
+              {
+                "#operator": "Fetch",
+                "as": "o",
+                "bucket": "vector-learning",
+                "early_projection": [
+                  "order_id",
+                  "shipping",
+                  "status",
+                  "total_cents"
+                ],
+                "keyspace": "orders_1m",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103"
+              },
+              {
+                "#operator": "Parallel",
+                "~child": {
+                  "#operator": "Sequence",
+                  "~children": [
+                    {
+                      "#operator": "Filter",
+                      "condition": "(((`o`.`status`) = $status) and (((`o`.`shipping`).`country`) = $country))"
+                    },
+                    {
+                      "#operator": "InitialProject",
+                      "preserve_order": true,
+                      "result_terms": [
+                        {
+                          "expr": "(`o`.`order_id`)"
+                        },
+                        {
+                          "expr": "(`o`.`total_cents`)"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "#operator": "Order",
+            "flags": 6,
+            "limit": "20",
+            "sort_terms": [
+              {
+                "expr": "(`o`.`order_id`)"
+              }
+            ]
+          },
+          {
+            "#operator": "Limit",
+            "expr": "20"
+          }
+        ]
+      },
+      "text": "SELECT o.order_id,o.total_cents FROM `vector-learning`.`nosql_lab_20261103`.`orders_1m` o USE INDEX (primary_orders USING GSI) WHERE o.status=$status AND o.shipping.country=$country ORDER BY o.order_id LIMIT 20"
+    }
+  ],
+  "orders_1m_covering": [
+    {
+      "optimizer_hints": {
+        "hints_followed": [
+          "INDEX(`o` `status_country_cover`)"
+        ]
+      },
+      "plan": {
+        "#operator": "Sequence",
+        "~children": [
+          {
+            "#operator": "Sequence",
+            "~children": [
+              {
+                "#operator": "IndexScan3",
+                "as": "o",
+                "bucket": "vector-learning",
+                "covers": [
+                  "cover ((`o`.`status`))",
+                  "cover (((`o`.`shipping`).`country`))",
+                  "cover ((`o`.`order_id`))",
+                  "cover ((`o`.`total_cents`))",
+                  "cover ((meta(`o`).`id`))"
+                ],
+                "index": "status_country_cover",
+                "index_id": "307c671ce18c7aa2",
+                "index_order": [
+                  {
+                    "keypos": 2
+                  }
+                ],
+                "index_projection": {
+                  "entry_keys": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ]
+                },
+                "keyspace": "orders_1m",
+                "limit": "20",
+                "namespace": "default",
+                "scope": "nosql_lab_20261103",
+                "spans": [
+                  {
+                    "exact": true,
+                    "range": [
+                      {
+                        "high": "$status",
+                        "inclusion": 3,
+                        "index_key": "`status`",
+                        "low": "$status"
+                      },
+                      {
+                        "high": "$country",
+                        "inclusion": 3,
+                        "index_key": "(`shipping`.`country`)",
+                        "low": "$country"
+                      }
+                    ]
+                  }
+                ],
+                "using": "gsi"
+              },
+              {
+                "#operator": "Parallel",
+                "maxParallelism": 1,
+                "~child": {
+                  "#operator": "Sequence",
+                  "~children": [
+                    {
+                      "#operator": "Filter",
+                      "condition": "((cover ((`o`.`status`)) = $status) and (cover (((`o`.`shipping`).`country`)) = $country))"
+                    },
+                    {
+                      "#operator": "InitialProject",
+                      "preserve_order": true,
+                      "result_terms": [
+                        {
+                          "expr": "cover ((`o`.`order_id`))"
+                        },
+                        {
+                          "expr": "cover ((`o`.`total_cents`))"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "#operator": "Limit",
+            "expr": "20"
+          }
+        ]
+      },
+      "text": "SELECT o.order_id,o.total_cents FROM `vector-learning`.`nosql_lab_20261103`.`orders_1m` o USE INDEX (status_country_cover USING GSI) WHERE o.status=$status AND o.shipping.country=$country ORDER BY o.order_id LIMIT 20"
+    }
+  ]
+}
