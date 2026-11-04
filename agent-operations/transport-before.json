@@ -1,0 +1,6 @@
+{
+  "test": "existing MCP transport regression",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "Installed 50 packages in 53ms\nTraceback (most recent call last):\n  File \"PROJECT/work/hotel_agent.py\", line 87, in <module>\n    print(json.dumps(allowed[name](**json.load(sys.stdin)),indent=2))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"PROJECT/work/hotel_agent.py\", line 73, in filter_hotels\n    return dict(search({'fields':FIELDS,'size':limit,'query':f}),tool='filter_hotels',applied_filter=f)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"PROJECT/work/hotel_agent.py\", line 44, in search\n    result = request('/_p/fts/api/bucket/vector-learning/scope/demo/index/hotel-semantic/query', body)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"PROJECT/work/hotel_agent.py\", line 23, in request\n    raise RuntimeError('Capella network connection failed: ' + r.stderr.strip())\nRuntimeError: Capella network connection failed: curl: (6) Could not resolve host: brmmczevgpvlydb.data.cloud.couchbase.com\n"
+}

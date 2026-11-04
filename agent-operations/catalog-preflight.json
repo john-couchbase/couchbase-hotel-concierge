@@ -1,0 +1,19 @@
+{
+  "version": "1.1.5",
+  "checks": [
+    {
+      "case": "TLS certificate omitted",
+      "outcome": "rejected",
+      "exception": "ValidationError",
+      "detail": "conn_root_certificate required by configuration validator"
+    },
+    {
+      "case": "documented get_item method",
+      "present": false
+    },
+    {
+      "case": "current find method",
+      "present": true
+    }
+  ]
+}

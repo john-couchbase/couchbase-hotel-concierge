@@ -1,0 +1,18 @@
+{
+  "pause_requested_at": "2026-11-04T16:56:32.506528+00:00",
+  "pause_http": 202,
+  "start": {
+    "started_at": "2026-11-04T16:52:33.660811+00:00",
+    "max_compute_hours": 1,
+    "estimated_hourly_usd": 0.36,
+    "cumulative_budget_usd": 30
+  },
+  "new_paid_deployments": 0,
+  "paid_model_calls": 0,
+  "billing_total_verified": false,
+  "last_observed_state": "turnedOff",
+  "last_checked_at": "2026-11-04T16:58:25.599762+00:00",
+  "observed_activation_to_confirmed_pause_minutes": 5.87,
+  "estimated_compute_window_usd_at_0_36_per_hour": 0.035,
+  "estimate_note": "Conservative activation-to-confirmed-pause window; excludes retained storage and prior batches; not invoice total."
+}

@@ -1,0 +1,74 @@
+{
+  "scope": "Unmodified agentc-core DBLogger native Capella persistence, using explicit raw version fixture; full Catalog CLI, semantic tool discovery, and model generation NOT tested",
+  "agentc_version": "1.1.5",
+  "tests": [
+    {
+      "test": "persist user",
+      "passed": true,
+      "client_ms": 341.34
+    },
+    {
+      "test": "persist tool-call",
+      "passed": true,
+      "client_ms": 240.89
+    },
+    {
+      "test": "persist tool-result",
+      "passed": true,
+      "client_ms": 156.88
+    },
+    {
+      "test": "version linked",
+      "passed": true
+    },
+    {
+      "test": "span and session linked",
+      "passed": true
+    },
+    {
+      "test": "annotations preserved",
+      "passed": true
+    },
+    {
+      "test": "sessions distinct",
+      "passed": true
+    },
+    {
+      "test": "raw marker retained",
+      "passed": true,
+      "classification": "privacy caveat: logging does not automatically redact user content"
+    },
+    {
+      "test": "write failure counted without exception",
+      "passed": true,
+      "classification": "availability trade-off: application continues; returned log object is not proof of persistence"
+    },
+    {
+      "test": "duplicate does not overwrite",
+      "passed": true
+    },
+    {
+      "test": "TTL initially readable",
+      "passed": true
+    },
+    {
+      "test": "TTL expires",
+      "passed": true
+    },
+    {
+      "test": "cross-scope access denied",
+      "passed": true,
+      "exception": "AuthenticationException"
+    },
+    {
+      "test": "docs top-level decorator import",
+      "passed": false,
+      "exception": "ImportError",
+      "classification": "documentation mismatch for agentc 1.1.5"
+    },
+    {
+      "test": "current decorator import",
+      "passed": true
+    }
+  ]
+}

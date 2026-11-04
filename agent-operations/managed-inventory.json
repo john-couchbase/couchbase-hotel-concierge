@@ -1,0 +1,14 @@
+{
+  "/aiServices/agentMemoryServers": {
+    "http": 200,
+    "deployment_count": 0
+  },
+  "/aiServices/workflows": {
+    "http": 200,
+    "deployment_count": 0
+  },
+  "/mcpServers": {
+    "http": 200,
+    "deployment_count": 0
+  }
+}
