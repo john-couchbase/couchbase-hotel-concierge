@@ -6,6 +6,14 @@ November 4, 2026 • Recommendations based on the [public-evidence audit](AI-DAT
 
 “Gap” below means incomplete, unclear or not found in the sampled public materials. It does not mean Couchbase has never produced content on the subject. Existing demos, Ragas evaluation material, framework guides and customer stories should be reused. Video review covered titles, descriptions and chapters, not every recording end to end.
 
+## Foundation: standardize content creation first
+
+The [content system](content-system/README.md) now supplies four article templates and two reusable authoring/review skills, informed by Qdrant's public Hugo workflow. Use it across every package below so articles, videos and code share the same tested versions, prerequisites, evidence and cleanup instructions.
+
+**Available now:** quickstart, use-case guide, benchmark and demo-companion templates; drafting/review skills; metadata conventions; a PR checklist; and a source-backed explanation of what we borrowed from Qdrant.
+
+**Next implementation:** choose the corporate publishing destination, map metadata, add automated checks and previews, and agree reviewer ownership. No Hugo site, automatic publishing, required branch checks or corporate approvals are implied by the kit.
+
 ## Simple priority list
 
 | Order | Package | Article / guide | Video | Demo or benchmark | Why first |
