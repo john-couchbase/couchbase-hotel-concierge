@@ -6,7 +6,7 @@ An evidence-based learning audit. Native tests run against an isolated Capella l
 
 - **[NoSQL: documents, SQL++, indexes and data correctness](nosql/README.md)** — JSON orders, known-key reads, filtering, nested arrays, transactions, concurrency and scale trade-offs.
 - **[Vector Search: recall, filters and quantization](vector-search/README.md)** — native 10k/50k synthetic-vector tests, SQ4/SQ8 trade-offs, exact baselines and unresolved retrieval anomalies.
-- **Lexical/full-text search: queued next.** Inspect actual analyzers and test tokenization, stop words, stemming, synonyms, domain vocabulary, phrase/fuzzy matching and keyword/vector hybrid retrieval. The NoSQL batch does not claim to cover this audit.
+- **[Lexical and hybrid search](lexical-search/README.md)** — native tests of stop words, stemming, synonyms, phrases, typos, accents, hybrid filters and input validation.
 
 ## Current connection status
 
@@ -16,7 +16,7 @@ No successful paid Model Service generation or end-to-end Capella-model tool-sel
 
 ## Evidence
 
-Download the [native NoSQL audit](native-nosql-audit.zip) or [native vector scale audit](native-vector-scale-audit.zip). The NoSQL cluster was confirmed paused after the batch.
+Download the [native NoSQL audit](native-nosql-audit.zip) , [native vector scale audit](native-vector-scale-audit.zip), or [native lexical audit](native-lexical-audit.zip). The NoSQL cluster was confirmed paused after the batch.
 
 The NoSQL folder contains the current guide, native results, query plans and reproducible test scripts. The vector evidence archive contains detailed native reports, queries, ground truth, plans, measurements and scripts. Earlier root-level hotel/search JSON files and couchbase-ai-learning.zip remain historical evidence; vector-local-baseline.json is explicitly local, not native Couchbase performance.
 
