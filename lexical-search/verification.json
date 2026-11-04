@@ -1,0 +1,10 @@
+{
+  "main_search_requests": 41,
+  "exact_expected_set_checks": 29,
+  "hybrid_country_behavior_checks": 8,
+  "existing_hotel_baselines": 5,
+  "followup_requests": 13,
+  "verified": true,
+  "corpus_documents": 17,
+  "synonym_documents": 1
+}

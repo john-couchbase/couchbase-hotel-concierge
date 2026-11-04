@@ -1,0 +1,248 @@
+{
+  "name": "lexical-lab",
+  "type": "fulltext-index",
+  "sourceType": "gocbcore",
+  "sourceName": "vector-learning",
+  "sourceParams": {},
+  "planParams": {
+    "indexPartitions": 1,
+    "numReplicas": 0
+  },
+  "params": {
+    "doc_config": {
+      "mode": "scope.collection.type_field",
+      "type_field": "type",
+      "docid_prefix_delim": "",
+      "docid_regexp": ""
+    },
+    "mapping": {
+      "default_mapping": {
+        "enabled": false,
+        "dynamic": false
+      },
+      "default_type": "_default",
+      "default_analyzer": "standard",
+      "default_datetime_parser": "dateTimeOptional",
+      "default_field": "_all",
+      "type_field": "_type",
+      "store_dynamic": false,
+      "index_dynamic": false,
+      "docvalues_dynamic": false,
+      "types": {
+        "lexical_lab_20261103.texts": {
+          "enabled": true,
+          "dynamic": false,
+          "properties": {
+            "standard_text": {
+              "enabled": true,
+              "dynamic": false,
+              "fields": [
+                {
+                  "name": "standard_text",
+                  "type": "text",
+                  "analyzer": "standard",
+                  "index": true,
+                  "store": true,
+                  "include_term_vectors": true,
+                  "include_in_all": true,
+                  "docvalues": true
+                }
+              ]
+            },
+            "english_text": {
+              "enabled": true,
+              "dynamic": false,
+              "fields": [
+                {
+                  "name": "english_text",
+                  "type": "text",
+                  "analyzer": "en",
+                  "index": true,
+                  "store": true,
+                  "include_term_vectors": true,
+                  "include_in_all": true,
+                  "docvalues": true
+                }
+              ]
+            },
+            "preserve_text": {
+              "enabled": true,
+              "dynamic": false,
+              "fields": [
+                {
+                  "name": "preserve_text",
+                  "type": "text",
+                  "analyzer": "preserve",
+                  "index": true,
+                  "store": true,
+                  "include_term_vectors": true,
+                  "include_in_all": true,
+                  "docvalues": true
+                }
+              ]
+            },
+            "buzz_text": {
+              "enabled": true,
+              "dynamic": false,
+              "fields": [
+                {
+                  "name": "buzz_text",
+                  "type": "text",
+                  "analyzer": "remove_buzz",
+                  "index": true,
+                  "store": true,
+                  "include_term_vectors": true,
+                  "include_in_all": true,
+                  "docvalues": true
+                }
+              ]
+            },
+            "synonym_text": {
+              "enabled": true,
+              "dynamic": false,
+              "fields": [
+                {
+                  "name": "synonym_text",
+                  "type": "text",
+                  "analyzer": "standard",
+                  "index": true,
+                  "store": true,
+                  "include_term_vectors": true,
+                  "include_in_all": true,
+                  "docvalues": true,
+                  "synonym_source": "vehicles"
+                }
+              ]
+            },
+            "folded_text": {
+              "enabled": true,
+              "dynamic": false,
+              "fields": [
+                {
+                  "name": "folded_text",
+                  "type": "text",
+                  "analyzer": "folded",
+                  "index": true,
+                  "store": true,
+                  "include_term_vectors": true,
+                  "include_in_all": true,
+                  "docvalues": true
+                }
+              ]
+            },
+            "country": {
+              "enabled": true,
+              "dynamic": false,
+              "fields": [
+                {
+                  "name": "country",
+                  "type": "text",
+                  "analyzer": "keyword",
+                  "index": true,
+                  "store": true,
+                  "docvalues": true
+                }
+              ]
+            },
+            "code": {
+              "enabled": true,
+              "dynamic": false,
+              "fields": [
+                {
+                  "name": "code",
+                  "type": "text",
+                  "analyzer": "keyword",
+                  "index": true,
+                  "store": true,
+                  "docvalues": true
+                }
+              ]
+            },
+            "parking": {
+              "enabled": true,
+              "dynamic": false,
+              "fields": [
+                {
+                  "name": "parking",
+                  "type": "boolean",
+                  "index": true,
+                  "store": true
+                }
+              ]
+            },
+            "embedding": {
+              "enabled": true,
+              "dynamic": false,
+              "fields": [
+                {
+                  "name": "embedding",
+                  "type": "vector",
+                  "dims": 384,
+                  "similarity": "cosine",
+                  "index": true,
+                  "vector_index_optimized_for": "recall"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "analysis": {
+        "analyzers": {
+          "preserve": {
+            "type": "custom",
+            "tokenizer": "unicode",
+            "token_filters": [
+              "to_lower"
+            ]
+          },
+          "remove_buzz": {
+            "type": "custom",
+            "tokenizer": "unicode",
+            "token_filters": [
+              "to_lower",
+              "stop_en",
+              "buzz_stop"
+            ]
+          },
+          "folded": {
+            "type": "custom",
+            "tokenizer": "unicode",
+            "char_filters": [
+              "asciifolding"
+            ],
+            "token_filters": [
+              "to_lower",
+              "stop_en"
+            ]
+          }
+        },
+        "token_maps": {
+          "buzz_words": {
+            "type": "custom",
+            "tokens": [
+              "innovative",
+              "seamless"
+            ]
+          }
+        },
+        "token_filters": {
+          "buzz_stop": {
+            "type": "stop_tokens",
+            "stop_token_map": "buzz_words"
+          }
+        },
+        "synonym_sources": {
+          "vehicles": {
+            "analyzer": "standard",
+            "collection": "synonyms"
+          }
+        }
+      }
+    },
+    "store": {
+      "indexType": "scorch",
+      "segmentVersion": 16
+    }
+  }
+}

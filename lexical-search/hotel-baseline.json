@@ -1,0 +1,190 @@
+[
+  {
+    "test": "kitchen",
+    "response": {
+      "status": 200,
+      "body": {
+        "status": {
+          "total": 1,
+          "failed": 0,
+          "successful": 1
+        },
+        "hits": [],
+        "total_hits": 0,
+        "cost": 11157,
+        "max_score": 0,
+        "took": 61679,
+        "facets": null
+      }
+    }
+  },
+  {
+    "test": "kitchens",
+    "response": {
+      "status": 200,
+      "body": {
+        "status": {
+          "total": 1,
+          "failed": 0,
+          "successful": 1
+        },
+        "hits": [
+          {
+            "index": "vector-learning.demo.hotel-semantic_13d21d4cb5e9994a_162cc76c",
+            "id": "hotel_15148",
+            "score": 0.9433693020078625,
+            "sort": [
+              "_score"
+            ],
+            "fields": {
+              "country": "United States",
+              "description": "An all suite hotel equipped with full kitchens and free high-speed Internet. Complimentary hot breakfast, a light dinner with beverages (Monday-Thursday), and a grocery shopping service.",
+              "name": "Homewood Suites by Hilton"
+            }
+          }
+        ],
+        "total_hits": 1,
+        "cost": 246,
+        "max_score": 0.9433693020078625,
+        "took": 68210,
+        "facets": null
+      }
+    }
+  },
+  {
+    "test": "stopword_the",
+    "response": {
+      "status": 200,
+      "body": {
+        "status": {
+          "total": 1,
+          "failed": 0,
+          "successful": 1
+        },
+        "hits": [],
+        "total_hits": 0,
+        "cost": 0,
+        "max_score": 0,
+        "took": 36374,
+        "facets": null
+      }
+    }
+  },
+  {
+    "test": "lowercase_country",
+    "response": {
+      "status": 200,
+      "body": {
+        "status": {
+          "total": 1,
+          "failed": 0,
+          "successful": 1
+        },
+        "hits": [],
+        "total_hits": 0,
+        "cost": 82,
+        "max_score": 0,
+        "took": 38114,
+        "facets": null
+      }
+    }
+  },
+  {
+    "test": "exact_country",
+    "response": {
+      "status": 200,
+      "body": {
+        "status": {
+          "total": 1,
+          "failed": 0,
+          "successful": 1
+        },
+        "hits": [
+          {
+            "index": "vector-learning.demo.hotel-semantic_13d21d4cb5e9994a_162cc76c",
+            "id": "hotel_1072",
+            "score": 2.966112856372833,
+            "sort": [
+              "_score"
+            ],
+            "fields": {
+              "country": "France",
+              "description": "C'est \u00e0 Pr\u00e9aux, petit village de l'Ard\u00e8che Verte, berc\u00e9 par le chant du coq, rythm\u00e9 par son clocher et ses 560 habitants que la Pradella (ancien nom du village) et ses chambres d'h\u00f4tes vous accueillent. Olivier, Edwige, Elisa et Alaya vous invitent \u00e0 venir profiter en toute tranquillit\u00e9 du calme de l'Ard\u00e8che, dont vous pourrez appr\u00e9cier les paysages et les lumi\u00e8res. Du farniente pour les uns au vol en montgolfi\u00e8re pour les autres, vous go\u00fbterez au plaisir de savourer chaque instant de votre s\u00e9jour.",
+              "name": "La Pradella"
+            }
+          },
+          {
+            "index": "vector-learning.demo.hotel-semantic_13d21d4cb5e9994a_162cc76c",
+            "id": "hotel_1359",
+            "score": 2.966112856372833,
+            "sort": [
+              "_score"
+            ],
+            "fields": {
+              "country": "France",
+              "description": "Family run hotel overlooking a flowered garden, within a private carpark. Internet wi-fi available in the whole building. Recently renovated rooms with the typical Provencal style. 7 languages spoken. Private taxi service.",
+              "name": "Avignon Hotel Monclar"
+            }
+          },
+          {
+            "index": "vector-learning.demo.hotel-semantic_13d21d4cb5e9994a_162cc76c",
+            "id": "hotel_1357",
+            "score": 2.966112856372833,
+            "sort": [
+              "_score"
+            ],
+            "fields": {
+              "country": "France",
+              "description": "This Hotel/ Hostel and Camp Site is situated on Ile de la Bathelasse in the centre of the Rhone . This is perhaps the best place to stay on a budget. It has great facilities and offers perhaps the best view of the center of Avignon. Carries a basic menu restaurant. Another benefit is that is placed directly between Avignon and the opposite town Villeneuve-les-Avignon, both begin within 10 minutes walk.",
+              "name": "Auberge-Camping Bagatelle"
+            }
+          },
+          {
+            "index": "vector-learning.demo.hotel-semantic_13d21d4cb5e9994a_162cc76c",
+            "id": "hotel_10063",
+            "score": 2.966112856372833,
+            "sort": [
+              "_score"
+            ],
+            "fields": {
+              "country": "France",
+              "description": "The rustic style of the renovation - stones and exposed beams - and the vintage countryside decoration give these several-hundred-year-old cute little houses a Bohemian charm. In the summer you will have breakfast in the garden under the canopy of the bread oven. Dogs admitted. Open all year round.",
+              "name": "The Robins"
+            }
+          },
+          {
+            "index": "vector-learning.demo.hotel-semantic_13d21d4cb5e9994a_162cc76c",
+            "id": "hotel_10064",
+            "score": 2.966112856372833,
+            "sort": [
+              "_score"
+            ],
+            "fields": {
+              "country": "France",
+              "description": "Situated near the church and just a few minutes walking distance from Monet's gardens and the Museum of Impressionisms, you will find Danielle and Claude's home, surrounded by a large magnificent garden, where you will find a haven of peace and tranquillity. Danielle speaks fluent English having spent many years in Australia.",
+              "name": "Le Clos Fleuri"
+            }
+          },
+          {
+            "index": "vector-learning.demo.hotel-semantic_13d21d4cb5e9994a_162cc76c",
+            "id": "hotel_1358",
+            "score": 2.966112856372833,
+            "sort": [
+              "_score"
+            ],
+            "fields": {
+              "country": "France",
+              "description": "some rooms with bathroom. Small hotel located within the city walls. Has a small private car park. Its use is free of charge if you can find a place for your car.",
+              "name": "Hotel d'Angleterre"
+            }
+          }
+        ],
+        "total_hits": 6,
+        "cost": 2229,
+        "max_score": 2.966112856372833,
+        "took": 98037,
+        "facets": null
+      }
+    }
+  }
+]
