@@ -10,6 +10,8 @@ An evidence-based learning audit. Native tests run against an isolated Capella l
 
 - [Agent operations: MCP and tracing](agent-operations/README.md) — live tool execution, SDK trace persistence, TTL, dropped logs, and onboarding issues.
 
+- [Agent Memory: untested status, dependencies and cost concerns](MEMORY-STATUS.md) — company-approved model integration is still required; no memory behavior results are claimed.
+
 ## Current connection status
 
 Direct SDK access to the paid learning cluster now works. A network-route/IP-allowlist mismatch caused the earlier timeouts; the corrected narrow allow rule is temporary. The original read-only MCP connector still targets the original travel-sample cluster. A separate scoped learning server supports hotel retrieval. The assistant can select exposed tools from plain English; this is distinct from proving a Capella-hosted model or managed agent chose those tools.
