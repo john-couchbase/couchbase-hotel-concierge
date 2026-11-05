@@ -1,0 +1,116 @@
+[
+  {
+    "source": "python-vector.txt",
+    "block": 1,
+    "status": "'(' was never closed",
+    "line": 1
+  },
+  {
+    "source": "python-vector.txt",
+    "block": 2,
+    "status": "'(' was never closed",
+    "line": 1
+  },
+  {
+    "source": "python-vector.txt",
+    "block": 3,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "python-vector.txt",
+    "block": 4,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "python-vector.txt",
+    "block": 5,
+    "status": "expected an indented block after function definition on line 1",
+    "line": 7
+  },
+  {
+    "source": "python-vector.txt",
+    "block": 6,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "python-vector.txt",
+    "block": 7,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "python-vector.txt",
+    "block": 8,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "python-vector.txt",
+    "block": 9,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "prior-catalog.txt",
+    "block": 1,
+    "status": "invalid syntax",
+    "line": 17
+  },
+  {
+    "source": "prior-catalog.txt",
+    "block": 2,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "prior-catalog.txt",
+    "block": 3,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "prior-catalog.txt",
+    "block": 4,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "prior-catalog.txt",
+    "block": 5,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "prior-catalog.txt",
+    "block": 6,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "prior-catalog.txt",
+    "block": 7,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "prior-catalog.txt",
+    "block": 8,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "prior-catalog.txt",
+    "block": 9,
+    "status": "parse passed",
+    "line": null
+  },
+  {
+    "source": "prior-catalog.txt",
+    "block": 10,
+    "status": "parse passed",
+    "line": null
+  }
+]

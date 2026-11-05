@@ -1,0 +1,103 @@
+{
+  "version": "1.2.0",
+  "wheel_sha256": "d9945da304eb1f5c93129437489691bf292d21606cfffcc4cbcf521fe9458a3d",
+  "classes": [
+    {
+      "module": "langchain_couchbase/cache.py",
+      "class": "CouchbaseCache",
+      "methods": [
+        "lookup",
+        "update",
+        "clear"
+      ]
+    },
+    {
+      "module": "langchain_couchbase/cache.py",
+      "class": "CouchbaseSemanticCache",
+      "methods": [
+        "lookup",
+        "update",
+        "clear"
+      ]
+    },
+    {
+      "module": "langchain_couchbase/chat_message_histories.py",
+      "class": "CouchbaseChatMessageHistory",
+      "methods": [
+        "add_message",
+        "add_messages",
+        "clear",
+        "messages",
+        "messages"
+      ]
+    },
+    {
+      "module": "langchain_couchbase/vectorstores/base_vector_store.py",
+      "class": "BaseCouchbaseVectorStore",
+      "methods": [
+        "add_texts",
+        "delete",
+        "embeddings"
+      ]
+    },
+    {
+      "module": "langchain_couchbase/vectorstores/query_vector_store.py",
+      "class": "DistanceStrategy",
+      "methods": []
+    },
+    {
+      "module": "langchain_couchbase/vectorstores/query_vector_store.py",
+      "class": "IndexType",
+      "methods": []
+    },
+    {
+      "module": "langchain_couchbase/vectorstores/query_vector_store.py",
+      "class": "CouchbaseQueryVectorStore",
+      "methods": [
+        "similarity_search",
+        "similarity_search_with_score_by_vector",
+        "similarity_search_with_score",
+        "similarity_search_by_vector",
+        "create_index",
+        "from_texts"
+      ]
+    },
+    {
+      "module": "langchain_couchbase/vectorstores/search_vector_store.py",
+      "class": "CouchbaseSearchVectorStore",
+      "methods": [
+        "similarity_search",
+        "similarity_search_with_score_by_vector",
+        "similarity_search_with_score",
+        "similarity_search_by_vector",
+        "from_texts"
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "module": "langchain_couchbase/cache.py",
+      "function": "_hash"
+    },
+    {
+      "module": "langchain_couchbase/cache.py",
+      "function": "_dumps_generations"
+    },
+    {
+      "module": "langchain_couchbase/cache.py",
+      "function": "_loads_generations"
+    },
+    {
+      "module": "langchain_couchbase/cache.py",
+      "function": "_validate_ttl"
+    },
+    {
+      "module": "langchain_couchbase/chat_message_histories.py",
+      "function": "_validate_ttl"
+    },
+    {
+      "module": "langchain_couchbase/vectorstores/query_vector_store.py",
+      "function": "_escape_field"
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "version": "1.1.0",
+  "wheel_sha256": "8fdb5d413d5a8c1279588f8e6c0944c704aaa883fdbda82fe89b72088c0ba8ce",
+  "classes": [
+    {
+      "module": "cb_mcp/audit/catalog.py",
+      "class": "AuditEvent",
+      "methods": []
+    },
+    {
+      "module": "cb_mcp/audit/catalog.py",
+      "class": "ToolCallEvent",
+      "methods": [
+        "filterable"
+      ]
+    },
+    {
+      "module": "cb_mcp/audit/config.py",
+      "class": "ResolvedAuditConfig",
+      "methods": [
+        "writes_file",
+        "writes_console",
+        "as_dict"
+      ]
+    },
+    {
+      "module": "cb_mcp/audit/emitter.py",
+      "class": "AuditLogger",
+      "methods": [
+        "active",
+        "server",
+        "stats",
+        "is_enabled_for",
+        "emit",
+        "emit_event",
+        "emit_tool_call",
+        "close"
+      ]
+    },
+    {
+      "module": "cb_mcp/audit/exceptions.py",
+      "class": "AuditableRefusalError",
+      "methods": []
+    },
+    {
+      "module": "cb_mcp/audit/exceptions.py",
+      "class": "ScopeDeniedError",
+      "methods": []
+    },
+    {
+      "module": "cb_mcp/audit/exceptions.py",
+      "class": "ConfirmationDeclinedError",
+      "methods": []
+    },
+    {
+      "module": "cb_mcp/audit/exceptions.py",
+      "class": "ReadOnlyWriteBlockedError",
+      "methods": []
+    },
+    {
+      "module": "cb_mcp/audit/exceptions.py",
+      "class": "StatementScopeDeniedError",
+      "methods": []
+    },
+    {
+      "module": "cb_mcp/audit/middleware.py",
+      "class": "AuditMiddleware",
+      "methods": [
+        "on_message",
+        "on_initialize",
+        "on_call_tool"
+      ]
+    },
+    {
+      "module": "cb_mcp/audit/record.py",
+      "class": "ServerContext",
+      "methods": [
+        "detect",
+        "as_dict"
+      ]
+    },
+    {
+      "module": "cb_mcp/audit/record.py",
+      "class": "AuditRecord",
+      "methods": [
+        "as_dict",
+        "to_json_line"
+      ]
+    },
+    {
+      "module": "cb_mcp/audit/sink.py",
+      "class": "_WriterExitError",
+      "methods": []
+    },
+    {
+      "module": "cb_mcp/audit/sink.py",
+      "class": "AuditSinkProtocol",
+      "methods": [
+        "start",
+        "emit",
+        "close",
+        "stats"
+      ]
+    },
+    {
+      "module": "cb_mcp/audit/sink.py",
+      "class": "_QueuedSink",
+      "methods": [
+        "start",
+        "close",
+        "emit",
+        "stats"
+      ]
+    },
+    {
+      "module": "cb_mcp/audit/sink.py",
+      "class": "ConsoleAuditSink",
+      "methods": []
+    },
+    {
+      "module": "cb_mcp/audit/sink.py",
+      "class": "CompositeAuditSink",
+      "methods": [
+        "sinks",
+        "start",
+        "emit",
+        "close",
+        "stats"
+      ]
+    },
+    {
+      "module": "cb_mcp/audit/sink.py",
+      "class": "AuditSink",
+      "methods": []
+    }
+  ],
+  "functions": [
+    {
+      "module": "cb_mcp/audit/catalog.py",
+      "function": "is_unsplit"
+    },
+    {
+      "module": "cb_mcp/audit/catalog.py",
+      "function": "categories_for"
+    },
+    {
+      "module": "cb_mcp/audit/catalog.py",
+      "function": "category_index"
+    },
+    {
+      "module": "cb_mcp/audit/catalog.py",
+      "function": "next_free_slot"
+    },
+    {
+      "module": "cb_mcp/audit/catalog.py",
+      "function": "tool_call_event_id"
+    },
+    {
+      "module": "cb_mcp/audit/catalog.py",
+      "function": "tool_call_event"
+    },
+    {
+      "module": "cb_mcp/audit/catalog.py",
+      "function": "all_tool_call_events"
+    },
+    {
+      "module": "cb_mcp/audit/catalog.py",
+      "function": "build_descriptor"
+    },
+    {
+      "module": "cb_mcp/audit/classification.py",
+      "function": "classification_for"
+    },
+    {
+      "module": "cb_mcp/audit/classification.py",
+      "function": "is_classified"
+    },
+    {
+      "module": "cb_mcp/audit/classification.py",
+      "function": "classify_tool"
+    },
+    {
+      "module": "cb_mcp/audit/classification.py",
+      "function": "resolve_tool_call_event"
+    },
+    {
+      "module": "cb_mcp/audit/classification.py",
+      "function": "required_scope_for"
+    },
+    {
+      "module": "cb_mcp/audit/classification.py",
+      "function": "unclassified_tool_names"
+    },
+    {
+      "module": "cb_mcp/audit/config.py",
+      "function": "parse_audit_sinks"
+    },
+    {
+      "module": "cb_mcp/audit/config.py",
+      "function": "parse_rotation_interval"
+    },
+    {
+      "module": "cb_mcp/audit/config.py",
+      "function": "_normalise_interval"
+    },
+    {
+      "module": "cb_mcp/audit/config.py",
+      "function": "debug_interval_override"
+    },
+    {
+      "module": "cb_mcp/audit/config.py",
+      "function": "_read_event_tokens"
+    },
+    {
+      "module": "cb_mcp/audit/config.py",
+      "function": "_resolve_event_id"
+    },
+    {
+      "module": "cb_mcp/audit/config.py",
+      "function": "parse_disabled_events"
+    },
+    {
+      "module": "cb_mcp/audit/config.py",
+      "function": "_resolve_size_mb"
+    },
+    {
+      "module": "cb_mcp/audit/config.py",
+      "function": "_resolve_max_backups"
+    },
+    {
+      "module": "cb_mcp/audit/config.py",
+      "function": "resolve_audit_config"
+    },
+    {
+      "module": "cb_mcp/audit/emitter.py",
+      "function": "get_audit_logger"
+    },
+    {
+      "module": "cb_mcp/audit/emitter.py",
+      "function": "_open_file_sink"
+    },
+    {
+      "module": "cb_mcp/audit/emitter.py",
+      "function": "_describe_rotation"
+    },
+    {
+      "module": "cb_mcp/audit/emitter.py",
+      "function": "init_audit"
+    },
+    {
+      "module": "cb_mcp/audit/emitter.py",
+      "function": "shutdown_audit"
+    },
+    {
+      "module": "cb_mcp/audit/emitter.py",
+      "function": "_shutdown_at_exit"
+    },
+    {
+      "module": "cb_mcp/audit/emitter.py",
+      "function": "_close_audit_for_signal"
+    },
+    {
+      "module": "cb_mcp/audit/emitter.py",
+      "function": "_handle_sigterm"
+    },
+    {
+      "module": "cb_mcp/audit/emitter.py",
+      "function": "_install_sigterm_handler"
+    },
+    {
+      "module": "cb_mcp/audit/identity.py",
+      "function": "_process_owner"
+    },
+    {
+      "module": "cb_mcp/audit/identity.py",
+      "function": "_token_subject"
+    },
+    {
+      "module": "cb_mcp/audit/identity.py",
+      "function": "resolve_real_userid"
+    },
+    {
+      "module": "cb_mcp/audit/identity.py",
+      "function": "_current_token"
+    },
+    {
+      "module": "cb_mcp/audit/identity.py",
+      "function": "client_id_of_current_token"
+    },
+    {
+      "module": "cb_mcp/audit/identity.py",
+      "function": "scopes_of_current_token"
+    },
+    {
+      "module": "cb_mcp/audit/identity.py",
+      "function": "warn_on_unauthenticated_http"
+    },
+    {
+      "module": "cb_mcp/audit/middleware.py",
+      "function": "extract_keyspace"
+    },
+    {
+      "module": "cb_mcp/audit/middleware.py",
+      "function": "_request_state"
+    },
+    {
+      "module": "cb_mcp/audit/record.py",
+      "function": "_server_version"
+    },
+    {
+      "module": "cb_mcp/audit/record.py",
+      "function": "_hostname"
+    },
+    {
+      "module": "cb_mcp/audit/record.py",
+      "function": "utc_timestamp"
+    },
+    {
+      "module": "cb_mcp/audit/sink.py",
+      "function": "_host_token"
+    },
+    {
+      "module": "cb_mcp/audit/sink.py",
+      "function": "process_scoped_path"
+    },
+    {
+      "module": "cb_mcp/audit/sink.py",
+      "function": "_with_gz"
+    },
+    {
+      "module": "cb_mcp/audit/sink.py",
+      "function": "_backup_sort_key"
+    },
+    {
+      "module": "cb_mcp/audit/state.py",
+      "function": "install"
+    },
+    {
+      "module": "cb_mcp/audit/state.py",
+      "function": "reset"
+    },
+    {
+      "module": "cb_mcp/audit/state.py",
+      "function": "current"
+    },
+    {
+      "module": "cb_mcp/audit/state.py",
+      "function": "record_refusal"
+    },
+    {
+      "module": "cb_mcp/audit/state.py",
+      "function": "record_confirmation"
+    },
+    {
+      "module": "cb_mcp/audit/state.py",
+      "function": "get_cid"
+    },
+    {
+      "module": "cb_mcp/audit/state.py",
+      "function": "get_refusal"
+    },
+    {
+      "module": "cb_mcp/audit/state.py",
+      "function": "get_confirmation"
+    }
+  ],
+  "scope": "Audit subsystem interface subset; full wheel inspected locally"
+}

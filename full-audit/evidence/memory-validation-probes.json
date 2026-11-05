@@ -1,0 +1,55 @@
+{
+  "mode": "offline SDK validation with mocked HTTP; no extraction or service tested",
+  "version": "1.1.0",
+  "cases": [
+    {
+      "case": "prompt with context omitted",
+      "error": null,
+      "http_called": true,
+      "payload": {
+        "async_processing": true,
+        "facts": [
+          "Prefers email"
+        ],
+        "prompt_id": "support"
+      }
+    },
+    {
+      "case": "prompt with context true",
+      "error": null,
+      "http_called": true,
+      "payload": {
+        "async_processing": true,
+        "facts": [
+          "Prefers email"
+        ],
+        "context_required": true,
+        "prompt_id": "support"
+      }
+    },
+    {
+      "case": "prompt with context false",
+      "error": "ValidationError: [400] context_required cannot be False together with prompt_id -- there is no extraction to steer if extraction is disabled",
+      "http_called": false,
+      "payload": null
+    },
+    {
+      "case": "messages and facts together",
+      "error": "ValidationError: [400] messages and facts cannot be provided together; submit them as separate requests",
+      "http_called": false,
+      "payload": null
+    },
+    {
+      "case": "empty fact",
+      "error": "ValidationError: [400] facts must not contain blank entries",
+      "http_called": false,
+      "payload": null
+    },
+    {
+      "case": "prompt version without id",
+      "error": "ValidationError: [400] prompt_vid requires prompt_id to also be provided",
+      "http_called": false,
+      "payload": null
+    }
+  ]
+}

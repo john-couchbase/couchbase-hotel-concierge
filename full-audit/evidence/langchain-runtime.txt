@@ -1,0 +1,8 @@
+Downloading pydantic-core (2.0MiB)
+ Downloaded pydantic-core
+Downloading sqlalchemy (2.4MiB)
+ Downloaded sqlalchemy
+Installed 39 packages in 70ms
+LangChain import passed
+(cluster: 'Cluster', bucket_name: 'str', scope_name: 'str', collection_name: 'str', embedding: 'Embeddings', distance_metric: 'DistanceStrategy', *, text_key: 'Optional[str]' = 'text', embedding_key: 'Optional[str]' = 'embedding')
+(cluster: 'Cluster', bucket_name: 'str', scope_name: 'str', collection_name: 'str', embedding: 'Embeddings', index_name: 'str', *, text_key: 'Optional[str]' = 'text', embedding_key: 'Optional[str]' = 'embedding', scoped_index: 'bool' = True) -> 'None'

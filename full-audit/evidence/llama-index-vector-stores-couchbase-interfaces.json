@@ -1,0 +1,65 @@
+{
+  "version": "0.8.0",
+  "wheel_sha256": "561dd3b3e698ccea0f9f0298aa50579138d680ee047fb3144dabe4c34ed878e9",
+  "classes": [
+    {
+      "module": "llama_index/vector_stores/couchbase/base.py",
+      "class": "QueryVectorSearchType",
+      "methods": []
+    },
+    {
+      "module": "llama_index/vector_stores/couchbase/base.py",
+      "class": "QueryVectorSearchSimilarity",
+      "methods": []
+    },
+    {
+      "module": "llama_index/vector_stores/couchbase/base.py",
+      "class": "CouchbaseVectorStoreBase",
+      "methods": [
+        "add",
+        "delete",
+        "client",
+        "bucket",
+        "scope",
+        "collection"
+      ]
+    },
+    {
+      "module": "llama_index/vector_stores/couchbase/base.py",
+      "class": "CouchbaseSearchVectorStore",
+      "methods": [
+        "query"
+      ]
+    },
+    {
+      "module": "llama_index/vector_stores/couchbase/base.py",
+      "class": "CouchbaseQueryVectorStore",
+      "methods": [
+        "query"
+      ]
+    },
+    {
+      "module": "llama_index/vector_stores/couchbase/base.py",
+      "class": "CouchbaseVectorStore",
+      "methods": []
+    }
+  ],
+  "functions": [
+    {
+      "module": "llama_index/vector_stores/couchbase/base.py",
+      "function": "_transform_couchbase_filter_condition"
+    },
+    {
+      "module": "llama_index/vector_stores/couchbase/base.py",
+      "function": "_transform_couchbase_filter_operator"
+    },
+    {
+      "module": "llama_index/vector_stores/couchbase/base.py",
+      "function": "_to_couchbase_filter"
+    },
+    {
+      "module": "llama_index/vector_stores/couchbase/base.py",
+      "function": "_convert_llamaindex_filters_to_sql"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "scope": "Offline interface check; no service calls",
+  "packages": {
+    "agentc": {
+      "version": "1.1.5",
+      "python": ">=3.11,<3.14"
+    },
+    "couchbase-agent-memory": {
+      "version": "1.1.0",
+      "python": ">=3.12"
+    },
+    "couchbase": {
+      "version": "4.6.4",
+      "python": ">=3.7"
+    }
+  },
+  "catalog": {
+    "top_level_tool": false,
+    "get_item": false,
+    "find": true
+  },
+  "memory": {
+    "AgentMemoryClient": {
+      "exists": true,
+      "signature": "(base_url: str, token: Union[str, Callable[[], str], NoneType] = None, timeout: float = 30.0, max_retries: int = 3, client_id: Optional[str] = None, verify: Union[bool, str] = True)"
+    },
+    "ChatMessage": {
+      "exists": true,
+      "signature": "(*, user_content: str = '', assistant_content: str = '') -> None"
+    },
+    "client_methods": {
+      "create_user": "(self, user_id: str, name: str, metadata: Optional[Dict[str, Any]] = None) -> agentmemory.resources.user.UserResource",
+      "create_prompt": "(self, prompt_id: str, prompt: str, description: str, annotations: Optional[Dict[str, str]] = None) -> agentmemory.models.Prompt",
+      "health_ping": "(self, entity: Optional[Literal['server', 'couchbase', 'models', 'async-batch-processor', 'async_batch_processor', 'async-batch-processor-stats', 'async_batch_processor_stats', 'memory']] = None) -> agentmemory.models.HealthPingResponse"
+    }
+  }
+}

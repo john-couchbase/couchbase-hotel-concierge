@@ -1,0 +1,29 @@
+{
+  "mode": "offline method execution with mocked database; constructor bypassed; no server query",
+  "package": "langchain-couchbase 1.2.0",
+  "cases": [
+    {
+      "case": "documented where_str",
+      "sql": "SELECT META().id, `text`, `metadata`, ANN_DISTANCE(`embedding`, [0.1, 0.2], 'cosine') as distance FROM docs WHERE metadata.country = 'France' ORDER BY distance LIMIT 2",
+      "contains_country_predicate": true,
+      "error": null
+    },
+    {
+      "case": "Search-style filter passed to Query",
+      "sql": "SELECT META().id, `text`, `metadata`, ANN_DISTANCE(`embedding`, [0.1, 0.2], 'cosine') as distance FROM docs ORDER BY distance LIMIT 2",
+      "contains_country_predicate": false,
+      "error": null
+    },
+    {
+      "case": "unknown kwarg",
+      "sql": "SELECT META().id, `text`, `metadata`, ANN_DISTANCE(`embedding`, [0.1, 0.2], 'cosine') as distance FROM docs ORDER BY distance LIMIT 2",
+      "contains_country_predicate": false,
+      "error": null
+    },
+    {
+      "case": "Search rejects plain-dict filter",
+      "error": "ValueError: Invalid filter: filter must be a SearchQuery object, got<class 'dict'>",
+      "database_called": false
+    }
+  ]
+}

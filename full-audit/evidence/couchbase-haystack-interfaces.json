@@ -1,0 +1,231 @@
+{
+  "version": "2.1.2",
+  "wheel_sha256": "39333f286963fd66a1e01239cbb234e854d5b895db84a14237fe9e94cfb0bed1",
+  "classes": [
+    {
+      "module": "couchbase_haystack/components/retrievers/embedding_retriever.py",
+      "class": "CouchbaseSearchEmbeddingRetriever",
+      "methods": [
+        "to_dict",
+        "from_dict",
+        "run"
+      ]
+    },
+    {
+      "module": "couchbase_haystack/components/retrievers/embedding_retriever.py",
+      "class": "CouchbaseQueryEmbeddingRetriever",
+      "methods": [
+        "to_dict",
+        "from_dict",
+        "run"
+      ]
+    },
+    {
+      "module": "couchbase_haystack/document_stores/auth.py",
+      "class": "CouchbaseAuthenticator",
+      "methods": [
+        "get_cb_auth"
+      ]
+    },
+    {
+      "module": "couchbase_haystack/document_stores/auth.py",
+      "class": "CouchbasePasswordAuthenticator",
+      "methods": [
+        "get_cb_auth",
+        "to_dict",
+        "from_dict"
+      ]
+    },
+    {
+      "module": "couchbase_haystack/document_stores/auth.py",
+      "class": "CouchbaseCertificateAuthenticator",
+      "methods": [
+        "get_cb_auth",
+        "to_dict",
+        "from_dict"
+      ]
+    },
+    {
+      "module": "couchbase_haystack/document_stores/cluster_options.py",
+      "class": "CouchbaseClusterOptions",
+      "methods": [
+        "get_cluster_options",
+        "to_dict",
+        "from_dict"
+      ]
+    },
+    {
+      "module": "couchbase_haystack/document_stores/document_store.py",
+      "class": "QueryVectorSearchType",
+      "methods": []
+    },
+    {
+      "module": "couchbase_haystack/document_stores/document_store.py",
+      "class": "QueryVectorSearchSimilarity",
+      "methods": []
+    },
+    {
+      "module": "couchbase_haystack/document_stores/document_store.py",
+      "class": "CouchbaseQueryOptions",
+      "methods": [
+        "to_dict",
+        "from_dict",
+        "cb_query_options"
+      ]
+    },
+    {
+      "module": "couchbase_haystack/document_stores/document_store.py",
+      "class": "CouchbaseDocumentStore",
+      "methods": [
+        "connection",
+        "bucket",
+        "scope",
+        "collection",
+        "write_documents",
+        "delete_documents"
+      ]
+    },
+    {
+      "module": "couchbase_haystack/document_stores/document_store.py",
+      "class": "CouchbaseSearchDocumentStore",
+      "methods": [
+        "to_dict",
+        "from_dict",
+        "count_documents",
+        "filter_documents"
+      ]
+    },
+    {
+      "module": "couchbase_haystack/document_stores/document_store.py",
+      "class": "CouchbaseQueryDocumentStore",
+      "methods": [
+        "to_dict",
+        "from_dict",
+        "count_documents",
+        "filter_documents"
+      ]
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "class": "DateRangeQuery",
+      "methods": [
+        "inclusive_start",
+        "inclusive_start",
+        "inclusive_end",
+        "inclusive_end"
+      ]
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "class": "NumericRangeQuery",
+      "methods": [
+        "inclusive_min",
+        "inclusive_min",
+        "inclusive_max",
+        "inclusive_max"
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "_normalize_filters"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "_parse_logical_condition"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "_equal"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "_not_equal"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "_greater_than"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "_greater_than_equal"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "_less_than"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "_less_than_equal"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "_in"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "_not_in"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "create_search_query"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/search_filters.py",
+      "function": "_parse_comparison_condition"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "normalize_sql_filters"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_parse_logical_condition"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_parse_comparison_condition"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_format_field_path"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_equal"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_not_equal"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_greater_than"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_greater_than_equal"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_less_than"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_less_than_equal"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_in"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_not_in"
+    },
+    {
+      "module": "couchbase_haystack/document_stores/sql_filters.py",
+      "function": "_format_value"
+    }
+  ]
+}

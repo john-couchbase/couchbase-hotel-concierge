@@ -1,0 +1,90 @@
+[
+  {
+    "document": "cxx-vector.txt",
+    "has_hyperscale_heading": true,
+    "query_section_has_approx_distance": false,
+    "query_section_has_exact_distance": false,
+    "example_selects_id": true,
+    "fetch_success": true
+  },
+  {
+    "document": "php-vector.txt",
+    "has_hyperscale_heading": true,
+    "query_section_has_approx_distance": false,
+    "query_section_has_exact_distance": false,
+    "example_selects_id": true,
+    "fetch_success": true
+  },
+  {
+    "document": "scala-vector.txt",
+    "has_hyperscale_heading": true,
+    "query_section_has_approx_distance": false,
+    "query_section_has_exact_distance": false,
+    "example_selects_id": true,
+    "fetch_success": true
+  },
+  {
+    "document": "java-vector.txt",
+    "has_hyperscale_heading": true,
+    "query_section_has_approx_distance": false,
+    "query_section_has_exact_distance": false,
+    "example_selects_id": true,
+    "fetch_success": true
+  },
+  {
+    "document": "kotlin-vector.txt",
+    "has_hyperscale_heading": false,
+    "query_section_has_approx_distance": false,
+    "query_section_has_exact_distance": false,
+    "example_selects_id": false,
+    "fetch_success": false
+  },
+  {
+    "document": "ruby-vector.txt",
+    "has_hyperscale_heading": true,
+    "query_section_has_approx_distance": false,
+    "query_section_has_exact_distance": false,
+    "example_selects_id": true,
+    "fetch_success": true
+  },
+  {
+    "document": "go-vector.txt",
+    "has_hyperscale_heading": true,
+    "query_section_has_approx_distance": false,
+    "query_section_has_exact_distance": false,
+    "example_selects_id": true,
+    "fetch_success": true
+  },
+  {
+    "document": "nodejs-vector.txt",
+    "has_hyperscale_heading": true,
+    "query_section_has_approx_distance": false,
+    "query_section_has_exact_distance": false,
+    "example_selects_id": true,
+    "fetch_success": true
+  },
+  {
+    "document": "dotnet-vector.txt",
+    "has_hyperscale_heading": true,
+    "query_section_has_approx_distance": false,
+    "query_section_has_exact_distance": false,
+    "example_selects_id": true,
+    "fetch_success": true
+  },
+  {
+    "document": "prior-vector.txt",
+    "has_hyperscale_heading": false,
+    "query_section_has_approx_distance": false,
+    "query_section_has_exact_distance": false,
+    "example_selects_id": false,
+    "fetch_success": true
+  },
+  {
+    "document": "python-vector.txt",
+    "has_hyperscale_heading": true,
+    "query_section_has_approx_distance": false,
+    "query_section_has_exact_distance": false,
+    "example_selects_id": true,
+    "fetch_success": true
+  }
+]

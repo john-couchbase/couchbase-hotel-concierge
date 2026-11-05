@@ -1,0 +1,258 @@
+{
+  "product": {
+    "title": "AI Data Plane product page",
+    "url": "https://www.couchbase.com/products/ai-data-plane/"
+  },
+  "intro": {
+    "title": "AI Data Plane documentation overview",
+    "url": "https://docs.couchbase.com/ai/get-started/intro.html"
+  },
+  "memory": {
+    "title": "Agent Memory capabilities and deployment comparison",
+    "url": "https://docs.couchbase.com/agent-mem/current/about-agent-mem.html"
+  },
+  "memory-api": {
+    "title": "Agent Memory REST API 1.1.0",
+    "url": "https://docs.couchbase.com/agent-mem/current/agent-memory-api-reference/rest-api.html"
+  },
+  "memory-video": {
+    "title": "Agent Memory demo video",
+    "url": "https://www.youtube.com/watch?v=cihkYnuEh6M"
+  },
+  "memory-demo": {
+    "title": "Agent Memory hotel demo repository",
+    "url": "https://github.com/couchbaselabs/agentmemory-demo"
+  },
+  "catalog": {
+    "title": "Agent Catalog integration guide",
+    "url": "https://docs.couchbase.com/ai/build/integrate-agent-with-catalog.html"
+  },
+  "catalog-repo": {
+    "title": "Agent Catalog repository",
+    "url": "https://github.com/couchbaselabs/agent-catalog"
+  },
+  "catalog-pypi": {
+    "title": "agentc package metadata",
+    "url": "https://pypi.org/project/agentc/"
+  },
+  "memory-pypi": {
+    "title": "Agent Memory package",
+    "url": "https://pypi.org/project/couchbase-agent-memory/"
+  },
+  "mcp-pypi": {
+    "title": "MCP package",
+    "url": "https://pypi.org/project/couchbase-mcp-server/"
+  },
+  "langchain-pypi": {
+    "title": "LangChain Couchbase package",
+    "url": "https://pypi.org/project/langchain-couchbase/"
+  },
+  "mcp": {
+    "title": "MCP source and setup",
+    "url": "https://github.com/couchbase/mcp-server-couchbase"
+  },
+  "mcp-old": {
+    "title": "MCP version 1.0 documentation entry point",
+    "url": "https://mcp-server.couchbase.com/"
+  },
+  "mcp-managed": {
+    "title": "Managed MCP requirements",
+    "url": "https://docs.couchbase.com/mcp-server/current/about-managed-mcp.html"
+  },
+  "modes": {
+    "title": "Model Service serving-mode comparison",
+    "url": "https://docs.couchbase.com/ai/build/model-service/model-service.html"
+  },
+  "integrations": {
+    "title": "AI integration credentials and renewal",
+    "url": "https://docs.couchbase.com/ai/admin/manage-ai-integrations.html"
+  },
+  "apis": {
+    "title": "Management and Model Service APIs",
+    "url": "https://docs.couchbase.com/ai/api-guide/api-intro.html"
+  },
+  "workflow": {
+    "title": "Data processing and vectorization workflows",
+    "url": "https://docs.couchbase.com/ai/build/vectorization-service/data-processing.html"
+  },
+  "cache": {
+    "title": "LLM caching and value adds",
+    "url": "https://docs.couchbase.com/ai/build/model-service/configure-value-adds.html"
+  },
+  "functions": {
+    "title": "SQL++ AI Functions",
+    "url": "https://docs.couchbase.com/ai/build/ai-functions.html"
+  },
+  "billing": {
+    "title": "Capella billing",
+    "url": "https://docs.couchbase.com/cloud/billing/billing.html"
+  },
+  "pricing": {
+    "title": "Couchbase pricing",
+    "url": "https://www.couchbase.com/pricing/"
+  },
+  "vector": {
+    "title": "Vector algorithms and index families",
+    "url": "https://docs.couchbase.com/server/current/vector-index/vectors-and-indexes-overview.html"
+  },
+  "search-architecture": {
+    "title": "Search vector architecture",
+    "url": "https://docs.couchbase.com/server/current/vector-search/vector-search-index-architecture.html"
+  },
+  "hybrid": {
+    "title": "Search scoring and hybrid query semantics",
+    "url": "https://docs.couchbase.com/cloud/search/run-searches.html"
+  },
+  "hybrid-example": {
+    "title": "Capella UI vector search example",
+    "url": "https://docs.couchbase.com/cloud/vector-search/run-vector-search-ui.html"
+  },
+  "scoring": {
+    "title": "Search index scoring configuration",
+    "url": "https://docs.couchbase.com/server/current/search/search-index-params.html"
+  },
+  "launch": {
+    "title": "AI Data Plane launch article",
+    "url": "https://www.couchbase.com/blog/your-ai-agents-are-stuck-in-pilot-its-a-data-problem-not-a-model-problem/"
+  },
+  "memory-lane": {
+    "title": "Memory Lane technical article",
+    "url": "https://www.couchbase.com/blog/build-a-personal-memory-search-with-couchbase-ai-services-and-hyperscale-vector-index/"
+  },
+  "rag": {
+    "title": "Capella Model Service and LangChain tutorial",
+    "url": "https://developer.couchbase.com/tutorial-capella-model-services-langchain-rag-with-hyperscale-or-composite-vector-index/"
+  },
+  "net": {
+    "title": "Semantic Kernel vector search tutorial",
+    "url": "https://developer.couchbase.com/tutorial-csharp-semantic-kernel-vector-search-with-hyperscale-or-composite-vector-index/"
+  },
+  "ragas": {
+    "title": "Ragas evaluation tutorial",
+    "url": "https://developer.couchbase.com/tutorial-evaluate-rag-responses-using-ragas/"
+  },
+  "hol": {
+    "title": "AI Services hands-on lab",
+    "url": "https://github.com/couchbaselabs/ais-hol"
+  },
+  "bench": {
+    "title": "Hyperscale VectorDBBench whitepaper",
+    "url": "https://info.couchbase.com/rs/302-GJY-034/images/COU_1372%20-%208.0%20Benchmarks%20for%20Hyperscale%20Vector%20Search%20-%20WP.pdf"
+  },
+  "memory-bench": {
+    "title": "Public AI Data Plane reference and benchmark claims",
+    "url": "https://github.com/couchbase/operational-data-platform-for-ai/blob/main/ai-data-plane.md"
+  },
+  "press": {
+    "title": "October 20 announcement and token claims",
+    "url": "https://www.prnewswire.com/news-releases/couchbase-ai-data-plane-cuts-the-cost-of-running-production-ai-agents-at-enterprise-scale-302913871.html"
+  },
+  "esg": {
+    "title": "Commissioned ESG technical validation January 2025",
+    "url": "https://info.couchbase.com/rs/302-GJY-034/images/ESG-Technical-Validation-Couchbase-Capella-FINAL-Jan-2025.pdf"
+  },
+  "fankave": {
+    "title": "FanKave customer case study",
+    "url": "https://info.couchbase.com/rs/302-GJY-034/images/COU_1378-FanKave_Customer_case_study.pdf?version=0"
+  },
+  "channel": {
+    "title": "Couchbase YouTube channel videos",
+    "url": "https://www.youtube.com/channel/UCGUDXCRwJi-fuQp7sJyIZmg/videos"
+  },
+  "python-vector": {
+    "title": "Python vector guide",
+    "url": "https://docs.couchbase.com/python-sdk/current/howtos/vector-searching-with-sdk.html"
+  },
+  "java-vector": {
+    "title": "Java vector guide",
+    "url": "https://docs.couchbase.com/java-sdk/current/howtos/vector-searching-with-sdk.html"
+  },
+  "langchain-source": {
+    "title": "LangChain adapter source",
+    "url": "https://github.com/Couchbase-Ecosystem/langchain-couchbase/tree/main/langchain_couchbase/vectorstores"
+  },
+  "haystack": {
+    "title": "Haystack integration",
+    "url": "https://github.com/Couchbase-Ecosystem/couchbase-haystack"
+  },
+  "llama-package": {
+    "title": "LlamaIndex adapter package",
+    "url": "https://pypi.org/project/llama-index-vector-stores-couchbase/"
+  },
+  "semantic-kernel": {
+    "title": "Semantic Kernel connector",
+    "url": "https://learn.microsoft.com/en-us/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/couchbase-connector"
+  },
+  "agno": {
+    "title": "Agno integration",
+    "url": "https://docs.agno.com/integrations/vectordb/couchbase/overview"
+  },
+  "memory-develop": {
+    "title": "Memory developer guide",
+    "url": "https://docs.couchbase.com/agent-mem/current/develop/develop-agent-mem.html"
+  },
+  "memory-prompts": {
+    "title": "Memory custom prompts",
+    "url": "https://docs.couchbase.com/agent-mem/current/develop/customize-prompts-agent-mem.html"
+  },
+  "memory-quickstart": {
+    "title": "Managed Memory quickstart",
+    "url": "https://docs.couchbase.com/agent-mem/current/get-started/get-started-agent-mem-managed.html"
+  },
+  "memory-metrics": {
+    "title": "Memory metrics",
+    "url": "https://docs.couchbase.com/agent-mem/current/reference/metrics-alerts-agent-mem-managed.html"
+  },
+  "memory-access": {
+    "title": "Memory access control",
+    "url": "https://docs.couchbase.com/agent-mem/current/managed/access-agent-mem-managed.html"
+  },
+  "mcp-audit": {
+    "title": "MCP audit logging",
+    "url": "https://docs.couchbase.com/mcp-server/1.1/configuration/audit-logging.html"
+  },
+  "mcp-release": {
+    "title": "MCP 1.1 release notes",
+    "url": "https://docs.couchbase.com/mcp-server/1.1/reference/release-notes.html"
+  },
+  "oi-sdk": {
+    "title": "Operational Insights SDK choices",
+    "url": "https://docs.couchbase.com/home/operational-insights-sdk.html"
+  },
+  "oi-mcp": {
+    "title": "Operational Insights MCP prerequisites",
+    "url": "https://docs.couchbase.com/mcp-server/1.1/get-started-oi/prerequisites-oi.html"
+  },
+  "lite": {
+    "title": "Lite vector search",
+    "url": "https://docs.couchbase.com/couchbase-lite/current/swift/vector-search.html"
+  },
+  "lite-install": {
+    "title": "Lite vector extension installation",
+    "url": "https://docs.couchbase.com/couchbase-lite/current/objc/gs-install.html"
+  },
+  "ai-index": {
+    "title": "Official AI documentation inventory",
+    "url": "https://docs.couchbase.com/llms-ai-data-plane.txt"
+  },
+  "agent-tracer": {
+    "title": "Agent Tracer guide",
+    "url": "https://docs.couchbase.com/ai/build/agent-tracer/agent-tracer.html"
+  },
+  "hub": {
+    "title": "Tools and Prompts Hub",
+    "url": "https://docs.couchbase.com/ai/build/tools-prompts-hub.html"
+  },
+  "serverless": {
+    "title": "Serverless model deployment",
+    "url": "https://docs.couchbase.com/ai/build/model-service/deploy-serverless-model.html"
+  },
+  "plan": {
+    "title": "Plan an agent application",
+    "url": "https://docs.couchbase.com/ai/agent-tutorial/plan-agentic-app.html"
+  },
+  "rag-patterns": {
+    "title": "RAG blueprints",
+    "url": "https://docs.couchbase.com/ai/agent-tutorial/rag-patterns.html"
+  }
+}

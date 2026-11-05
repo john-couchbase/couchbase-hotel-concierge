@@ -1,3 +1,5 @@
+> **Historical November 4 review.** Use the [expanded November 5 audit](FULL-AUDIT.md) and [updated priorities](MARKETING-PRIORITIES.md) for current recommendations. The expanded review corrects earlier content-gap assumptions and adds SDK evidence.
+
 # Couchbase AI Data Plane: technical marketing gap audit
 
 **Research date: November 4, 2026. First broad public-evidence audit, not an exhaustive product certification.**
@@ -347,7 +349,7 @@ Model Service distinguishes serverless Bedrock from provisioned NIM. Workflows a
 
 **Evidence:** Reproducibility and scope gap.
 
-The VectorDBBench whitepaper provides methodology, hardware, index definitions and recall curves, but uses a Couchbase prerelease on EC2 versus MongoDB Atlas.
+The VectorDBBench whitepaper provides methodology, hardware, index definitions and recall curves, but uses a Couchbase prerelease on EC2 in its published comparison.
 
 **Why it matters:** It is useful evidence for its setup, not current Capella or universal production proof.
 

@@ -4,6 +4,9 @@ An evidence-based learning audit. Native tests run against an isolated Capella l
 
 ## Start here
 
+- **[AI Data Plane audit for marketing leadership](FULL-AUDIT.md)** — expanded SDK/content review, 45 findings, evidence and ten priorities.
+- **[Marketing priorities](MARKETING-PRIORITIES.md)** — proposed articles, videos, demos, owners and completion checks.
+
 - **[NoSQL: documents, SQL++, indexes and data correctness](nosql/README.md)** — JSON orders, known-key reads, filtering, nested arrays, transactions, concurrency and scale trade-offs.
 - **[Vector Search: recall, filters and quantization](vector-search/README.md)** — native 10k/50k synthetic-vector tests, SQ4/SQ8 trade-offs, exact baselines and unresolved retrieval anomalies.
 - **[Lexical and hybrid search](lexical-search/README.md)** — native tests of stop words, stemming, synonyms, phrases, typos, accents, hybrid filters and input validation.
@@ -14,7 +17,7 @@ An evidence-based learning audit. Native tests run against an isolated Capella l
 
 ## Current connection status
 
-Direct SDK access to the paid learning cluster now works. A network-route/IP-allowlist mismatch caused the earlier timeouts; the corrected narrow allow rule is temporary. The original read-only MCP connector still targets the original travel-sample cluster. A separate scoped learning server supports hotel retrieval. The assistant can select exposed tools from plain English; this is distinct from proving a Capella-hosted model or managed agent chose those tools.
+Direct SDK access was verified during the November 3–4 tests; the cluster was paused after testing. No new live connection check was performed in the November 5 content audit. A network-route/IP-allowlist mismatch caused the earlier timeouts; the corrected narrow allow rule is temporary. The original read-only MCP connector still targets the original travel-sample cluster. A separate scoped learning server supports hotel retrieval. The assistant can select exposed tools from plain English; this is distinct from proving a Capella-hosted model or managed agent chose those tools.
 
 No successful paid Model Service generation or end-to-end Capella-model tool-selection run is claimed. Managed MCP deployment did not succeed and was removed. Data API is disabled. Native Agent Catalog core tracing is now tested (persistence, TTL, trace metadata, dropped-write behavior), but full Catalog publication, Agent Memory, managed-agent operations and production governance require their own verified tests.
 

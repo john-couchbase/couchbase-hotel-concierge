@@ -1,0 +1,866 @@
+[
+  {
+    "id": "python-vector",
+    "url": "https://docs.couchbase.com/python-sdk/current/howtos/vector-searching-with-sdk.md",
+    "status": "200",
+    "bytes": 11863,
+    "sha256": "33e82549b38066af9e3f165a47384d8a0b54b4092ad27d6d854783a1f19c6163",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.004432+00:00"
+  },
+  {
+    "id": "python-overview",
+    "url": "https://docs.couchbase.com/python-sdk/current/hello-world/overview.md",
+    "status": "200",
+    "bytes": 9089,
+    "sha256": "949f75c9a6f4f59debb0b4439e7a0a00c196facd0535c3c2f3928f7e8497fb1d",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:57.998417+00:00"
+  },
+  {
+    "id": "java-vector",
+    "url": "https://docs.couchbase.com/java-sdk/current/howtos/vector-searching-with-sdk.md",
+    "status": "200",
+    "bytes": 10018,
+    "sha256": "e1bfbd3942aca1c5b18b7cb556346e925c147ee027b05b138c02aa25b151855d",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.001319+00:00"
+  },
+  {
+    "id": "java-overview",
+    "url": "https://docs.couchbase.com/java-sdk/current/hello-world/overview.md",
+    "status": "200",
+    "bytes": 9088,
+    "sha256": "c8f6c8111e118347385d5ccb62cf457a5287fb9e61f1a784f1c097c5d3b07b8d",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:57.982206+00:00"
+  },
+  {
+    "id": "dotnet-vector",
+    "url": "https://docs.couchbase.com/dotnet-sdk/current/howtos/vector-searching-with-sdk.md",
+    "status": "200",
+    "bytes": 10174,
+    "sha256": "bb68a52b08f6aa23578f1ab5019d582bf247e470640cacf75fdfc26e18a8c63f",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.027919+00:00"
+  },
+  {
+    "id": "dotnet-overview",
+    "url": "https://docs.couchbase.com/dotnet-sdk/current/hello-world/overview.md",
+    "status": "200",
+    "bytes": 8980,
+    "sha256": "c59ab0c6e3ff8859015dc6367051765dd860d721919b34163be7b3b807f9d891",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.010101+00:00"
+  },
+  {
+    "id": "nodejs-vector",
+    "url": "https://docs.couchbase.com/nodejs-sdk/current/howtos/vector-searching-with-sdk.md",
+    "status": "200",
+    "bytes": 9575,
+    "sha256": "4bc416af7bd688fbee4571c4ed4b4a1697084582982418c82ef29ce1cbfc8b36",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.148596+00:00"
+  },
+  {
+    "id": "nodejs-overview",
+    "url": "https://docs.couchbase.com/nodejs-sdk/current/hello-world/overview.md",
+    "status": "200",
+    "bytes": 4495,
+    "sha256": "e92c9af53deaa2d83600bdb1f7633f6bca997646f91b9bc559d30f82b974effd",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.141584+00:00"
+  },
+  {
+    "id": "go-vector",
+    "url": "https://docs.couchbase.com/go-sdk/current/howtos/vector-searching-with-sdk.md",
+    "status": "200",
+    "bytes": 10205,
+    "sha256": "080eb97f06513c7d3077bb044b5f87bea34b030c7c183270564662efb1821832",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.165004+00:00"
+  },
+  {
+    "id": "go-overview",
+    "url": "https://docs.couchbase.com/go-sdk/current/hello-world/overview.md",
+    "status": "200",
+    "bytes": 6375,
+    "sha256": "5b7809e7da4589c3e31c2f8099c54d47b26d5ad2eb1c1d7bf7f0318dcc4475c4",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.158929+00:00"
+  },
+  {
+    "id": "kotlin-vector",
+    "url": "https://docs.couchbase.com/kotlin-sdk/current/howtos/vector-searching-with-sdk.md",
+    "status": "403",
+    "bytes": 111,
+    "sha256": "a824bc7739e226e1b40ea0f8c4e4f4c6f796fc3b4abfa6e9abe3bd119a30d938",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.141351+00:00"
+  },
+  {
+    "id": "kotlin-overview",
+    "url": "https://docs.couchbase.com/kotlin-sdk/current/hello-world/overview.md",
+    "status": "200",
+    "bytes": 1830,
+    "sha256": "093e350ff398fafbed7960e2abb26b3b45ee7294dc8588a75b1770c0f357c73f",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.157469+00:00"
+  },
+  {
+    "id": "scala-vector",
+    "url": "https://docs.couchbase.com/scala-sdk/current/howtos/vector-searching-with-sdk.md",
+    "status": "200",
+    "bytes": 9315,
+    "sha256": "f9c7e5c8d9043e1ed31dc8d99d33bc2ffc973705356a6c4c64ae8909fe59a7a1",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.282515+00:00"
+  },
+  {
+    "id": "scala-overview",
+    "url": "https://docs.couchbase.com/scala-sdk/current/hello-world/overview.md",
+    "status": "200",
+    "bytes": 9400,
+    "sha256": "acd225150ddcd55f49d4bda648e6b9c1b3f2884434a4f48a5e4c59e6bf68b33f",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.247846+00:00"
+  },
+  {
+    "id": "php-vector",
+    "url": "https://docs.couchbase.com/php-sdk/current/howtos/vector-searching-with-sdk.md",
+    "status": "200",
+    "bytes": 10647,
+    "sha256": "d499d9466786f0e14a4e6bd142eed5b9ce6fa66261d231025f2917659b716648",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.268343+00:00"
+  },
+  {
+    "id": "php-overview",
+    "url": "https://docs.couchbase.com/php-sdk/current/hello-world/overview.md",
+    "status": "200",
+    "bytes": 4101,
+    "sha256": "d8a1e03873fed55f8341bc50aeb5ead5a9ca111b374f2ac5286566c1dc94531b",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.277201+00:00"
+  },
+  {
+    "id": "ruby-vector",
+    "url": "https://docs.couchbase.com/ruby-sdk/current/howtos/vector-searching-with-sdk.md",
+    "status": "200",
+    "bytes": 9553,
+    "sha256": "4dde2612f12da9d6751d768ae4f8936f33b3b48e18b7422988633f884a0526a5",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.273853+00:00"
+  },
+  {
+    "id": "ruby-overview",
+    "url": "https://docs.couchbase.com/ruby-sdk/current/hello-world/overview.md",
+    "status": "200",
+    "bytes": 9042,
+    "sha256": "cdbaaa2d45bab2db07e9e6730e3d4c83249e34da572dd3b6381052529c686b41",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.283509+00:00"
+  },
+  {
+    "id": "cxx-vector",
+    "url": "https://docs.couchbase.com/cxx-sdk/current/howtos/vector-searching-with-sdk.md",
+    "status": "200",
+    "bytes": 10061,
+    "sha256": "589c0b043de887266d05b85d564c6db333387ea62ed93d68acb7131b96d10c00",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.380150+00:00"
+  },
+  {
+    "id": "cxx-overview",
+    "url": "https://docs.couchbase.com/cxx-sdk/current/hello-world/overview.md",
+    "status": "200",
+    "bytes": 9106,
+    "sha256": "d30b5d3cdc65a769b6bf06b4dff681b2b1763dd3d237400f656ecadcb6cf8a2e",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.376150+00:00"
+  },
+  {
+    "id": "pkg-agentc",
+    "url": "https://pypi.org/pypi/agentc/json",
+    "status": "200",
+    "bytes": 11113,
+    "sha256": "897d55b9828b3e2c7394d1de94702b6de90bfabaa9cc446ca927db3c8ad59f81",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.558813+00:00"
+  },
+  {
+    "id": "pkg-agentc-core",
+    "url": "https://pypi.org/pypi/agentc-core/json",
+    "status": "200",
+    "bytes": 11521,
+    "sha256": "1386644313ac81d460c274370aa80a3ad6928e3fae98fd8d39c8ba5cffe77673",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.652903+00:00"
+  },
+  {
+    "id": "pkg-couchbase-agent-memory",
+    "url": "https://pypi.org/pypi/couchbase-agent-memory/json",
+    "status": "200",
+    "bytes": 10065,
+    "sha256": "74f7e96b916f062f34e85a1cdfa91bfa7681b81593106cdf83e78408c4c8e552",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.515226+00:00"
+  },
+  {
+    "id": "pkg-couchbase-mcp-server",
+    "url": "https://pypi.org/pypi/couchbase-mcp-server/json",
+    "status": "200",
+    "bytes": 121194,
+    "sha256": "b1e55b5f8f06e71d1efc4326076bba4a5c1d8ad8fc19c8d5bb0d8005ffc36dce",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.728987+00:00"
+  },
+  {
+    "id": "pkg-langchain-couchbase",
+    "url": "https://pypi.org/pypi/langchain-couchbase/json",
+    "status": "200",
+    "bytes": 47135,
+    "sha256": "2772562ed24e1b6100b3ab6ac98fe37a13e2e29e411e16671a8e047f65402e2e",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.832709+00:00"
+  },
+  {
+    "id": "pkg-llama-index-vector-stores-couchbase",
+    "url": "https://pypi.org/pypi/llama-index-vector-stores-couchbase/json",
+    "status": "200",
+    "bytes": 38907,
+    "sha256": "34ad5b2b71dcc4002dabdb2bea3fc0ba3dd2194702aa978a08f23cd04bd70528",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.744719+00:00"
+  },
+  {
+    "id": "pkg-couchbase-haystack",
+    "url": "https://pypi.org/pypi/couchbase-haystack/json",
+    "status": "200",
+    "bytes": 45332,
+    "sha256": "85679761afa81c35fe91da92665939066c8b9b760d94bed22b096ce8efa325bd",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.909513+00:00"
+  },
+  {
+    "id": "memory-develop",
+    "url": "https://docs.couchbase.com/agent-mem/current/develop/develop-agent-mem.md",
+    "status": "200",
+    "bytes": 25689,
+    "sha256": "26afea0a9023e591455c1d65b661f2443cda807d473844729c9b8a3e20620aee",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.710878+00:00"
+  },
+  {
+    "id": "integrations",
+    "url": "https://www.couchbase.com/developers/integrations/",
+    "status": "403",
+    "bytes": 403,
+    "sha256": "d84da786da9c6bf59bafd4dec7bf19237226ad58761342284327a622a1447a26",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.834497+00:00"
+  },
+  {
+    "id": "langchain-api",
+    "url": "https://couchbase-ecosystem.github.io/langchain-couchbase/index.html",
+    "status": "200",
+    "bytes": 7665,
+    "sha256": "31049860a3abe0f881dcbcd78fd4bcaad9aaac257f7da79af6e1476500005520",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:59.223360+00:00"
+  },
+  {
+    "id": "sdk-list",
+    "url": "https://docs.couchbase.com/home/sdk.html",
+    "status": "200",
+    "bytes": 86427,
+    "sha256": "1f86d1fb6e59620a7ac7f4f78144913e13d268a6437472aca754f7e7a25d6e4b",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.889442+00:00"
+  },
+  {
+    "id": "ai-index",
+    "url": "https://docs.couchbase.com/ai/get-started/intro.md",
+    "status": "200",
+    "bytes": 4133,
+    "sha256": "3b6236c7045847a5afd7cd9131d7622c0338be424dfa0a15d6257d9dc239cf85",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.867443+00:00"
+  },
+  {
+    "id": "ai-llms",
+    "url": "https://docs.couchbase.com/llms.txt",
+    "status": "200",
+    "bytes": 3481,
+    "sha256": "31c128185da189a58293b608d49ae567f4eb51ccf2eec749f07ece5732b0c85a",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:58.947571+00:00"
+  },
+  {
+    "id": "haystack-readme",
+    "url": "https://raw.githubusercontent.com/Couchbase-Ecosystem/couchbase-haystack/main/README.md",
+    "status": "200",
+    "bytes": 29757,
+    "sha256": "7593864f63de054cd4e419dcb556a33f3347c54f4bd1e0d5782919b44d87fb83",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:59.317866+00:00"
+  },
+  {
+    "id": "langchain-readme",
+    "url": "https://raw.githubusercontent.com/Couchbase-Ecosystem/langchain-couchbase/main/README.md",
+    "status": "200",
+    "bytes": 9984,
+    "sha256": "38f240204fd03abe1fc2ac806896774cb7de1c4d44b49d422e560eadda1f3d86",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:59.238103+00:00"
+  },
+  {
+    "id": "memory-readme",
+    "url": "https://raw.githubusercontent.com/couchbase/agent-memory-client/main/README.md",
+    "status": "404",
+    "bytes": 14,
+    "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:59.164037+00:00"
+  },
+  {
+    "id": "semantic-kernel",
+    "url": "https://learn.microsoft.com/en-us/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/couchbase-connector",
+    "status": "200",
+    "bytes": 49992,
+    "sha256": "0e738f90cd8ceee17659372b99b237911f0305924b371401b4abfa6bbe7e9ace",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:59.473550+00:00"
+  },
+  {
+    "id": "llama-index",
+    "url": "https://docs.llamaindex.ai/en/stable/examples/vector_stores/CouchbaseVectorStore/",
+    "status": "404",
+    "bytes": 62564,
+    "sha256": "1f2369ec27aa142592520ec9d21475d1e140692b480b3203bbfa8dbd69903dcb",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:00.168833+00:00"
+  },
+  {
+    "id": "agno",
+    "url": "https://docs.agno.com/integrations/vectordb/couchbase/overview",
+    "status": "200",
+    "bytes": 888881,
+    "sha256": "05c89255a4f240fd7c9dc277d4bbe26bb06e22ff3442cc6860abcce5e40eef75",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:17.754611+00:00"
+  },
+  {
+    "id": "prior-product",
+    "url": "https://www.couchbase.com/products/ai-data-plane/",
+    "status": "403",
+    "bytes": 410,
+    "sha256": "be4b8f923803f11061d69ee2d545677610ec5a1f093b201c20cf1bf10476769d",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:59.315128+00:00"
+  },
+  {
+    "id": "prior-intro",
+    "url": "https://docs.couchbase.com/ai/get-started/intro.md",
+    "status": "200",
+    "bytes": 4133,
+    "sha256": "3b6236c7045847a5afd7cd9131d7622c0338be424dfa0a15d6257d9dc239cf85",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:59.341138+00:00"
+  },
+  {
+    "id": "prior-memory",
+    "url": "https://docs.couchbase.com/agent-mem/current/about-agent-mem.md",
+    "status": "200",
+    "bytes": 19930,
+    "sha256": "ae49a8ce21acca48f4eaa5798132858f50ce264c6774e08e45790e30b4e81da1",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:59.462073+00:00"
+  },
+  {
+    "id": "prior-memory-api",
+    "url": "https://docs.couchbase.com/agent-mem/current/agent-memory-api-reference/rest-api.md",
+    "status": "200",
+    "bytes": 84445,
+    "sha256": "5c9860d6c82149fbdb0ad9a3ad968717e4e6e62cc3f765df683d94ab5f7a3073",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:59.472032+00:00"
+  },
+  {
+    "id": "prior-memory-video",
+    "url": "https://www.youtube.com/watch?v=cihkYnuEh6M",
+    "status": "200",
+    "bytes": 1448271,
+    "sha256": "f02db25b17d2524ee09dc7305359b05b41b90b41df409e4eed4fb8adb2f21745",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:00.821116+00:00"
+  },
+  {
+    "id": "prior-memory-demo",
+    "url": "https://github.com/couchbaselabs/agentmemory-demo",
+    "status": "200",
+    "bytes": 349246,
+    "sha256": "ba7e1579f1a971a7e0fa79fab07c9e0387eefde33a2f19cae4d9c8bb1a8a9d36",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.060832+00:00"
+  },
+  {
+    "id": "prior-catalog",
+    "url": "https://docs.couchbase.com/ai/build/integrate-agent-with-catalog.md",
+    "status": "200",
+    "bytes": 45515,
+    "sha256": "ffe05dbbc5b0750993a3132fa2d190e347305b31dc8e8743fab4955acb35b9be",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:59.605219+00:00"
+  },
+  {
+    "id": "prior-catalog-repo",
+    "url": "https://github.com/couchbaselabs/agent-catalog",
+    "status": "200",
+    "bytes": 280466,
+    "sha256": "34c45297cfd048bac743a9a12820d77812601df97be6f2c92b532f7cb2d50330",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:00.913843+00:00"
+  },
+  {
+    "id": "prior-catalog-pypi",
+    "url": "https://pypi.org/project/agentc/",
+    "status": "200",
+    "bytes": 3038,
+    "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea",
+    "error": "",
+    "checked_at": "2026-11-05T17:45:59.878819+00:00"
+  },
+  {
+    "id": "prior-memory-pypi",
+    "url": "https://pypi.org/project/couchbase-agent-memory/",
+    "status": "200",
+    "bytes": 3038,
+    "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:00.174171+00:00"
+  },
+  {
+    "id": "prior-mcp-pypi",
+    "url": "https://pypi.org/project/couchbase-mcp-server/",
+    "status": "200",
+    "bytes": 3038,
+    "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:00.555520+00:00"
+  },
+  {
+    "id": "prior-langchain-pypi",
+    "url": "https://pypi.org/project/langchain-couchbase/",
+    "status": "200",
+    "bytes": 3038,
+    "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:00.555244+00:00"
+  },
+  {
+    "id": "prior-mcp",
+    "url": "https://github.com/couchbase/mcp-server-couchbase",
+    "status": "200",
+    "bytes": 627991,
+    "sha256": "7527a8d9d6d054b9c9c7620d55487fabfd5c7f59dd67bdd18e2ebf87d58af88c",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.855767+00:00"
+  },
+  {
+    "id": "prior-mcp-old",
+    "url": "https://mcp-server.couchbase.com/",
+    "status": "200",
+    "bytes": 26207,
+    "sha256": "f5a248f73e5cbe881e8db2e4c692b1190ff8f7f3dee7e518a0fce7a98affdf3e",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:00.684769+00:00"
+  },
+  {
+    "id": "prior-mcp-managed",
+    "url": "https://docs.couchbase.com/mcp-server/current/about-managed-mcp.md",
+    "status": "200",
+    "bytes": 3576,
+    "sha256": "f0714d72210371531de420c6872bd2c73753c75f210201d69140c396b273123e",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:00.795169+00:00"
+  },
+  {
+    "id": "prior-modes",
+    "url": "https://docs.couchbase.com/ai/build/model-service/model-service.md",
+    "status": "200",
+    "bytes": 7780,
+    "sha256": "cd7d95b58e5ccb939001f8eaeca74acd73a5b22f2ae60df65daf9f2ff8e52180",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:00.974778+00:00"
+  },
+  {
+    "id": "prior-integrations",
+    "url": "https://docs.couchbase.com/ai/admin/manage-ai-integrations.md",
+    "status": "200",
+    "bytes": 7284,
+    "sha256": "70632dd606be1ab7941ef61b6aa8f7fb616510f309ab9e828373c06bfba8a528",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:00.977206+00:00"
+  },
+  {
+    "id": "prior-apis",
+    "url": "https://docs.couchbase.com/ai/api-guide/api-intro.md",
+    "status": "200",
+    "bytes": 13459,
+    "sha256": "0aa6c0196c4013260b955207e5246fe81b6b85b9f1985804c5aa4cbac41f9329",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.043525+00:00"
+  },
+  {
+    "id": "prior-workflow",
+    "url": "https://docs.couchbase.com/ai/build/vectorization-service/data-processing.md",
+    "status": "200",
+    "bytes": 16492,
+    "sha256": "2147762d476657d5642364739340bbca1ff4fa82657d6637b0fa8d87b7fa5f6a",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.152330+00:00"
+  },
+  {
+    "id": "prior-cache",
+    "url": "https://docs.couchbase.com/ai/build/model-service/configure-value-adds.md",
+    "status": "200",
+    "bytes": 13102,
+    "sha256": "fdc7d9c603efe7493a3932485396c857b0a5a771a265de8cb2508b0f18661f28",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.144228+00:00"
+  },
+  {
+    "id": "prior-functions",
+    "url": "https://docs.couchbase.com/ai/build/ai-functions.md",
+    "status": "200",
+    "bytes": 32163,
+    "sha256": "c78a5037ec3cfb36cf50da07588b4c22b877c192f02349af6f5a8bc9e3d9b285",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.156734+00:00"
+  },
+  {
+    "id": "prior-billing",
+    "url": "https://docs.couchbase.com/cloud/billing/billing.md",
+    "status": "200",
+    "bytes": 30331,
+    "sha256": "45b7806112c5d0d36b8932ccf9c22be7a209029d7e1e7c783b0ded704b31e501",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.189739+00:00"
+  },
+  {
+    "id": "prior-pricing",
+    "url": "https://www.couchbase.com/pricing/",
+    "status": "200",
+    "bytes": 270188,
+    "sha256": "45d7289dbb758f542d173f3af2b239d063dfe97660a85cd18bd434ea781fbabd",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.386924+00:00"
+  },
+  {
+    "id": "prior-vector",
+    "url": "https://docs.couchbase.com/server/current/vector-index/vectors-and-indexes-overview.md",
+    "status": "200",
+    "bytes": 27477,
+    "sha256": "ba0fdb97a74ae82b0a310c30949679fb8640eccb7a8d720eeb026f2c0c484c8f",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.296153+00:00"
+  },
+  {
+    "id": "prior-search-architecture",
+    "url": "https://docs.couchbase.com/server/current/vector-search/vector-search-index-architecture.md",
+    "status": "200",
+    "bytes": 12341,
+    "sha256": "9d88fc99ad513d4014e98895e733c039962b8fcf0f89f2a174e48b03db426c77",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.290825+00:00"
+  },
+  {
+    "id": "prior-hybrid",
+    "url": "https://docs.couchbase.com/cloud/search/run-searches.md",
+    "status": "200",
+    "bytes": 8688,
+    "sha256": "f6223451bdea0c2d94b2e50dec044ddd8b082f976bbde42fd6c5d2fec92691d0",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.333100+00:00"
+  },
+  {
+    "id": "prior-hybrid-example",
+    "url": "https://docs.couchbase.com/cloud/vector-search/run-vector-search-ui.md",
+    "status": "200",
+    "bytes": 27020,
+    "sha256": "08623c0069080da3d6c3f98a123c8c8b294086a78aeee403047a5237b253a4f5",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.397785+00:00"
+  },
+  {
+    "id": "prior-scoring",
+    "url": "https://docs.couchbase.com/server/current/search/search-index-params.md",
+    "status": "200",
+    "bytes": 191308,
+    "sha256": "7ac9c31d366c81ab32e8dffbcd94da15e1c061d6f7f399ff83de0da4c848b05c",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.493898+00:00"
+  },
+  {
+    "id": "prior-launch",
+    "url": "https://www.couchbase.com/blog/your-ai-agents-are-stuck-in-pilot-its-a-data-problem-not-a-model-problem/",
+    "status": "403",
+    "bytes": 513,
+    "sha256": "c9d75719569ec24147eea32470bad2cc83ae1e584e72b344596ad91259ac9efb",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.456627+00:00"
+  },
+  {
+    "id": "prior-memory-lane",
+    "url": "https://www.couchbase.com/blog/build-a-personal-memory-search-with-couchbase-ai-services-and-hyperscale-vector-index/",
+    "status": "403",
+    "bytes": 518,
+    "sha256": "67e335868182144b58aecac97daa4f507589c5cbb89f5a4b4b105d0b6a6e7e32",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.465521+00:00"
+  },
+  {
+    "id": "prior-rag",
+    "url": "https://developer.couchbase.com/tutorial-capella-model-services-langchain-rag-with-hyperscale-or-composite-vector-index/",
+    "status": "200",
+    "bytes": 388225,
+    "sha256": "3a06aaf67cc2526d35686e49d56ced25a0b3dc7f8e86ba4a638702b7f4ff13e6",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.670159+00:00"
+  },
+  {
+    "id": "prior-net",
+    "url": "https://developer.couchbase.com/tutorial-csharp-semantic-kernel-vector-search-with-hyperscale-or-composite-vector-index/",
+    "status": "200",
+    "bytes": 276180,
+    "sha256": "ac1dc2e2fd490d10beb6799950fa1770c93a72801d50560b66e84c867f0107ce",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.663955+00:00"
+  },
+  {
+    "id": "prior-ragas",
+    "url": "https://developer.couchbase.com/tutorial-evaluate-rag-responses-using-ragas/",
+    "status": "200",
+    "bytes": 252590,
+    "sha256": "29bd3d2aba8634d7752696ef33c7c5730edc53c087cda6ddab313af44e821fb2",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:01.677497+00:00"
+  },
+  {
+    "id": "prior-hol",
+    "url": "https://github.com/couchbaselabs/ais-hol",
+    "status": "200",
+    "bytes": 683431,
+    "sha256": "e670078b9a43454127700ca46ebdecec9c8485aebd5152ff0b201beeecabc0b1",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:02.825154+00:00"
+  },
+  {
+    "id": "prior-bench",
+    "url": "https://info.couchbase.com/rs/302-GJY-034/images/COU_1372%20-%208.0%20Benchmarks%20for%20Hyperscale%20Vector%20Search%20-%20WP.pdf",
+    "status": "200",
+    "bytes": 4236135,
+    "sha256": "9e547dfcb43d1dd083f9cb6b2c9864fb71bd5e1e57e4e737fe6222a32b11c941",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:02.542766+00:00"
+  },
+  {
+    "id": "prior-memory-bench",
+    "url": "https://github.com/couchbase/operational-data-platform-for-ai/blob/main/ai-data-plane.md",
+    "status": "200",
+    "bytes": 380884,
+    "sha256": "a3d58c1f0319f670aee5a45fa8e1edfce10d1db81d2b6917248ef961969610d5",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:02.653495+00:00"
+  },
+  {
+    "id": "prior-press",
+    "url": "https://www.prnewswire.com/news-releases/couchbase-ai-data-plane-cuts-the-cost-of-running-production-ai-agents-at-enterprise-scale-302913871.html",
+    "status": "200",
+    "bytes": 186818,
+    "sha256": "5c83156d500bc4595a4e1e717b39058ece746f903909c7ff17148e5cbddf9710",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:02.237430+00:00"
+  },
+  {
+    "id": "prior-esg",
+    "url": "https://info.couchbase.com/rs/302-GJY-034/images/ESG-Technical-Validation-Couchbase-Capella-FINAL-Jan-2025.pdf",
+    "status": "200",
+    "bytes": 1372999,
+    "sha256": "03809a383d3eac4aaad86c279a80bd7fa852a25be8db5b5a26a558c6f21dd7b0",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:02.517380+00:00"
+  },
+  {
+    "id": "prior-fankave",
+    "url": "https://info.couchbase.com/rs/302-GJY-034/images/COU_1378-FanKave_Customer_case_study.pdf?version=0",
+    "status": "200",
+    "bytes": 219594,
+    "sha256": "c34ef6e01b9f3d31c09a670d9b427f4916068d6ae42f3f53136e70075a9fe723",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:02.690798+00:00"
+  },
+  {
+    "id": "prior-directory",
+    "url": "https://ai-tldr.dev/tools/?cat=productivity-writing&sub=writing-marketing",
+    "status": "200",
+    "bytes": 831685,
+    "sha256": "adc927d20e8fb7c560deb604dba471e4b99d2bdd20483d8c8fe520c423c6beca",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:03.615428+00:00"
+  },
+  {
+    "id": "prior-skill",
+    "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+    "status": "200",
+    "bytes": 384148,
+    "sha256": "a25dd044a92e8cea930f77cda987334dc19e54349e725dbaa8aefb6205740630",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:03.253378+00:00"
+  },
+  {
+    "id": "prior-channel",
+    "url": "https://www.youtube.com/channel/UCGUDXCRwJi-fuQp7sJyIZmg/videos",
+    "status": "200",
+    "bytes": 1319765,
+    "sha256": "66d9080e5e66c2d25601ce47afecc23f43aba712576e7e6adda8bec6d9cde5c4",
+    "error": "",
+    "checked_at": "2026-11-05T17:46:03.179968+00:00"
+  },
+  {
+    "id": "mcp-release",
+    "url": "https://docs.couchbase.com/mcp-server/1.1/reference/release-notes.md",
+    "status": "200",
+    "bytes": 15228,
+    "sha256": "0a4284d5c4a3c3cb4f9eedca693f54597ab368c7bd360cb6e2982d0eb08725ac",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.597484+00:00"
+  },
+  {
+    "id": "mcp-tools",
+    "url": "https://docs.couchbase.com/mcp-server/1.1/learn/tools.md",
+    "status": "200",
+    "bytes": 33862,
+    "sha256": "81eeb2fcb690040c2b73e8962bbea8556f76481bc5fc1b5758ebc367f4fe3800",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.716813+00:00"
+  },
+  {
+    "id": "mcp-security",
+    "url": "https://docs.couchbase.com/mcp-server/1.1/configuration/security.md",
+    "status": "403",
+    "bytes": 111,
+    "sha256": "a824bc7739e226e1b40ea0f8c4e4f4c6f796fc3b4abfa6e9abe3bd119a30d938",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.567131+00:00"
+  },
+  {
+    "id": "mcp-audit",
+    "url": "https://docs.couchbase.com/mcp-server/1.1/configuration/audit-logging.md",
+    "status": "200",
+    "bytes": 35796,
+    "sha256": "7b011d07de1f94099e2e9cb4c308ad3efcf37a462d26685792e233d4426ddfdd",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.591312+00:00"
+  },
+  {
+    "id": "memory-release",
+    "url": "https://docs.couchbase.com/agent-mem/current/reference/release-notes-agent-mem.md",
+    "status": "200",
+    "bytes": 4116,
+    "sha256": "40f82c9d685526c3403a45a7a26f4aa1978af6f4803a4cb1556504ae0a5a011c",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.582252+00:00"
+  },
+  {
+    "id": "oi-sdk",
+    "url": "https://docs.couchbase.com/home/operational-insights-sdk.md",
+    "status": "200",
+    "bytes": 6046,
+    "sha256": "ab990cd1cba6d687f7be06d4fcef6b2dc324ef7fd52a51577b8af924c8c697f8",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.688050+00:00"
+  },
+  {
+    "id": "oi-mcp",
+    "url": "https://docs.couchbase.com/mcp-server/1.1/get-started-oi/prerequisites-oi.md",
+    "status": "200",
+    "bytes": 3606,
+    "sha256": "1838a6a2020f6712276ed9ca37f9523bffef611c5fe62c327ad3b70ac52bd67e",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.686007+00:00"
+  },
+  {
+    "id": "lite-vector",
+    "url": "https://docs.couchbase.com/couchbase-lite/current/swift/vector-search.md",
+    "status": "200",
+    "bytes": 15433,
+    "sha256": "c2ebc08976583e4abea28080bc4100e3887d2dcd8f2c89a4ce5d1269af332eca",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.704852+00:00"
+  },
+  {
+    "id": "lite-install",
+    "url": "https://docs.couchbase.com/couchbase-lite/current/objc/gs-install.md",
+    "status": "200",
+    "bytes": 6100,
+    "sha256": "629c5921b78186ad061e21b1a2a2e4fface3a40d39dba4325c6393dd13fe17d3",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.692944+00:00"
+  },
+  {
+    "id": "edge-overview",
+    "url": "https://docs.couchbase.com/edge-server/current/introduction.md",
+    "status": "403",
+    "bytes": 111,
+    "sha256": "a824bc7739e226e1b40ea0f8c4e4f4c6f796fc3b4abfa6e9abe3bd119a30d938",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.791701+00:00"
+  },
+  {
+    "id": "llms-ai",
+    "url": "https://docs.couchbase.com/llms-ai.txt",
+    "status": "403",
+    "bytes": 111,
+    "sha256": "a824bc7739e226e1b40ea0f8c4e4f4c6f796fc3b4abfa6e9abe3bd119a30d938",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.822431+00:00"
+  },
+  {
+    "id": "llms-memory",
+    "url": "https://docs.couchbase.com/llms-agent-mem.txt",
+    "status": "403",
+    "bytes": 111,
+    "sha256": "a824bc7739e226e1b40ea0f8c4e4f4c6f796fc3b4abfa6e9abe3bd119a30d938",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.805815+00:00"
+  },
+  {
+    "id": "kotlin-vector-html",
+    "url": "https://docs.couchbase.com/kotlin-sdk/current/howtos/vector-searching-with-sdk.html",
+    "status": "200",
+    "bytes": 45762,
+    "sha256": "247285582cb19301963bb1f350022f27dd304ef986e2d5c523e741ce0fd4de54",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.838052+00:00"
+  },
+  {
+    "id": "java-vector-api",
+    "url": "https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/search/vector/VectorQuery.html",
+    "status": "200",
+    "bytes": 18791,
+    "sha256": "da5cd9c0f08022b750318235d432a630030b165cd0704cc5381f9303c493b12c",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.847399+00:00"
+  },
+  {
+    "id": "python-vector-html",
+    "url": "https://docs.couchbase.com/python-sdk/current/howtos/vector-searching-with-sdk.html",
+    "status": "200",
+    "bytes": 51674,
+    "sha256": "2fa5589238bedeeca0913bf337c376bcd03a2ad5eeed40a4ba3ded9210d9ed24",
+    "error": "",
+    "checked_at": "2026-11-05T17:48:04.923057+00:00"
+  }
+]

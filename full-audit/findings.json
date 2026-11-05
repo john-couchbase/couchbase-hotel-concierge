@@ -1,0 +1,940 @@
+[
+  {
+    "id": "G01",
+    "priority": "P1",
+    "kind": "Reproduced mismatch",
+    "title": "Catalog guide and latest SDK disagree",
+    "observation": "The guide uses from agentc import tool and Catalog.get_item. Local recheck of agentc 1.1.5, also the current PyPI version, finds neither; agentc.catalog.tool and Catalog.find are present.",
+    "impact": "A developer can fail before reaching the value demonstration.",
+    "action": "Correct the snippets, pin a tested environment, and execute documentation snippets in release CI.",
+    "owner": "Docs + SDK",
+    "sources": [
+      "catalog",
+      "catalog-pypi"
+    ],
+    "acceptance": "Clean-environment quickstart imports, indexes, publishes and retrieves one tool; retain the package lock and CI result.",
+    "original_priority": "P1",
+    "audience": "Application developers",
+    "evidence_level": "Offline reproduced",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": [
+      "catalog-interface-checks.json"
+    ]
+  },
+  {
+    "id": "G02",
+    "priority": "P1",
+    "kind": "Confirmed example risk",
+    "title": "Hybrid example does not enforce global restrictions",
+    "observation": "The global_scoring example restricts category and price in query but has no corresponding knn filter. The scoring reference describes the default combination as OR.",
+    "impact": "A reader may treat ranking eligibility as a mandatory business restriction. This is sample-design risk, not proof of an authorization bypass.",
+    "action": "Show an unrestricted union example separately from an eligibility-filtered example; apply mandatory restrictions to both branches.",
+    "owner": "Search Docs + DevRel",
+    "sources": [
+      "hybrid-example",
+      "hybrid"
+    ],
+    "acceptance": "Fixtures outside the category and price range never appear in the mandatory-filter version.",
+    "original_priority": "P1",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G03",
+    "priority": "P2",
+    "kind": "Messaging question",
+    "title": "Qualify the scope of immutable memory",
+    "observation": "Earlier product-page wording described immutable blocks. The current REST API supports content updates. Ask PM what is immutable: a version, event, or block. This does not prove a storage defect; the product page refresh was blocked in this environment.",
+    "impact": "Buyers may infer append-only history or historical reconstruction guarantees that the API description does not establish.",
+    "action": "Define which objects or versions are immutable; document history preservation and its limits; align product copy with the actual update contract.",
+    "owner": "Memory PM + Docs + PMM",
+    "sources": [
+      "product",
+      "memory-api"
+    ],
+    "acceptance": "A documented update example explains old-content availability and exactly what a historical query can recover.",
+    "original_priority": "P1",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G04",
+    "priority": "P2",
+    "kind": "Deployment wording question",
+    "title": "Explain security controls by deployment",
+    "observation": "Managed Memory documents API keys and allowed IPs; self-managed documents identity-provider authentication. Shared security goals do not imply identical controls. Earlier broad product wording needs a deployment-specific explanation.",
+    "impact": "A customer can underestimate migration and identity integration work.",
+    "action": "Publish an authentication and authorization matrix; scope the parity statement.",
+    "owner": "Security PM + PMM",
+    "sources": [
+      "product",
+      "memory"
+    ],
+    "acceptance": "Each deployment has its identity source, credentials, isolation boundary and migration steps specified.",
+    "original_priority": "P1",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G05",
+    "priority": "P2",
+    "kind": "Messaging ambiguity",
+    "title": "Demo autonomy can be mistaken for service autonomy",
+    "observation": "The memory video description presents conflict reconciliation without developer intervention. Reference docs exclude reasoning logic; the hotel demo has application agents and retrieval tooling.",
+    "impact": "A successful application demonstration can be mistaken for an automatic service guarantee.",
+    "action": "Annotate the demo with what the service does, what the LLM does, and what application code configures.",
+    "owner": "Memory PM + DevRel",
+    "sources": [
+      "memory-video",
+      "memory",
+      "memory-demo"
+    ],
+    "acceptance": "Publish one changed-preference example with source memory blocks, prompts, update path and failure outcome.",
+    "original_priority": "P1",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G06",
+    "priority": "P2",
+    "kind": "Documented operational limitation",
+    "title": "Bedrock key renewal can require workflow recreation",
+    "observation": "Integration docs require short-term Bedrock keys, at most 12 hours, and say an expired-key workflow cannot automatically use updated credentials; recovery requires deletion and recreation.",
+    "impact": "Long-running or recurring ingestion needs a clear operational recovery story. This limitation is documented, not reproduced in this audit.",
+    "action": "Prioritize credential refresh/resumability with PM; immediately add a renewal runbook and idempotent re-ingestion guidance.",
+    "owner": "Workflows PM + Engineering",
+    "sources": [
+      "integrations"
+    ],
+    "acceptance": "A key rotation exercise records whether processing resumes without duplicate or missing chunks.",
+    "original_priority": "P1",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G07",
+    "priority": "P1",
+    "kind": "Journey gap",
+    "title": "Connect existing prerequisites and cost guidance",
+    "observation": "Component setup, planning, pricing and credential guides exist. The missing deliverable is a short route from the intended task to its required components, credentials and billing units; do not claim there is no getting-started content.",
+    "impact": "The user must discover plan, region, API key and model dependencies during setup.",
+    "action": "Add a use-case selector with required versus optional services, credential type, region, plan, price unit and teardown.",
+    "owner": "PMM + Product UX + Docs",
+    "sources": [
+      "intro",
+      "pricing",
+      "billing",
+      "mcp-managed",
+      "functions"
+    ],
+    "acceptance": "A new evaluator can identify a valid configuration and all billing parties before provisioning anything.",
+    "original_priority": "P1",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G08",
+    "priority": "P2",
+    "kind": "Evidence gap",
+    "title": "Memory benchmark claims need a reproducibility package",
+    "observation": "Public material reports LoCoMo and LongMemEval scores and the announcement reports 33\u201345% fewer tokens versus alternatives. The reviewed claim surfaces do not supply enough configuration, raw outputs and cost accounting to reproduce the comparison.",
+    "impact": "Useful vendor evidence exists, but total-cost savings and cross-system superiority cannot be inferred from a headline.",
+    "action": "Link a versioned protocol, dataset subsets, models, judges, baselines, token categories, repeated runs and raw results directly from every claim.",
+    "owner": "Performance Engineering + PMM",
+    "sources": [
+      "memory-bench",
+      "press"
+    ],
+    "acceptance": "A third party can rerun the experiment and distinguish retrieval, answer quality and total cost.",
+    "original_priority": "P1",
+    "audience": "Architects, buyers and marketing leadership",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G09",
+    "priority": "P2",
+    "kind": "Content opportunity",
+    "title": "Memory economics and no-memory alternatives",
+    "observation": "The Memory developer guide and customization material are substantial. A use-case decision guide should connect them to current-context and saved-profile alternatives, with measured outcomes and total cost. Actual managed-memory economics remain untested.",
+    "impact": "Buyers may see an expensive extra component without a decision rule.",
+    "action": "Create a memory/no-memory/profile comparison and total-cost worksheet with explicit ingestion, extraction, embedding, retrieval, model and infrastructure costs.",
+    "owner": "Technical Marketing + Memory PM",
+    "sources": [
+      "memory",
+      "billing",
+      "memory-develop",
+      "memory-prompts"
+    ],
+    "acceptance": "Show a workload where memory helps and one where it adds cost without useful quality improvement.",
+    "original_priority": "P1",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G10",
+    "priority": "P2",
+    "kind": "Prior live evidence",
+    "title": "Governance needs a delivery and redaction contract",
+    "observation": "Prior local agentc-core 1.1.5 tests persisted synthetic sensitive text unchanged; a duplicate insert incremented dropped_log_count without raising to the application. These are scoped tracing observations, not a full security audit.",
+    "impact": "Trace availability is not the same as guaranteed audit delivery or automatic redaction.",
+    "action": "Document redaction ownership, failure monitoring, delivery guarantees and instrumented coverage; demonstrate dropped-log handling.",
+    "owner": "Catalog PM + SDK + Security",
+    "sources": [
+      "catalog"
+    ],
+    "acceptance": "A trace demo exposes successful writes, failed writes, redaction policy and retention verification.",
+    "original_priority": "P1",
+    "audience": "Application developers",
+    "evidence_level": "Prior live lab",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G11",
+    "priority": "P2",
+    "kind": "Documented product boundary",
+    "title": "Managed memory model choice is narrower",
+    "observation": "Managed Agent Memory uses OpenAI integrations; self-managed accepts OpenAI-compatible models.",
+    "impact": "A user with a working Capella model deployment may still need another provider integration.",
+    "action": "Explain this before the memory setup CTA; ask PM about additional managed providers and approved company integration workflows.",
+    "owner": "Memory PM + Product UX",
+    "sources": [
+      "memory"
+    ],
+    "acceptance": "Setup clearly identifies who supplies and pays for each required model connection.",
+    "original_priority": "P1",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G12",
+    "priority": "P2",
+    "kind": "Content and freshness gap",
+    "title": "Older videos need version-specific routes",
+    "observation": "Descriptions for older AI Services videos now use AI Data Plane branding. Their publication dates predate current managed services.",
+    "impact": "A current title can lead viewers to an older UI or deployment path.",
+    "action": "Keep useful videos; add tested version, serving mode, current replacement links and matching sample repository.",
+    "owner": "Video Marketing + DevRel",
+    "sources": [
+      "channel"
+    ],
+    "acceptance": "Each prioritized video has a date/version notice and a verified current next step.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G13",
+    "priority": "P2",
+    "kind": "Packaging opportunity",
+    "title": "Turn broad videos into task-based learning paths",
+    "observation": "The channel contains brand stories, architecture panels, demos, SQL/JSON education and customer stories. It is not empty.",
+    "impact": "A beginner still needs a route from overview to a working, evaluated application.",
+    "action": "Curate Learn \u2192 Choose \u2192 Build \u2192 Evaluate \u2192 Operate playlists; link each video to a precise tutorial and code revision.",
+    "owner": "Video Marketing",
+    "sources": [
+      "channel"
+    ],
+    "acceptance": "Measure tutorial click-through and successful first-run events, not views alone.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G14",
+    "priority": "P2",
+    "kind": "Correction to prior lab interpretation",
+    "title": "TF-IDF spelling needs a corrected retest",
+    "observation": "Our earlier lab rejected tfidf. Current docs specify tf-idf. The earlier rejection alone is not a demonstrated product defect.",
+    "impact": "An incorrect internal bug claim would weaken the audit.",
+    "action": "Reclassify that earlier finding as an invalid-input observation until the documented spelling is tested.",
+    "owner": "Technical Marketing + Test owner",
+    "sources": [
+      "scoring"
+    ],
+    "acceptance": "A future live check uses tf-idf exactly and records the response. No live retest claimed here.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G15",
+    "priority": "P2",
+    "kind": "Discovery and comparison gap",
+    "title": "Publish a vector-engine decision matrix",
+    "observation": "Three index families and their controls are documented, but evaluators need a translation into workload choices.",
+    "impact": "HNSW, IVF, quantization and hybrid search can be conflated.",
+    "action": "Compare Search, Composite and Hyperscale by filtering, lexical features, tuning, memory, updates and deployment limits.",
+    "owner": "Search PM + Technical Marketing",
+    "sources": [
+      "vector",
+      "search-architecture"
+    ],
+    "acceptance": "Link each cell to a supported version and demonstrate a workload where each family is appropriate.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G16",
+    "priority": "P2",
+    "kind": "Capability documentation question",
+    "title": "Clarify sparse and late-interaction support",
+    "observation": "This audit did not find an explicit Couchbase matrix classifying learned sparse retrieval, multivectors, fusion and multistage reranking as native, integrated, application-built or unsupported.",
+    "impact": "A missing explanation may be mistaken for a missing feature, or an application workaround for native support.",
+    "action": "Ask PM to classify sparse/SPLADE, multivectors, RRF/DBSF and rerankers as native, connector-supported, application-built or unsupported.",
+    "owner": "Search PM + Technical Marketing",
+    "sources": [
+      "hybrid",
+      "vector"
+    ],
+    "acceptance": "Publish source-backed classifications; do not label features absent solely from search results.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G17",
+    "priority": "P2",
+    "kind": "Documentation clarity",
+    "title": "Hosted inference and workflow models need distinct explanations",
+    "observation": "Model Service distinguishes serverless Bedrock from provisioned NIM. Workflows also accept external OpenAI/Bedrock integrations; only provisioned Model Service deployments are workflow-eligible in the serving-mode table.",
+    "impact": "Saying all workflows require provisioned models would itself be misleading.",
+    "action": "Add separate diagrams for inference API calls, managed vectorization, and externally generated embeddings.",
+    "owner": "Model PM + Docs",
+    "sources": [
+      "modes",
+      "workflow"
+    ],
+    "acceptance": "An evaluator can choose a supported path without confusing an external Bedrock integration with a serverless Capella model.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G18",
+    "priority": "P2",
+    "kind": "Reproducibility and scope gap",
+    "title": "Update the scale benchmark package",
+    "observation": "The vector-scale whitepaper includes methodology, hardware, index definitions and recall curves, but its Couchbase build is a prerelease on EC2. A current GA, repeatable deployment recipe would make the study easier to apply to a Capella evaluation.",
+    "impact": "It is useful evidence for its setup, not current Capella or universal production proof.",
+    "action": "Publish GA versions, repeatable scripts, raw runs, equal-recall comparisons, costs and concurrent-mutation workloads.",
+    "owner": "Performance Engineering",
+    "sources": [
+      "bench"
+    ],
+    "acceptance": "A benchmark manifest identifies versions, hardware, dataset, filter selectivity, concurrency and cost boundaries.",
+    "original_priority": "P2",
+    "audience": "Architects, buyers and marketing leadership",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G19",
+    "priority": "P2",
+    "kind": "Customer evidence gap",
+    "title": "Separate database success from memory ROI",
+    "observation": "FanKave is a real customer story with operational and AI use cases. It does not establish measured Agent Memory benefits. The commissioned ESG report predates the current memory release.",
+    "impact": "Broad customer logos can be overextended into claims about newly released components.",
+    "action": "Build component-specific customer proof: architecture, baseline, outcome, timeline, measurement and approved attribution.",
+    "owner": "Customer Marketing + PMM",
+    "sources": [
+      "fankave",
+      "esg"
+    ],
+    "acceptance": "A memory-specific case shows before/after task success and full cost, with customer approval.",
+    "original_priority": "P2",
+    "audience": "Architects, buyers and marketing leadership",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G20",
+    "priority": "P2",
+    "kind": "Editorial ambiguity",
+    "title": "Memory Lane is RAG, not proof of Agent Memory",
+    "observation": "The detailed Memory Lane article implements document retrieval using Hyperscale and model calls. Its name can collide with the Agent Memory product category.",
+    "impact": "Readers may infer that any stored document search exercises managed memory.",
+    "action": "Label the article as a document-RAG reference and link a short comparison with Agent Memory.",
+    "owner": "Blog editor + DevRel",
+    "sources": [
+      "memory-lane"
+    ],
+    "acceptance": "Architecture labels identify exactly which products are and are not used.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G21",
+    "priority": "P2",
+    "kind": "Developer experience",
+    "title": "Tutorial environment hygiene needs tightening",
+    "observation": "The LangChain tutorial pins libraries but displays Python 3.14/Pydantic compatibility warnings and describes multi-node prerequisites.",
+    "impact": "Warnings and unexplained deployment sizing reduce confidence and increase setup cost.",
+    "action": "Publish a clean tested runtime, distinguish minimum from recommended topology, and add setup/teardown validation.",
+    "owner": "DevRel + SDK",
+    "sources": [
+      "rag"
+    ],
+    "acceptance": "Fresh execution has an explicit supported Python version and no unexplained compatibility warnings.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G22",
+    "priority": "P2",
+    "kind": "Documentation navigation",
+    "title": "Version and machine-readable documentation drift",
+    "observation": "The legacy MCP site and current 1.1 package expose different versioned starting paths. The official AI documentation index successfully linked 71 retrievable pages in this pass. Some separately attempted Markdown URLs returned 403 while HTML worked; those are not established broken public links.",
+    "impact": "Search engines and coding assistants can land on older or non-navigable instructions.",
+    "action": "Add current-version banners/canonical links; validate generated Markdown links as well as HTML.",
+    "owner": "Docs platform",
+    "sources": [
+      "mcp-old",
+      "mcp-pypi",
+      "intro"
+    ],
+    "acceptance": "A link checker resolves MCP and overview links from both HTML and Markdown entry points.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G23",
+    "priority": "P2",
+    "kind": "Evaluation content opportunity",
+    "title": "Extend existing Ragas material instead of duplicating it",
+    "observation": "An actual Ragas tutorial already covers retrieval and generation evaluation.",
+    "impact": "Another generic evaluation introduction adds less value than runnable comparisons.",
+    "action": "Build a BEIR-based companion comparing lexical, dense and hybrid search, and add changing-data, negative-query and filter correctness suites.",
+    "owner": "Technical Marketing + DevRel",
+    "sources": [
+      "ragas"
+    ],
+    "acceptance": "Publish labeled datasets, fixed models, held-out queries, metrics and both wins and losses.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G24",
+    "priority": "P2",
+    "kind": "Operational content opportunity",
+    "title": "Demonstrate freshness and recovery",
+    "observation": "Workflows document chunking, metadata collections and generated Eventing functions. The reviewed starting materials do not demonstrate a full update/delete/key-expiry recovery acceptance test.",
+    "impact": "Production users need to know when removed or changed content stops influencing answers.",
+    "action": "Publish an ingestion lifecycle lab: insert, update, delete, retry, deduplicate, re-embed and recover.",
+    "owner": "Workflows PM + DevRel",
+    "sources": [
+      "workflow",
+      "integrations"
+    ],
+    "acceptance": "Record source-to-search lag, duplicates, stale chunks and recovery results rather than only workflow completion.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G25",
+    "priority": "P2",
+    "kind": "Cost and quality trade-off",
+    "title": "Cache savings need false-hit and freshness examples",
+    "observation": "Value Adds docs acknowledge semantic caching can increase cost and expose threshold controls.",
+    "impact": "A cache hit is not automatically a correct answer or a net saving.",
+    "action": "Publish a break-even and false-hit lab with changing records, tenant boundaries and cache bypass.",
+    "owner": "Model PM + Technical Marketing",
+    "sources": [
+      "cache",
+      "billing"
+    ],
+    "acceptance": "Report incorrect hit rate, latency and net cost including embedding/cache resources.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G26",
+    "priority": "P2",
+    "kind": "Product versus content boundary",
+    "title": "Do not describe Catalog as managed agent execution",
+    "observation": "The Catalog guide explicitly leaves tool execution to the chosen framework.",
+    "impact": "Agent management language can imply an agent runtime or orchestrator.",
+    "action": "Add a responsibility diagram for model, framework, tool execution, MCP, memory and tracing.",
+    "owner": "PMM + Catalog PM",
+    "sources": [
+      "catalog"
+    ],
+    "acceptance": "An example identifies the process that actually executes each operation and enforces authorization.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G27",
+    "priority": "P2",
+    "kind": "Documentation and evaluation gap",
+    "title": "AI Functions need bounded operational examples",
+    "observation": "SQL++ AI Functions have paid-cluster, multi-AZ and model prerequisites; model and query charges still apply.",
+    "impact": "A simple SQL example may conceal deployment requirements and per-row model cost.",
+    "action": "Publish a limited-row support-ticket classification example with cost estimation, error handling, validation and repeat-run behavior.",
+    "owner": "AI Functions PM + DevRel",
+    "sources": [
+      "functions"
+    ],
+    "acceptance": "Show billed model work, failed rows, output validation and the effect of rerunning a query.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G28",
+    "priority": "P2",
+    "kind": "User-reported known issue",
+    "title": "Model-key sign-out needs an engineering case",
+    "observation": "John reports engineering confirmed the Model Service key-creation sign-out as a bug. We still lack an incident ID, exact affected model and verified workaround. It is not evidence that multiple browsers or an IP rule caused the issue.",
+    "impact": "Onboarding friction is real to the evaluator; its root cause is not established.",
+    "action": "Collect request ID, timestamp, region, exact model, response status and engineering ticket; avoid attributing it to multiple browsers or AI filtering.",
+    "owner": "Capella UX + Support",
+    "sources": [
+      "apis"
+    ],
+    "acceptance": "Engineering confirms the incident, workaround and fixed release; no speculative diagnosis becomes marketing fact.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "User report; engineering record pending",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G29",
+    "priority": "P3",
+    "kind": "Measurement gap",
+    "title": "Public content cannot establish conversion performance",
+    "observation": "Video metadata and public content are available; retention, Search Console, CRM attribution and funnel conversion are not.",
+    "impact": "Low views or abundant content alone cannot identify the business bottleneck.",
+    "action": "Request read-only content analytics and connect video/tutorial entry to first successful query and qualified evaluation.",
+    "owner": "Marketing Ops + Web Analytics",
+    "sources": [
+      "channel"
+    ],
+    "acceptance": "Separate measured channel performance from editorial judgment; report baselines before setting numeric targets.",
+    "original_priority": "P3",
+    "audience": "Architects, buyers and marketing leadership",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G30",
+    "priority": "P2",
+    "kind": "Use-case packaging",
+    "title": "Show operational data plus retrieval in one application",
+    "observation": "Existing SQL/JSON and AI material offers the pieces, but the evaluator needs to see why the combination changes an application.",
+    "impact": "A vector-only comparison misses Couchbase operational strengths.",
+    "action": "Build a support assistant that combines current orders via KV/SQL++, policy search via hybrid retrieval, explicit write approval and trace inspection; add memory only as an optional extension.",
+    "owner": "Technical Marketing + Solutions Engineering",
+    "sources": [
+      "hol",
+      "net"
+    ],
+    "acceptance": "Trace one request, show current versus stale records, enforce customer scope and measure the outcome with and without each optional service.",
+    "original_priority": "P2",
+    "audience": "Application developers",
+    "evidence_level": "Documentation / content assessment",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05",
+    "evidence_files": []
+  },
+  {
+    "id": "G31",
+    "priority": "P1",
+    "kind": "Reproduced documentation defect",
+    "title": "Python vector quickstart has two unclosed calls",
+    "observation": "The first two Python Query-service code blocks fail ast.parse after common indentation is removed: an opening parenthesis is never closed. A signature-only block is not counted as a runnable-example failure.",
+    "impact": "Python developers cannot paste and run these examples.",
+    "action": "Correct both blocks and execute complete samples against the declared server version.",
+    "owner": "Docs + Python SDK",
+    "acceptance": "Two clean-environment runs produce expected output; include the test revision.",
+    "sources": [
+      "python-vector"
+    ],
+    "evidence_files": [
+      "python-snippet-checks.json"
+    ],
+    "evidence_level": "Offline reproduced",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G32",
+    "priority": "P1",
+    "kind": "Documentation demonstration gap",
+    "title": "Nine Hyperscale examples do not perform similarity search",
+    "observation": "Python, Java, .NET, Node.js, Go, Scala, PHP, Ruby and C++ guides label an ID lookup as a Hyperscale example. The displayed SQL selects an existing record and vector slice, without a distance calculation or nearest-neighbor ordering.",
+    "impact": "Readers do not learn the operation the section promises.",
+    "action": "Keep the lookup as inspection, then add an actual ANN query and verified query plan.",
+    "owner": "SDK Docs + Search DevRel",
+    "acceptance": "Each language example returns nearest neighbors and its plan uses the intended index.",
+    "sources": [
+      "python-vector",
+      "java-vector"
+    ],
+    "evidence_files": [
+      "sdk-doc-checks.json"
+    ],
+    "evidence_level": "Static source inspection",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G33",
+    "priority": "P1",
+    "kind": "Reproduced adapter contract risk",
+    "title": "Switching LangChain adapters can silently lose a filter",
+    "observation": "In langchain-couchbase 1.2.0, Query accepts where_str. Passing the Search adapter filter argument is accepted via kwargs but omitted from generated SQL. A mocked-database probe reproduced it. Search rejects a plain dictionary filter.",
+    "impact": "A developer may believe a mandatory restriction survived an adapter switch. This is not proof of a server authorization bypass.",
+    "action": "Show each filter API explicitly; reject or warn on unsupported arguments; add negative filter fixtures.",
+    "owner": "Integration maintainer + DevRel",
+    "acceptance": "Wrong adapter arguments fail clearly; valid restrictions survive in the generated request and live results.",
+    "sources": [
+      "langchain-source",
+      "langchain-pypi"
+    ],
+    "evidence_files": [
+      "adapter-probes.json"
+    ],
+    "evidence_level": "Offline reproduced",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G34",
+    "priority": "P2",
+    "kind": "Reproduced dependency conflict",
+    "title": "MCP and LangChain require separate environments at these versions",
+    "observation": "Resolution of couchbase-mcp-server 1.1.0 plus langchain-couchbase 1.2.0 fails: the former requires reo-census <0.2.0 and the latter >=0.2.0. LangChain imports successfully in its own environment.",
+    "impact": "A combined tutorial environment fails installation; separate MCP and app processes remain a practical path.",
+    "action": "Document environment isolation and ask maintainers to align compatible dependency ranges.",
+    "owner": "SDK maintainers + DevRel",
+    "acceptance": "Both independently locked environments run, or a supported combined lock resolves.",
+    "sources": [
+      "mcp-pypi",
+      "langchain-pypi"
+    ],
+    "evidence_files": [
+      "dependency-resolution.txt",
+      "package-metadata.json",
+      "langchain-runtime.txt"
+    ],
+    "evidence_level": "Offline dependency resolution",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G35",
+    "priority": "P1",
+    "kind": "Documentation inconsistency",
+    "title": "Custom Memory prompt example contradicts its validation note",
+    "observation": "The prompt guide says omitting context_required with prompt_id causes validation failure, but its own examples omit it. SDK 1.1.0 forwards the omitted value; it rejects explicit False. Server behavior was not tested.",
+    "impact": "A customization recipe leaves the reader unsure which contract to follow.",
+    "action": "Confirm server default and align SDK, example and warning; show context_required=True if required.",
+    "owner": "Memory PM + Docs + SDK",
+    "acceptance": "Run the shown request against service 1.1.0 and document omitted/true/false outcomes.",
+    "sources": [
+      "memory-prompts",
+      "memory-develop"
+    ],
+    "evidence_files": [
+      "memory-validation-probes.json"
+    ],
+    "evidence_level": "Documentation mismatch plus offline probe",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G36",
+    "priority": "P2",
+    "kind": "Support clarity",
+    "title": "Make integration support status visible before installation",
+    "observation": "LangChain and Haystack README support policies direct issues to GitHub and describe community maintenance. That differs from paid AI Data Plane support for named components.",
+    "impact": "Enterprise evaluators need to know who owns incidents.",
+    "action": "Add owner, support route, tested versions and index coverage to integration cards.",
+    "owner": "Partner Engineering + Docs + Technical Marketing",
+    "acceptance": "Every promoted adapter names its maintainer and support route.",
+    "sources": [
+      "langchain-pypi",
+      "haystack",
+      "intro"
+    ],
+    "evidence_files": [
+      "package-metadata.json"
+    ],
+    "evidence_level": "Documented policy",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G37",
+    "priority": "P2",
+    "kind": "SDK permission trade-off",
+    "title": "LangChain Query initialization attempts primary-index creation",
+    "observation": "The 1.2.0 Query adapter constructor issues CREATE PRIMARY INDEX IF NOT EXISTS. It raises on failure. This was source-inspected, not tested with a read-only live credential.",
+    "impact": "A retrieval app may unexpectedly need index-management privileges during setup.",
+    "action": "Separate provisioning from retrieval credentials in the guide; maintainer should consider an explicit initialization option.",
+    "owner": "Integration maintainer + DevRel",
+    "acceptance": "A documented least-privilege retrieval setup initializes and queries without unexpected DDL.",
+    "sources": [
+      "langchain-source"
+    ],
+    "evidence_files": [
+      "langchain-couchbase-interfaces.json"
+    ],
+    "evidence_level": "Static source inspection",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G38",
+    "priority": "P2",
+    "kind": "Existing feature to demonstrate",
+    "title": "MCP 1.1 has its own audit controls",
+    "observation": "Current MCP docs describe opt-in audit logging, omitted arguments by default, optional verbatim argument capture, and counters for failed/dropped records. This is separate from the earlier Catalog DBLogger tests.",
+    "impact": "Calling all activity recording one audit layer hides different setup and delivery guarantees.",
+    "action": "Create one logging map and a recovery demo; do not claim automatic redaction or guaranteed delivery.",
+    "owner": "MCP Engineering + Technical Marketing",
+    "acceptance": "Show which process records each event, where it goes, and how a dropped record is detected.",
+    "sources": [
+      "mcp-audit",
+      "mcp-release"
+    ],
+    "evidence_files": [
+      "couchbase-mcp-server-interfaces.json"
+    ],
+    "evidence_level": "Documentation plus source inspection",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G39",
+    "priority": "P2",
+    "kind": "Deployment selection",
+    "title": "Operational Insights needs its own SDK and MCP explanation",
+    "observation": "Official documentation distinguishes Enterprise Operational Insights SDKs, Capella Columnar SDKs and operational-cluster Analytics APIs. MCP 1.1 Operational Insights support is self-managed only.",
+    "impact": "The shared product name can lead developers to the wrong endpoint or package.",
+    "action": "Add a deployment-to-SDK selector and a supported analytical-agent recipe.",
+    "owner": "Operational Insights Docs + PM",
+    "acceptance": "Every example names its deployment, connection type and supported MCP route.",
+    "sources": [
+      "oi-sdk",
+      "oi-mcp"
+    ],
+    "evidence_files": [],
+    "evidence_level": "Documented boundary",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G40",
+    "priority": "P3",
+    "kind": "Edge scope",
+    "title": "Cloud-to-edge positioning needs a separate runnable proof",
+    "observation": "Lite documents local vector search and an Enterprise-only extension. Local retrieval is not proof that model generation, managed memory or all cloud services work offline.",
+    "impact": "Mobile architects need explicit offline boundaries and deployment requirements.",
+    "action": "Add an airplane-mode retrieval demo with model location, sync/reconnect and hardware requirements.",
+    "owner": "Mobile DevRel + Technical Marketing",
+    "acceptance": "Show what works offline, what fails, and how data changes after reconnect.",
+    "sources": [
+      "lite",
+      "lite-install"
+    ],
+    "evidence_files": [],
+    "evidence_level": "Documentation assessment; no device test",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G41",
+    "priority": "P2",
+    "kind": "Reuse existing content",
+    "title": "Tracer and Tools/Prompts Hub already have guides",
+    "observation": "The official index includes trace instrumentation, trace viewing, SQL++ trace queries and Tools/Prompts Hub navigation.",
+    "impact": "A generic request to create governance guides would duplicate existing work.",
+    "action": "Link these guides to a versioned tool-change demo and explain instrumentation prerequisites.",
+    "owner": "Technical Marketing + Catalog Docs",
+    "acceptance": "A reader can connect a tool version, a request trace and its source revision.",
+    "sources": [
+      "agent-tracer",
+      "hub"
+    ],
+    "evidence_files": [],
+    "evidence_level": "Existing content verified",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G42",
+    "priority": "P2",
+    "kind": "Documented lifecycle constraint",
+    "title": "Serverless model settings have a redeployment lifecycle",
+    "observation": "The serverless guide says deployed models cannot be edited or turned off; changing configuration requires deletion and redeployment. Regional keys and embedding/cache dependencies are documented.",
+    "impact": "Serverless removes GPU sizing, not every operational decision.",
+    "action": "Add a small lifecycle and cost-unit diagram to the inference guide.",
+    "owner": "Model Service PM + Technical Marketing",
+    "acceptance": "Demonstrate safe configuration change and cleanup of dependent models; show token charges separately.",
+    "sources": [
+      "serverless"
+    ],
+    "evidence_files": [],
+    "evidence_level": "Documented limitation",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G43",
+    "priority": "P2",
+    "kind": "Documentation precision",
+    "title": "RAG guidance should separate retrieval k from model sampling",
+    "observation": "The RAG blueprint refers to a higher Top K on the LLM while discussing retrieved supporting context. These are different controls and should be named separately.",
+    "impact": "Readers may tune sampling when they mean to retrieve more documents.",
+    "action": "Label retrieval top-k and generation sampling top-k separately with one concrete example.",
+    "owner": "AI Docs + Search DevRel",
+    "acceptance": "The guide identifies which API receives each value and what metric it affects.",
+    "sources": [
+      "rag-patterns"
+    ],
+    "evidence_files": [],
+    "evidence_level": "Documentation ambiguity",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G44",
+    "priority": "P2",
+    "kind": "Documentation precision",
+    "title": "Higher embedding dimensions do not guarantee better accuracy",
+    "observation": "Lite guidance presents increasing dimensions as increasing accuracy. Quality depends on the model, data and retrieval setup; dimension count alone does not establish it.",
+    "impact": "Readers can choose more expensive embeddings without evidence of benefit.",
+    "action": "Qualify the statement and connect it to a measured quality/storage trade-off.",
+    "owner": "Mobile Docs + Search PM",
+    "acceptance": "Compare supported embedding configurations on held-out queries at stated quality targets.",
+    "sources": [
+      "lite"
+    ],
+    "evidence_files": [],
+    "evidence_level": "Technical editorial finding",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  },
+  {
+    "id": "G45",
+    "priority": "P2",
+    "kind": "Standardization gap",
+    "title": "Templates need a maintenance process to prevent repeated drift",
+    "observation": "The repository has article templates and author/reviewer skills. Automated snippet checks, link/version checks, corporate publication routing and named ownership have not been implemented.",
+    "impact": "A reusable template alone will not keep docs, code and videos aligned.",
+    "action": "Assign owners and add a release checklist with executable sample checks and dated evidence.",
+    "owner": "Technical Marketing + Docs tooling",
+    "acceptance": "Every promoted asset has an owner, tested revision, review date, companion links and a maintained validation job.",
+    "sources": [
+      "ai-index"
+    ],
+    "evidence_files": [],
+    "evidence_level": "Repository process assessment",
+    "audience": "Developers and architects",
+    "status": "Proposed action; not implemented in corporate content",
+    "reviewed": "2026-11-05"
+  }
+]
