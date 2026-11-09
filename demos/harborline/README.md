@@ -19,10 +19,21 @@ Use this directory as the Vercel project root. Python 3.12; dependencies are in 
 
 Required encrypted server environment variables: HOTEL_CONFIG, HOTEL_MODEL_KEY, HOTEL_DEMO_PASSWORD, HOTEL_SESSION_KEY. Never expose these to browser code or commit their values. HOTEL_CONFIG supplies scoped database access and optional memory configuration; see lib/runtime.py.
 
-The approved ongoing database network rule permits IPv4 access; scoped credentials remain required. Cloud resources were left running under the existing $15/day authorization. Request limits are not a guaranteed billing cap. No separate hosting service is required.
+The approved ongoing database network rule permits IPv4 access; scoped credentials remain required. Cloud resources were paused on November 9: Vercel confirms paused=true and the database confirms turnedOff. Managed memory deletion was accepted (202) but last reported destroying; removal and its billing must still be verified. Local backend and embedding proxy were stopped. No cluster on/off schedule is configured. Request limits are not a guaranteed billing cap. No separate hosting service is required.
 
 ## Verification and next steps
 
 Run `python -m unittest discover -s tests -v` after installing requirements. These tests cover authentication, origin checks, distributed budgets, and session locking; they do not prove live cloud connectivity.
 
 Resume with the model-key access update, check memory provisioning, then test typed and button-driven requests, booking persistence, catalog/traces, and memory recall through the hosted preview. Promote only after those checks pass.
+
+## Resume after cloud pause
+
+Code, deployments, encrypted Vercel settings, database buckets, catalog, sessions, and traces were retained. Memory compute was requested for removal; its configuration is saved in memory-resume-config.json, with a private full snapshot in the original workspace. No bucket was deleted.
+
+1. Verify the old memory deployment has actually disappeared; escalate a stuck deletion to Capella support before creating another.
+2. Turn john-ai-learning back on and wait for Healthy. Confirm spending authorization before restoring paid compute.
+3. Recreate managed memory from the saved configuration using the same bucket and embedding model. Create a new scoped memory key and update the server configuration once healthy.
+4. Complete the previously approved model-key network change and retest the hosted preview before resuming Vercel traffic.
+
+Turning off a cluster retains storage charges; the last quoted OFF price was approximately $0.04/hour, not a freshly verified bill. Backups may continue expiring, and record TTLs are not suspended. The memory configuration uses a 24-hour TTL. Capella documentation also describes a 30-day maximum continuous off period; check before then if remaining paused.

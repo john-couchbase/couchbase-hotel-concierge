@@ -1,0 +1,37 @@
+{
+  "name": "harborline-memory",
+  "description": "Hotel demo memory; one node under approved $15/day budget",
+  "config": {
+    "advancedConfig": {
+      "idleSleepSeconds": 0.5,
+      "maxConcurrentTasks": 1,
+      "maxFailCount": 1,
+      "maxRequestsPerMinute": 10,
+      "maxTokensPerMinute": 8192,
+      "perRequestTokenLimit": 1024,
+      "processingBatchSize": 1,
+      "queueMaxSize": 20,
+      "summaryTokenLimit": 256,
+      "taskTimeoutSeconds": 90
+    },
+    "bucket": "harborline-memory-demo",
+    "embedding": {
+      "integrationId": "johnharborlinedemo-efae365c-5f2c-410d-88b5-2b08add39160",
+      "model": "text-embedding-3-small"
+    },
+    "llm": {
+      "integrationId": "johnharborlinedemo-efae365c-5f2c-410d-88b5-2b08add39160",
+      "model": "gpt-4.1-nano"
+    },
+    "memoryBlockTTL": 86400,
+    "nodeConfig": {
+      "instanceType": "small",
+      "nodeCount": 1,
+      "provider": "aws",
+      "region": "us-east-1"
+    },
+    "semanticExtraction": {
+      "enabled": true
+    }
+  }
+}
