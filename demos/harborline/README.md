@@ -2,7 +2,7 @@
 
 An interactive customer demo showing how an AI agent turns a hotel request into checked actions and a saved result.
 
-[Open the live demo](https://couchbase-hotel-concierge.vercel.app/) · Demo login required
+[Open the live demo](https://couchbase-hotel-concierge.vercel.app/) · Open access · No password required
 
 ## What this demonstrates
 
@@ -24,7 +24,7 @@ The activity view explains observable actions and results; it does not expose th
 - **Couchbase Capella database:** saves chat sessions, booking receipts, activity history, and usage counters.
 - **Vercel:** hosts the web interface and Python backend. The shared demo works independently of the presenter’s computer.
 
-The backend enforces tool permissions, hotel rules, and confirmation before room booking or cancellation. Credentials stay on the server.
+The backend enforces tool permissions, hotel rules, and confirmation before room booking or cancellation. Credentials stay on the server. Each visitor receives a separate signed session; the daily usage allowance is shared.
 
 ## A simple walkthrough
 

@@ -8,7 +8,7 @@ from distributed import Budget
 _lock=threading.Lock();_runtime=None
 
 def configured():
- return all(os.environ.get(k) for k in ('HOTEL_CONFIG','HOTEL_MODEL_KEY','HOTEL_DEMO_PASSWORD','HOTEL_SESSION_KEY'))
+ return all(os.environ.get(k) for k in ('HOTEL_CONFIG','HOTEL_MODEL_KEY','HOTEL_SESSION_KEY'))
 def get_runtime():
  global _runtime
  with _lock:

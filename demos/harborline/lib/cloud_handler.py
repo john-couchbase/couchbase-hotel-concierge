@@ -31,15 +31,17 @@ class handler(BaseHTTPRequestHandler):
  def do_GET(self):
   route=self.route()
   if route=='health':self.headers_reply();self.wfile.write(json.dumps({'runtime':'ready','configured':configured(),'backend_verified':False}).encode());return
-  sid=self.auth()
-  if not sid:
-   if route=='page':self.headers_reply(200,'text/html; charset=utf-8');self.wfile.write(LOGIN.encode())
-   else:self.error(401,'Sign in to the demo first.')
-   return
+  sid=self.auth();cookie=None
   if route=='page':
+   key=os.environ.get('HOTEL_SESSION_KEY','')
+   if len(key)<32:self.error(503,'Hosting setup is incomplete');return
+   if not sid:
+    sid=secrets.token_urlsafe(32);token=sign_session(key,sid)
+    cookie=f'hotel_access={token}; Path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=86400'
    from page_template import PAGE
    page=PAGE.replace('</body>','<script src="/live-preview.js"></script></body>')
-   self.headers_reply(200,'text/html; charset=utf-8');self.wfile.write(page.encode());return
+   self.headers_reply(200,'text/html; charset=utf-8',cookie);self.wfile.write(page.encode());return
+  if not sid:self.error(401,'Open the demo first to start your session.');return
   if route!='state':self.error(404,'Not found');return
   try:
    services,store,_,_=get_runtime();s=store.load(sid) or new_session();s['services']=dict(services.status)

@@ -2,7 +2,8 @@ import sys,unittest,threading,urllib.request,urllib.error,os
 from pathlib import Path
 from unittest.mock import patch
 from http.server import HTTPServer
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'lib'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'hotel-backend'))
 from cloud_handler import handler
 class HttpTests(unittest.TestCase):
  @classmethod
@@ -14,10 +15,17 @@ class HttpTests(unittest.TestCase):
   with patch('cloud_handler.get_runtime') as runtime:
    with self.assertRaises(urllib.error.HTTPError) as error:urllib.request.urlopen(self.url+'state')
    self.assertEqual(error.exception.code,401);runtime.assert_not_called()
- def test_login_page_has_no_secret(self):
-  with patch.dict(os.environ,{'HOTEL_DEMO_PASSWORD':'secret-sentinel'}):
-   html=urllib.request.urlopen(self.url+'page').read().decode()
-   self.assertIn('Demo passphrase',html);self.assertNotIn('secret-sentinel',html)
+ def test_public_page_creates_unique_private_sessions(self):
+  from types import SimpleNamespace
+  with patch.dict(os.environ,{'HOTEL_DEMO_PASSWORD':'secret-sentinel','HOTEL_SESSION_KEY':'k'*48}),patch.dict(sys.modules,{'page_template':SimpleNamespace(PAGE='<body>Concierge</body>')}):
+   a=urllib.request.urlopen(self.url+'page');b=urllib.request.urlopen(self.url+'page')
+   html=a.read().decode();self.assertIn('Concierge',html);self.assertNotIn('secret-sentinel',html)
+   self.assertNotEqual(a.headers['Set-Cookie'],b.headers['Set-Cookie'])
+   for flag in ['Secure','HttpOnly','SameSite=Strict']:self.assertIn(flag,a.headers['Set-Cookie'])
+ def test_public_page_fails_closed_without_signing_key(self):
+  with patch.dict(os.environ,{'HOTEL_SESSION_KEY':''}):
+   with self.assertRaises(urllib.error.HTTPError) as error:urllib.request.urlopen(self.url+'page')
+   self.assertEqual(error.exception.code,503)
  def test_cross_site_post_rejected(self):
   req=urllib.request.Request(self.url+'chat',data=b'{}',headers={'Origin':'https://evil.example'})
   with self.assertRaises(urllib.error.HTTPError) as error:urllib.request.urlopen(req)

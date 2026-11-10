@@ -1,7 +1,7 @@
 {
   "checked_at": "2026-11-10 America/Los_Angeles",
   "production_url": "https://couchbase-hotel-concierge.vercel.app/",
-  "production_deployment": "dpl_EEYpPZujutTkEH5fLZp7urKDhGNs",
+  "production_deployment": "dpl_GqKuYDHq34SSAEbvpGuF3qfEbb6V",
   "production_status": "READY; login, state endpoint and updated UI assets verified",
   "latest_production_inference": "blocked by daily model-call limit; retest after reset",
   "cluster_status": "healthy",
@@ -9,7 +9,7 @@
   "managed_memory": "deploymentFailed; not connected",
   "regression_tests": {
     "core_and_selection": 24,
-    "hosted": 12
+    "hosted": 13
   },
   "latest_local_live_flows": [
     "room quote and confirmation",
@@ -20,5 +20,6 @@
   ],
   "sample_hotel_only": true,
   "tracing": "Fresh disposable trace write and readback passed",
-  "daily_model_count": 40
+  "daily_model_count": 40,
+  "access": "Public page; isolated signed visitor sessions; shared daily limit unchanged"
 }
