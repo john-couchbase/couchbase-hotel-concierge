@@ -1,24 +1,24 @@
 {
-  "checked_at": "2026-11-09 America/Los_Angeles",
+  "checked_at": "2026-11-10 America/Los_Angeles",
   "production_url": "https://couchbase-hotel-concierge.vercel.app/",
-  "production_deployment": "dpl_HQ1YNjhpzxZtKN4gWeZfjdZJZxtb",
-  "real_model": true,
-  "catalog_tools": true,
-  "tracer_write_readback": true,
-  "database_receipt_readback": true,
-  "preview_flows_verified": [
-    "room quote",
-    "booking confirmation",
-    "receipt after refresh",
+  "production_deployment": "dpl_EEYpPZujutTkEH5fLZp7urKDhGNs",
+  "production_status": "READY; login, state endpoint and updated UI assets verified",
+  "latest_production_inference": "blocked by daily model-call limit; retest after reset",
+  "cluster_status": "healthy",
+  "catalog": "All seven request policy contents matched published records",
+  "managed_memory": "deploymentFailed; not connected",
+  "regression_tests": {
+    "core_and_selection": 24,
+    "hosted": 12
+  },
+  "latest_local_live_flows": [
+    "room quote and confirmation",
     "upgrade",
     "dinner",
-    "late checkout",
-    "cancellation confirmation"
+    "selected versus called tools",
+    "trace write/readback"
   ],
-  "regression_tests": {
-    "hosted": 12,
-    "core": 18
-  },
-  "managed_memory": "replacement provisioning; independent provider key test failed 401 invalid_api_key; not connected or verified",
-  "sample_hotel_only": true
+  "sample_hotel_only": true,
+  "tracing": "Fresh disposable trace write and readback passed",
+  "daily_model_count": 40
 }

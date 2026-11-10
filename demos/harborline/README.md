@@ -1,50 +1,50 @@
-# Harborline hotel concierge demo
+# Harborline · Couchbase hotel concierge
 
-Policy-selection update — November 10, 2026.
+An interactive customer demo showing how an AI agent turns a hotel request into checked actions and a saved result.
 
-This folder contains the latest UI and the Vercel Python backend candidate. Hotel inventory and reservations are demo data. Secrets are supplied only through encrypted server environment variables.
+[Open the live demo](https://couchbase-hotel-concierge.vercel.app/) · Demo login required
 
-## Deployment status
+## What this demonstrates
 
-- Live production: https://couchbase-hotel-concierge.vercel.app/ — authenticated Vercel Python backend with real Couchbase-hosted Nova Lite calls and fictional hotel inventory.
-- Production deployment: `dpl_EEYpPZujutTkEH5fLZp7urKDhGNs` (READY).
-- The model key now has the approved network rule. Real hosted calls work.
-- Verified in the hosted preview: room search/quote, approval-gated booking, persisted receipt after refresh, upgrade, dinner, late checkout, and approval-gated cancellation. Catalog tool execution and Agent Tracer readback worked.
-- Production login, real tool calls, catalog access, and trace writes were also verified directly on the production alias. Fictional booking DEMO-D4606B32 was confirmed and read back from Couchbase at $415.80 (two nights at $189 plus 10% demo tax; no payment).
-- Managed Agent Memory is not connected. The latest deployment failed its embedding-provider authorization check; a valid provider integration is still needed.
-- Current regression results: 12 hosted-backend tests and 24 core-backend tests passed. These supplement, rather than replace, the hosted flow checks.
+Type a request or choose a suggested reply. Follow the conversation alongside the agent’s activity:
 
-## Hosting
+- **Policy:** which hotel rule applies, with its content version.
+- **Tools:** which functions were selected, actually called, or left unused.
+- **Checks:** the facts returned by each tool.
+- **Decision:** a short explanation grounded in those results.
+- **Receipt:** a confirmed demo booking you can reopen and review.
 
-Use this directory as the Vercel project root. Python 3.12; dependencies are in requirements.txt. The function uses lib/ and public/ supplies static assets. lib/page_template.py is a generated copy of public/index.html for server-side delivery; regenerate it when changing the HTML.
+The activity view explains observable actions and results; it does not expose the model’s private internal reasoning.
 
-Required encrypted server environment variables: HOTEL_CONFIG, HOTEL_MODEL_KEY, HOTEL_DEMO_PASSWORD, HOTEL_SESSION_KEY. Never expose these to browser code or commit their values. HOTEL_CONFIG supplies scoped database access and optional memory configuration; see lib/runtime.py.
+## What we use
 
-The approved ongoing database network rule permits IPv4 access; scoped credentials remain required. The hotel database is now healthy and Vercel is resumed under the existing $15/day authorization. The local backend is not required for hosted operation. No cluster on/off schedule is configured. Request limits are not a guaranteed billing cap. No separate hosting service is required.
+- **Couchbase AI Model Service:** live Amazon Nova Lite inference selects policies and calls tools.
+- **Couchbase Agent Catalog:** stores the shared policy, seven request policies, and twelve hotel tools. The backend retrieves and verifies the selected records before execution.
+- **Couchbase Agent Tracer:** records requests, policy selections, tool calls, results, and responses for review.
+- **Couchbase Capella database:** saves chat sessions, booking receipts, activity history, and usage counters.
+- **Vercel:** hosts the web interface and Python backend. The shared demo works independently of the presenter’s computer.
 
-## Verification and next steps
+The backend enforces tool permissions, hotel rules, and confirmation before room booking or cancellation. Credentials stay on the server.
 
-Run `python -m unittest discover -s tests -v` after installing requirements. These tests cover authentication, origin checks, distributed budgets, and session locking; they do not prove live cloud connectivity.
+## A simple walkthrough
 
-Next: resolve the provider-key failure described in [memory diagnostics](memory-diagnostics.md), verify replacement memory becomes healthy, create scoped access, add the new memory connection to encrypted Vercel configuration, redeploy, and verify write/readback and recall through the hosted runtime. Do not claim memory integration from the successful database receipt alone.
+1. **Find a room:** enter dates and guests, review a quote, then confirm the demo booking.
+2. **Ask for an upgrade:** watch membership and booking checks determine eligibility.
+3. **Switch to dinner:** see the policy and selected tools change, then review the reservation result.
+4. **Open Activity details:** compare selected versus called tools and inspect the policy version. Use Saved activity to revisit an earlier request.
 
-## Recovery history and future pause/resume
+Late checkout, booking review, and cancellation are also supported.
 
-Code, deployments, encrypted Vercel settings, database buckets, catalog, sessions, and traces were retained. Memory compute was requested for removal; its configuration is saved in memory-resume-config.json, with a private full snapshot in the original workspace. No bucket was deleted.
+## What is real—and what is pending
 
-1. The old failed deployment was confirmed absent before creating its replacement. If future removal fails, inspect status and obtain explicit recovery authorization before retrying deletion.
-2. Turn john-ai-learning back on and wait for Healthy. Confirm spending authorization before restoring paid compute.
-3. Recreate managed memory from the saved configuration using the same bucket and embedding model. Create a new scoped memory key and update the server configuration once healthy.
-4. Verify the current model-key rule and retest the hosted preview before resuming Vercel traffic; the approved rule was present and working at this checkpoint.
+- Model inference, catalog retrieval, database persistence, and tracing use real Couchbase services.
+- Hotel inventory, availability, prices, and reservations are fictional. No payment or real hotel booking occurs.
+- Policy selection uses model-based routing followed by named catalog lookup. Vector-based catalog search is not implemented.
+- **Managed Agent Memory is not connected.** Saved sessions and receipts are database records, not managed semantic memory.
+- The demo permits 40 hosted model calls per day, shared across users. One request can use several calls; the allowance resets at midnight Pacific.
 
-Turning off a cluster retains storage charges; the last quoted OFF price was approximately $0.04/hour, not a freshly verified bill. Backups may continue expiring, and record TTLs are not suspended. The memory configuration uses a 24-hour TTL. Capella documentation also describes a 30-day maximum continuous off period; check before then if remaining paused.
+## Verification
 
-## Request policy and tool selection
+November 10, 2026: 36 automated tests pass. The latest live local integration passed room → upgrade → dinner, including catalog execution and trace readback. Production is deployed and its login, backend initialization, and updated UI assets were checked. A new hosted AI response still needs verification after the daily allowance resets.
 
-The live Couchbase model selects a minimal policy set from seven published hotel policies. The backend retrieves and verifies the selected catalog policy, passes only its tools to the model, and rejects calls outside that set. Context-local execution maps isolate concurrent requests. This is model-based semantic routing plus named catalog retrieval, not vector catalog search.
-
-Activity details shows selected tools, called versus not called, the applied rule, and a SHA-256 content revision labeled Policy version. It is a content revision, not a Git commit. Selection events are saved with the request trace and history. Changing from upgrade to dinner selects a new tool set. Tool execution remains fictional hotel inventory; Couchbase inference, catalog, session storage and tracing are real. Managed Agent Memory remains disconnected pending a valid provider integration.
-
-Verified locally against live Couchbase: room quote and approval, saved receipt, upgrade, then dinner; every executed tool belonged to its request selection. A dinner-hours question selected two tools and called only one. 24 backend and 12 hosted-handler regression tests passed. Narrow-screen policy details were visually checked.
-
-Production deployment is READY. The post-deploy inference smoke test was blocked by the existing daily usage limit (resets midnight Pacific); it was not bypassed. Local live-integration checks passed, but production inference on this revision remains to be rechecked after reset.
+[Developer setup and verification details](OPERATIONS.md)
