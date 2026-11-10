@@ -26,7 +26,7 @@ The approved ongoing database network rule permits IPv4 access; scoped credentia
 
 Run `python -m unittest discover -s tests -v` after installing requirements. These tests cover authentication, origin checks, distributed budgets, and session locking; they do not prove live cloud connectivity.
 
-Next: wait for replacement memory to become healthy, create scoped access, add the new memory connection to encrypted Vercel configuration, redeploy, and verify write/readback and recall through the hosted runtime. Do not claim memory integration from the successful database receipt alone.
+Next: resolve the provider-key failure described in [memory diagnostics](memory-diagnostics.md), verify replacement memory becomes healthy, create scoped access, add the new memory connection to encrypted Vercel configuration, redeploy, and verify write/readback and recall through the hosted runtime. Do not claim memory integration from the successful database receipt alone.
 
 ## Recovery history and future pause/resume
 

@@ -1,0 +1,12 @@
+{
+  "embedding": {
+    "http": 401,
+    "code": "invalid_api_key",
+    "type": "invalid_request_error"
+  },
+  "llm": {
+    "http": 401,
+    "code": "invalid_api_key",
+    "type": "invalid_request_error"
+  }
+}

@@ -26,9 +26,7 @@
     "memoryBlockTTL": 86400,
     "nodeConfig": {
       "instanceType": "small",
-      "nodeCount": 1,
-      "provider": "aws",
-      "region": "us-east-1"
+      "nodeCount": 1
     },
     "semanticExtraction": {
       "enabled": true

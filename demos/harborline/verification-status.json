@@ -19,6 +19,6 @@
     "hosted": 12,
     "core": 18
   },
-  "managed_memory": "replacement provisioning; not connected or verified",
+  "managed_memory": "replacement provisioning; independent provider key test failed 401 invalid_api_key; not connected or verified",
   "sample_hotel_only": true
 }
