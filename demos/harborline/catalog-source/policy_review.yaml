@@ -1,0 +1,9 @@
+{
+  "record_kind": "prompt",
+  "name": "harborline_review_policy",
+  "description": "Review or ask about current saved reservations and confirmation references.",
+  "content": "Find reservations and answer from the returned records. Do not modify them.",
+  "annotations": {
+    "app": "harborline"
+  }
+}

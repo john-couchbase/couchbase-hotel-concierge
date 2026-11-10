@@ -2,10 +2,16 @@
 Configuration is private JSON supplied via HOTEL_SERVICES_CONFIG. Disabled by default.
 """
 import json,hashlib,datetime,inspect
+from contextvars import ContextVar
 from pathlib import Path
 
 class Services:
+ @property
+ def runtime_tools(self):return self._runtime_tools.get()
+ @runtime_tools.setter
+ def runtime_tools(self,value):self._runtime_tools.set(value)
  def __init__(self,config=None):
+  self._runtime_tools=ContextVar("catalog_request_tools",default={})
   self.catalog=None;self.tracer=None;self.memory=None;self.collection=None;self.runtime_tools={};self.memory_budget=None
   self.status={k:'Not connected' for k in ('catalog','tracing','memory')}
   if not config:return
@@ -36,8 +42,9 @@ class Services:
    health=self.memory.health_ping()
    if health.overall_status.value!='healthy':raise RuntimeError('Agent Memory health check failed')
    self.status['memory']='Connected; awaiting verified write'
- def catalog_context(self,tools,policy):
+ def catalog_context(self,tools,policy,selected=None):
   if not self.catalog:return tools,policy
+  self.runtime_tools={}
   prompt=self.catalog.find(kind='prompt',name='harborline_policy')
   if not prompt:raise ValueError('Harborline policy missing from remote catalog')
   schemas=[]
@@ -52,7 +59,15 @@ class Services:
    if set(actual.get('properties',{}))!=set(expected['properties']) or set(actual.get('required',[]))!=set(expected['required']) or any(actual['properties'][k].get('type')!=v['type'] for k,v in expected['properties'].items()):raise ValueError('Remote tool schema differs: '+n)
    schemas.append({'type':'function','function':{'name':n,'description':found.meta.description,'parameters':expected}})
   if not isinstance(prompt.content,str):raise ValueError('Expected a text policy')
-  return schemas,prompt.content
+  content=prompt.content
+  if selected:
+   parts=[]
+   for p in selected:
+    record=self.catalog.find(kind='prompt',name=p['name'])
+    if not record or record.content!=p['content']:raise ValueError('Published policy differs from selected version: '+p['name'])
+    parts.append(record.content)
+   content+='\nSelected request policies:\n'+'\n'.join(parts)
+  return schemas,content
  def execute(self,s,name,args):
   from engine import call
   if not self.catalog:return call(s,name,args)
@@ -64,9 +79,10 @@ class Services:
   finally:session.reset(token)
  def trace(self,sid,event):
   if not self.tracer:return 'Not connected'
-  from agentc.span import UserContent,AssistantContent,ToolCallContent,ToolResultContent
+  from agentc.span import UserContent,AssistantContent,ToolCallContent,ToolResultContent,SystemContent
   kind=event.get('type')
-  if kind=='request':content=UserContent(value=event['text'])
+  if kind=='selection':content=SystemContent(value=json.dumps(event,sort_keys=True))
+  elif kind=='request':content=UserContent(value=event['text'])
   elif kind=='answer':content=AssistantContent(value=event['text'])
   elif kind=='tool' and event['state']=='Running':content=ToolCallContent(tool_name=event['name'],tool_args=event.get('arguments',{}),tool_call_id=event['call_id'])
   elif kind=='tool':content=ToolResultContent(tool_result=event.get('output',{}),tool_call_id=event['call_id'])

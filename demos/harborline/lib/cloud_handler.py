@@ -96,12 +96,14 @@ class handler(BaseHTTPRequestHandler):
   try:
    if route=='reset':s.clear();s.update(new_session());s['services']=dict(services.status);persist();write({'type':'reset'})
    elif route=='confirm':
+    selection=s.get('selection')
+    if selection:emit(selection)
     name,out=confirm(s,body.get('approval'));callid=uuid.uuid4().hex
     trace({'type':'tool','name':name,'state':'Running','call_id':callid,'arguments':{'guest_approved':True}})
     event={'type':'tool','name':name,'state':'Returned','call_id':callid,'output':out};emit(event)
     text='Demo cancellation saved: '+out['reference'] if out.get('cancelled') else 'Demo booking saved: '+out['reference']+' · '+out['name']+' · $'+format(out['total'],'.2f')+' total. No real booking or payment.'
     s['messages'].append({'role':'user','content':'Approved demo action result: '+json.dumps(out)})
-    answer={'type':'answer','text':text,'pending':None};s['history'].append({'request':'Confirm demo action','events':[event,answer]});emit(answer)
+    answer={'type':'answer','text':text,'pending':None};s['history'].append({'request':'Confirm demo action','events':([selection] if selection else [])+[event,answer]});emit(answer)
    else:trace({'type':'request','text':body['message']});run(s,client,body['message'],emit,services,sid,budget=budget)
    persist();write({'type':'state',**public_state(s,store.label)})
   except Exception as e:

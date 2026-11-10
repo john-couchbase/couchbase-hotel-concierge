@@ -42,7 +42,7 @@ const StableActivity=(()=>{
    detailsCard=element('section','panel activity-details-card stable-activity');detailsCard.id='activity-details-card';column.append(detailsCard);
   }
   if(detailsCard)detailsCard.replaceChildren(review);else root.append(review);
-  root._stableView={run,stages,summary,title,description,currentTool,rows,tools,why,memory,review,content,liveTool,explanation,catalog,following:true,lastActive:null};
+  root._stableView={run,stages,summary,title,description,currentTool,rows,tools,why,memory,review,content,liveTool,explanation,catalog,catalogBody,policy,following:true,lastActive:null};
   // Reveal disclosures inside this scrollport, never by scrolling the whole page.
   const reveal=(target)=>{
    if(!detailsCard||!target.getBoundingClientRect)return;
@@ -68,9 +68,19 @@ const StableActivity=(()=>{
   }
   if(!root._stableView||root._stableView.run!==run||!root.contains(root._stableView.stages))mount(root,run);
   const v=root._stableView;root.className='stable-activity';root.hidden=false;
+  if(run.live&&run.selection){
+   const e=run.selection,key=JSON.stringify(e);
+   v.catalog.hidden=false;
+   if(v.selectionKey!==key){v.selectionKey=key;v.catalogBody.replaceChildren();
+    for(const p of e.policies){const section=element('section');section.append(element('h4','',p.title),element('code','sa-policy-version','Policy version · '+p.version),element('p','',p.rule));v.catalogBody.append(section);}
+    v.catalogBody.append(element('p','sa-selection-method',e.method+' · '+e.excluded_count+' other tools not sent'));
+    text(v.policy.querySelector('p'),run.policy);
+   }
+   text(v.tools.querySelector('h3'),'Selected for this request');
+  }
   const active=run.tools.find(t=>t.state==='Running');
   const blocked=run.tools.filter(t=>t.state==='Failed').length;
-  text(v.liveTool,active?'Now · '+label(active.name):run.phase===2?run.tools.filter(t=>t.state==='Returned').length+' returned · '+run.tools.filter(t=>t.state==='Not called').length+' not called'+(blocked?' · '+blocked+' blocked':''):run.tools.length+' tools selected');
+  text(v.liveTool,active?'Now · '+label(active.name):run.phase===2?run.tools.filter(t=>t.state!=='Selected'&&t.state!=='Not called').length+' called · '+run.tools.filter(t=>t.state==='Not called').length+' not called'+(blocked?' · '+blocked+' blocked':''):run.tools.length+' tools selected');
   v.liveTool.dataset.running=String(!!active);
   [...v.stages.children].forEach((step,i)=>{step.dataset.current=String(i===run.phase);step.setAttribute('aria-current',i===run.phase?'step':'false');});
   v.summary.dataset.phase=String(run.phase);v.summary.dataset.running=String(!!active);

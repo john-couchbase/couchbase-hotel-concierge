@@ -56,6 +56,9 @@
    const summary=node('summary'),heading=node('span','','history-entry-heading');
    heading.append(node('strong',names[last?.name]||'Guest question'),node('small',(steps.length?steps.length+' '+(steps.length===1?'step':'steps')+' · ':'')+(awaiting?'Awaiting approval':blocked?blocked+' blocked':'Complete')));summary.append(heading);card.append(summary);
    const body=node('div','','history-content');
+   const selection=h.events.find(e=>e.type==='selection');
+   if(selection){const evidence=node('section','','history-actions');evidence.append(node('h4','Policy & tools','history-section-title'));for(const p of selection.policies)evidence.append(node('p',p.title+' · '+p.version));const used=new Set(steps.map(e=>e.name));evidence.append(node('p',selection.selected_tools.length+' selected · '+used.size+' called'));const unused=selection.selected_tools.filter(n=>!used.has(n));if(unused.length)evidence.append(node('p','Not called: '+unused.map(DemoCatalog.label).join(', '),'trace-caption'));body.append(evidence);}
+
    const request=node('div','','history-request');request.append(node('h4','Guest request','history-label'),node('p',h.request));body.append(request);
    if(steps.length){const group=node('section','','history-actions');group.append(node('h4','Agent actions','history-section-title'));const list=node('ol','','history-steps');for(const e of steps){
     const row=node('li'),head=node('div','','history-step-heading');
@@ -117,21 +120,25 @@
   if(busy)return;selectInspector('now');pending=null;stateBusy(true);$('quick-replies').replaceChildren();choices.hidden=true;choices.open=false;if(message)bubble(message,'user');$('chat-action').replaceChildren();
   const run={live:true,intent:'live',prompt:'live-hotel-preview',policy:'Server-enforced demo policies; real model selects and calls server tools.',phase:0,title:'Reviewing your request',reason:'Couchbase Nova Lite · Live model',tools:[],result:'',saved:'Demo session · Service status appears after response'};
   guidedRun=run;renderResponses();
-  const render=()=>{StableActivity.render($('decision-route'),run);document.querySelector('.sa-current-tool').textContent=run.tools.find(t=>t.state==='Running')?.name+'()';if(!run.tools.some(t=>t.state==='Running'))document.querySelector('.sa-current-tool').textContent='Live model · Fictional hotel';document.querySelector('.sa-sdk')?.setAttribute('hidden','');document.querySelector('.sa-catalog')?.setAttribute('hidden','');document.querySelector('.sa-stages')?.setAttribute('aria-label','Live decision stages');if(run.phase===0)document.querySelector('.sa-summary p').textContent='Waiting for the live model to choose a check.';$('status').textContent=run.phase===2?'Complete':'Working';};render();
+  const render=()=>{StableActivity.render($('decision-route'),run);document.querySelector('.sa-current-tool').textContent=run.tools.find(t=>t.state==='Running')?.name+'()';if(!run.tools.some(t=>t.state==='Running'))document.querySelector('.sa-current-tool').textContent='Live model · Fictional hotel';document.querySelector('.sa-sdk')?.setAttribute('hidden','');document.querySelector('.sa-stages')?.setAttribute('aria-label','Live decision stages');if(run.phase===0)document.querySelector('.sa-summary p').textContent='Waiting for the live model to choose a check.';$('status').textContent=run.phase===2?'Complete':'Working';};render();
   try{
    const response=await fetch(approval?'/api/confirm':'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(approval?{approval}:{message})});if(!response.ok)throw Error('Request rejected: '+response.status);
    const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='';
    while(true){const {value,done}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});let i;
     while((i=buffer.indexOf('\n'))>=0){const e=JSON.parse(buffer.slice(0,i));buffer=buffer.slice(i+1);
+     if(e.type==='selection'){
+      run.selection=e;run.prompt=e.policies.map(p=>p.title).join(' + ');run.policy=e.policies.map(p=>p.rule).join(' ');run.title='Policy selected';run.reason=run.prompt;
+      run.tools=e.selected_tools.map(name=>({id:name,name,state:'Selected',reason:'Included by the selected policy.',output:''}));render();
+     }
      if(e.type==='tool'){
       if(e.state==='Returned'&&e.output){const o=e.output;if(o.bookings)hasRoom=o.bookings.some(b=>b.kind==='room'&&!b.cancelled);if(o.rooms)offers=o.rooms;if(e.name==='quote_room'&&o.total!==undefined)lastQuote=o;if(e.name==='create_reservation'&&o.reference){hasRoom=true;offers=[];lastQuote=null;}if(e.name==='cancel_reservation'&&o.cancelled)hasRoom=false;}
 
-      let t=run.tools.find(t=>t.id===e.call_id);
+      let t=run.tools.find(t=>t.name===e.name);
       if(!t){t={id:e.call_id,name:e.name,state:e.state,reason:'Selected by the live model for this request.',output:''};run.tools.push(t);}
       t.state=e.state;if(e.state==='Failed')t.reason=e.output?.error||'Server rejected this call';t.output=e.output?brief(e.output):'';run.phase=1;run.title=e.state==='Running'?'Checking '+DemoCatalog.label(e.name):DemoCatalog.label(e.name);run.reason=e.state==='Failed'?'The server rejected this action.':'Actual server tool event';render();
      }
      if(e.type==='state'){acceptState(e);run.saved=e.storage+' · Memory: '+e.services.memory+' · Tracing: '+e.services.tracing;render();}
-     if(e.type==='answer'){pending=e.pending;run.phase=2;run.title=pending?'Approval needed':'Response ready';run.result=e.text;run.response=e.text;bubble(e.text);render();}
+     if(e.type==='answer'){run.tools.forEach(t=>{if(t.state==='Selected'){t.state='Not called';t.reason='Available for this request; the model did not call it.';}});pending=e.pending;run.phase=2;run.title=pending?'Approval needed':'Response ready';run.result=e.text;run.response=e.text;bubble(e.text);render();}
      if(e.type==='error')throw Error(e.text);
     }
    }

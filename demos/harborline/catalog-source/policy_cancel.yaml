@@ -1,0 +1,9 @@
+{
+  "record_kind": "prompt",
+  "name": "harborline_cancel_policy",
+  "description": "Cancel an existing room or dinner booking.",
+  "content": "Find the requested reservation and obtain explicit confirmation before cancellation. Do not cancel another record.",
+  "annotations": {
+    "app": "harborline"
+  }
+}

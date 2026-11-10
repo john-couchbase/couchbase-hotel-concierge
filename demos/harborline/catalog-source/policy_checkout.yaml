@@ -1,0 +1,9 @@
+{
+  "record_kind": "prompt",
+  "name": "harborline_checkout_policy",
+  "description": "Request a later checkout for an existing room.",
+  "content": "First find reservations in this request, then check departure schedule, then update only if available.",
+  "annotations": {
+    "app": "harborline"
+  }
+}

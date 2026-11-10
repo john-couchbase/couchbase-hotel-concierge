@@ -1,0 +1,9 @@
+{
+  "record_kind": "prompt",
+  "name": "harborline_room_policy",
+  "description": "Search rooms, quote a room, or create a new room booking, including follow-up choices.",
+  "content": "Ask for dates and guests. Validate before search and quote. Request explicit approval before creating any room booking.",
+  "annotations": {
+    "app": "harborline"
+  }
+}

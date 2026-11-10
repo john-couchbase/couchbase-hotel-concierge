@@ -1,0 +1,9 @@
+{
+  "record_kind": "prompt",
+  "name": "harborline_upgrade_policy",
+  "description": "Upgrade an existing room using membership and the one-upgrade allowance.",
+  "content": "Check membership, then find the active reservation. Gold or Platinum can receive one complimentary upgrade per stay if available. Never apply it twice.",
+  "annotations": {
+    "app": "harborline"
+  }
+}

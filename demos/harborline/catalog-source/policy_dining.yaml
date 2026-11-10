@@ -1,0 +1,9 @@
+{
+  "record_kind": "prompt",
+  "name": "harborline_dining_policy",
+  "description": "Restaurant hours or booking a table for dinner.",
+  "content": "Check restaurant hours. Ask for date, time and party size before booking; report only the returned result.",
+  "annotations": {
+    "app": "harborline"
+  }
+}
