@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-11-09 America/Los_Angeles",
+  "production_url": "https://couchbase-hotel-concierge.vercel.app/",
+  "production_deployment": "dpl_HQ1YNjhpzxZtKN4gWeZfjdZJZxtb",
+  "real_model": true,
+  "catalog_tools": true,
+  "tracer_write_readback": true,
+  "database_receipt_readback": true,
+  "preview_flows_verified": [
+    "room quote",
+    "booking confirmation",
+    "receipt after refresh",
+    "upgrade",
+    "dinner",
+    "late checkout",
+    "cancellation confirmation"
+  ],
+  "regression_tests": {
+    "hosted": 12,
+    "core": 18
+  },
+  "managed_memory": "replacement provisioning; not connected or verified",
+  "sample_hotel_only": true
+}
