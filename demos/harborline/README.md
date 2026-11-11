@@ -1,50 +1,37 @@
-# Harborline · Couchbase hotel concierge
+# Hotel Concierge
 
-An interactive customer demo showing how an AI agent turns a hotel request into checked actions and a saved result.
+Ask for a room, an upgrade, or dinner plans. Follow the checks, tools, and decision beside the conversation.
 
-[Open the live demo](https://couchbase-hotel-concierge.vercel.app/) · Open access · No password required
+[Open the demo](https://couchbase-hotel-concierge.vercel.app/) · [All demos](https://couchbase-demo-library.vercel.app/)
 
-## What this demonstrates
+![Hotel Concierge preview](public/assets/social-preview-v3.png)
 
-Type a request or choose a suggested reply. Follow the conversation alongside the agent’s activity:
+## Start here
 
-- **Policy:** which hotel rule applies, with its content version.
-- **Tools:** which functions were selected, actually called, or left unused.
-- **Checks:** the facts returned by each tool.
-- **Decision:** a short explanation grounded in those results.
-- **Receipt:** a confirmed demo booking you can reopen and review.
+- Type a request or choose a suggested option.
+- Review the quote and confirm the demo booking.
+- Open the receipt to review what was saved.
+- Use Activity details and Saved activity to revisit the policy, tools, and results.
 
-The activity view explains observable actions and results; it does not expose the model’s private internal reasoning.
+## What it uses
 
-## What we use
+- Model Service selects policies and calls tools.
+- Agent Catalog supplies policy and tool records; Agent Tracer records their execution.
+- Capella stores sessions, receipts, history, and usage counters.
+- Vercel hosts the interface and Python backend.
+- Managed Agent Memory is not connected. Stored sessions are database records.
+- Inventory and reservations are fictional. The shared limit is 40 model calls per day.
 
-- **Couchbase AI Model Service:** live Amazon Nova Lite inference selects policies and calls tools.
-- **Couchbase Agent Catalog:** stores the shared policy, seven request policies, and twelve hotel tools. The backend retrieves and verifies the selected records before execution.
-- **Couchbase Agent Tracer:** records requests, policy selections, tool calls, results, and responses for review.
-- **Couchbase Capella database:** saves chat sessions, booking receipts, activity history, and usage counters.
-- **Vercel:** hosts the web interface and Python backend. The shared demo works independently of the presenter’s computer.
+## Run locally
 
-The backend enforces tool permissions, hotel rules, and confirmation before room booking or cancellation. Credentials stay on the server. Each visitor receives a separate signed session; the daily usage allowance is shared.
+Use [Developer notes](OPERATIONS.md) for Python setup, configuration, and tests. Credentials stay on the server.
 
-## A simple walkthrough
+The [technical reference](README-REFERENCE.md#verification) records the last verification date and remaining live checks.
 
-1. **Find a room:** enter dates and guests, review a quote, then confirm the demo booking.
-2. **Ask for an upgrade:** watch membership and booking checks determine eligibility.
-3. **Switch to dinner:** see the policy and selected tools change, then review the reservation result.
-4. **Open Activity details:** compare selected versus called tools and inspect the policy version. Use Saved activity to revisit an earlier request.
+## Details and feedback
 
-Late checkout, booking review, and cancellation are also supported.
+- [Technical reference and original documentation](README-REFERENCE.md)
+- [Couchbase Design and UI Pattern Repair](https://github.com/jkupchanko/agent-skills)
+- [Couchbase setup skill](https://github.com/john-couchbase/couchbase-aidp-setup)
 
-## What is real—and what is pending
-
-- Model inference, catalog retrieval, database persistence, and tracing use real Couchbase services.
-- Hotel inventory, availability, prices, and reservations are fictional. No payment or real hotel booking occurs.
-- Policy selection uses model-based routing followed by named catalog lookup. Vector-based catalog search is not implemented.
-- **Managed Agent Memory is not connected.** Saved sessions and receipts are database records, not managed semantic memory.
-- The demo permits 40 hosted model calls per day, shared across users. One request can use several calls; the allowance resets at midnight Pacific.
-
-## Verification
-
-November 10, 2026: 36 automated tests pass. The latest live local integration passed room → upgrade → dinner, including catalog execution and trace readback. Production is deployed and its login, backend initialization, and updated UI assets were checked. A new hosted AI response still needs verification after the daily allowance resets.
-
-[Developer setup and verification details](OPERATIONS.md)
+When reporting an issue, include the request or input, what you expected, and a screenshot. Mention whether you used a phone, tablet, or computer.
