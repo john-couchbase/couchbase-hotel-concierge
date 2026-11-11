@@ -28,7 +28,7 @@ The [original audit overview](README-REFERENCE.md) preserves dated connection ch
 
 ## Skills and feedback
 
-- [Design and UI repair skills](https://github.com/jkupchanko/agent-skills)
+- [Design and UI repair skills](https://github.com/john-couchbase/agent-skills)
 - [Couchbase setup skill](https://github.com/john-couchbase/couchbase-aidp-setup)
 
 For feedback, name the demo or report, describe what you tried, and include the result you expected. Keep credentials out of issues and screenshots.
