@@ -5,6 +5,7 @@ from openai import OpenAI
 from integrations import Services
 from storage import CouchbaseStore
 from distributed import Budget
+from engine import MAX_MODEL_CALLS
 _lock=threading.Lock();_runtime=None
 
 def configured():
@@ -29,5 +30,5 @@ def get_runtime():
   if not service.collection or not service.catalog or not service.tracer:raise RuntimeError('Required backend service missing')
   service.memory_budget=Budget(service.collection,'memory',120)
   model=OpenAI(api_key=os.environ['HOTEL_MODEL_KEY'],base_url='https://1cqrm2ni1uwoym0s.ai.cloud.couchbase.com/v1',max_retries=0,timeout=30)
-  _runtime=(service,CouchbaseStore(service.collection),model,Budget(service.collection,'model',40))
+  _runtime=(service,CouchbaseStore(service.collection),model,Budget(service.collection,'model',MAX_MODEL_CALLS))
   return _runtime

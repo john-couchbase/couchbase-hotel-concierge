@@ -1,0 +1,33 @@
+/* Shared activity typography, with one evidence surface at a time. */
+.dt-host> :not(.dt-inspector){display:none!important}.dt-inspector{min-width:0;color:var(--ink,#242424)}.dt-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.dt-heading strong{font-size:15px}.dt-mode{font-size:12px;color:var(--muted,#625e57)}.dt-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:12px}.dt-tabs button,.dt-follow{font:inherit;font-size:14px;min-height:44px;border:1px solid #c5bfb5;border-radius:6px;background:#f5f2ed;color:#302c26;cursor:pointer}.dt-tabs button[aria-selected=true]{background:#fff0da;border-color:#a78a60;color:#59411e;font-weight:600}.dt-tabs button[data-active=true]::after{content:'';display:inline-block;width:6px;height:6px;border-radius:2px;background:#a86f20;margin-left:6px}.dt-follow{margin-bottom:12px;padding:6px 12px}.dt-body{max-height:340px;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding-right:4px}.dt-evidence{padding:14px;margin:0 0 10px;border:1px solid #d6d0c7;border-radius:7px;background:#faf9f6}.dt-evidence h4{font-size:15px;margin:0 0 6px;font-weight:600}.dt-evidence p{font-size:14px;line-height:1.55;margin:0;overflow-wrap:anywhere}.dt-evidence>code,.dt-evidence time{display:block;font-size:12px;line-height:1.5;margin-top:6px;overflow-wrap:anywhere;color:#665f55}.dt-policy{border-left:3px solid #b98a43}.dt-tool{border-left:3px solid #547d91}.dt-result{border-left:3px solid #47775b}.dt-trace{border-left:3px solid #78716a}.dt-evidence[data-running=true]{border-color:#a98243;background:#fff5e4}.dt-payload{margin:8px 0 0;border-top:1px solid #ddd5c9}.dt-payload summary{font-size:13px!important;min-height:44px;display:flex!important;align-items:center;justify-content:space-between;cursor:pointer;padding:8px 0!important}.dt-payload summary::after{content:'+'}.dt-payload[open] summary::after{content:'−'}.dt-payload pre{font:12px/1.6 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;max-height:200px;overflow:auto;margin:0;padding:12px;background:#f0ede7;border-radius:4px}.dt-tabs button:focus-visible,.dt-follow:focus-visible,.dt-body:focus-visible{outline:2px solid #547d91;outline-offset:2px}body.dark .dt-inspector{color:#f4f1ec}body.dark .dt-evidence{background:#303030;border-color:#626262}body.dark .dt-evidence p,body.dark .dt-mode,body.dark .dt-evidence>code,body.dark .dt-evidence time{color:#d3cec5}body.dark .dt-tabs button,body.dark .dt-follow{background:#303030;color:#f4f1ec;border-color:#626262}body.dark .dt-tabs button[aria-selected=true]{background:#433929;border-color:#b29870}body.dark .dt-payload pre{background:#232323;color:#e4ded4}body.dark .dt-evidence[data-running=true]{background:#433929;border-color:#b29870}@media(max-width:600px){.dt-heading{align-items:flex-start}.dt-mode{max-width:110px;text-align:right}.dt-tabs{gap:4px}.dt-tabs button{font-size:13px}.dt-body{max-height:320px}.dt-evidence{padding:12px}}
+
+/* Keep the evidence viewport stable; only its content scrolls. */
+.agent-column .activity-details-card:has(.dt-inspector){overflow:hidden}
+.agent-column .activity-details-card .sa-review:has(.dt-inspector){height:100%;display:flex;flex-direction:column;min-height:0}
+.agent-column .activity-details-card .sa-review[open]>.dt-host{flex:1;min-height:0;overflow:hidden;display:flex}
+.sa-review-content.dt-host .dt-inspector{border:0;padding:0;margin:0;display:flex;flex-direction:column;min-height:0;width:100%}
+.dt-heading{flex:none;margin-bottom:8px;flex-wrap:wrap;gap:8px}
+.dt-heading strong{display:none}.dt-mode{margin-right:auto}.dt-follow{margin:0;min-height:32px;padding:3px 8px;font-size:12px}
+.dt-tabs{flex:none;margin-bottom:10px}.dt-body{min-height:0;flex:1;max-height:none}
+.sa-review-content.dt-host .dt-evidence{padding:12px;margin:0 0 10px;border:1px solid var(--line,#d6d0c7)}
+.sa-review-content.dt-host .dt-evidence h4{font-size:14px;line-height:1.4;margin:0 0 4px}
+.sa-review-content.dt-host .dt-evidence p{font-size:14px;line-height:1.5;margin:0}
+.sa-review-content.dt-host .dt-policy{border-left:3px solid #b98a43}.sa-review-content.dt-host .dt-tool{border-left:3px solid #547d91}.sa-review-content.dt-host .dt-result{border-left:3px solid #47775b}
+@media(max-width:699px){.agent-column .activity-details-card:has(.dt-inspector){height:440px;box-sizing:border-box}.agent-column .activity-details-card:has(.sa-review:not([open])){height:auto}}
+@media(prefers-reduced-motion:no-preference){.dt-evidence{transition:background-color .25s ease,border-color .25s ease}}
+/* Native details creates an anonymous wrapper; anchor its content explicitly. */
+.agent-column .activity-details-card:has(.dt-inspector){position:relative}
+.agent-column .activity-details-card .sa-review[open]>.dt-host{position:absolute;top:88px;bottom:0;left:0;right:0;height:auto!important;box-sizing:border-box;padding:10px 16px 14px!important}
+.sa-review-content.dt-host .dt-inspector{padding:0!important;margin:0!important;border:0!important;height:100%;box-sizing:border-box}
+.sa-review-content.dt-host .dt-evidence{padding:12px!important;margin:0 0 10px!important}
+.agent-column .activity-details-card:has(.sa-review[open] .dt-inspector){height:320px;min-height:320px;flex:1 0 320px;box-sizing:border-box}
+@media(max-width:699px){.agent-column .activity-details-card:has(.sa-review[open] .dt-inspector){height:440px;min-height:440px;flex:auto}}
+.sa-review-content.dt-host .dt-payload>summary::after{content:'+'!important;transform:none!important;border:0!important;width:auto!important;height:auto!important;margin:0 0 0 8px!important;font-size:18px}
+.sa-review-content.dt-host .dt-payload[open]>summary::after{content:'−'!important}
+.agent-column .activity-details-card:has(.dt-inspector) .sa-review>summary{min-height:60px!important;height:60px!important;padding:10px 16px!important;box-sizing:border-box}
+.agent-column .activity-details-card .sa-review[open]>.dt-host{top:60px}
+.dt-heading{min-height:24px;gap:6px;margin-bottom:6px}.dt-follow{min-height:24px;padding:2px 8px}.dt-tabs{margin-bottom:8px}
+body.dark .sa-review-content.dt-host .dt-evidence{background:#303030!important;border-color:#626262;color:#f4f1ec}
+body.dark .sa-review-content.dt-host .dt-evidence h4{color:#f4f1ec!important}
+body.dark .sa-review-content.dt-host .dt-evidence p{color:#d3cec5!important}
+body.dark .sa-review-content.dt-host .dt-evidence[data-running=true]{background:#433929!important;border-color:#b29870}

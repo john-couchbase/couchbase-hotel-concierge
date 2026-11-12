@@ -29,3 +29,10 @@ class SelectionTests(unittest.TestCase):
   other.run(setattr,svc,'runtime_tools',{'second':lambda:2})
   self.assertEqual(set(svc.runtime_tools),{'first'})
   self.assertEqual(other.run(lambda:set(svc.runtime_tools)),{'second'})
+
+ def test_selection_summary_is_optional_and_bounded(self):
+  c=self.client(['upgrade']);c.chat.completions.create.return_value.choices[0].message.tool_calls[0].function.arguments=json.dumps({'policies':['upgrade'],'summary':'x'*500})
+  explanation={};choose(c,'Upgrade',[],lambda:None,explanation)
+  self.assertEqual(len(explanation['summary']),400)
+  explanation={};choose(self.client(['dining']),'Dinner',[],lambda:None,explanation)
+  self.assertEqual(explanation,{})

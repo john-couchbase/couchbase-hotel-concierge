@@ -68,6 +68,13 @@
     if(o.rooms)detail=o.rooms.length+' room options found';
     row.append(head,node('p',detail));list.append(row);
    }group.append(list);body.append(group);}else{const answer=h.events.find(e=>e.type==='answer');if(answer){const response=node('section','','history-actions');response.append(node('h4','Agent response','history-section-title'),node('p',answer.text,'history-response'));body.append(response);}}
+   body.append(actionButton('Inspect decision trace',()=>{
+    if(busy)return;
+    const events=h.events,answer=events.find(e=>e.type==='answer');
+    const chosen=selection?.selected_tools||[...new Set(steps.map(e=>e.name))];
+    const replay={live:true,traceEvents:events,selection,phase:2,intent:'live',prompt:selection?.policies.map(p=>p.title).join(' + ')||'Saved request',policy:selection?.policies.map(p=>p.rule).join(' ')||'',title:'Saved decision',reason:h.request,result:answer?.text||'No response recorded',saved:'Saved activity',tools:chosen.map(name=>{const e=steps.filter(x=>x.name===name).at(-1);return {id:name,name,state:e?.state||'Not called',reason:'Recorded in this request',output:e?.output?brief(e.output):''};})};
+    selectInspector('now');guidedRun=replay;StableActivity.render($('decision-route'),replay);const details=document.querySelector('.activity-details-card .sa-review');if(details)details.open=true;
+   }));
    card.append(body);history.append(card);
   }
   savedButton.textContent=$('view-now').hidden?'Back to current activity':`Saved activity${savedState.bookings.length?' · '+savedState.bookings.length:''}`;
@@ -118,14 +125,14 @@
  showChoices();loadSaved();
  async function send(message,approval){
   if(busy)return;selectInspector('now');pending=null;stateBusy(true);$('quick-replies').replaceChildren();choices.hidden=true;choices.open=false;if(message)bubble(message,'user');$('chat-action').replaceChildren();
-  const run={live:true,intent:'live',prompt:'live-hotel-preview',policy:'Server-enforced demo policies; real model selects and calls server tools.',phase:0,title:'Reviewing your request',reason:'Couchbase Nova Lite · Live model',tools:[],result:'',saved:'Demo session · Service status appears after response'};
+  const run={traceEvents:[],live:true,intent:'live',prompt:'live-hotel-preview',policy:'Server-enforced demo policies; real model selects and calls server tools.',phase:0,title:'Reviewing your request',reason:'Couchbase Nova Lite · Live model',tools:[],result:'',saved:'Demo session · Service status appears after response'};
   guidedRun=run;renderResponses();
   const render=()=>{StableActivity.render($('decision-route'),run);document.querySelector('.sa-current-tool').textContent=run.tools.find(t=>t.state==='Running')?.name+'()';if(!run.tools.some(t=>t.state==='Running'))document.querySelector('.sa-current-tool').textContent='Live model · Fictional hotel';document.querySelector('.sa-sdk')?.setAttribute('hidden','');document.querySelector('.sa-stages')?.setAttribute('aria-label','Live decision stages');if(run.phase===0)document.querySelector('.sa-summary p').textContent='Waiting for the live model to choose a check.';$('status').textContent=run.phase===2?'Complete':'Working';};render();
   try{
    const response=await fetch(approval?'/api/confirm':'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(approval?{approval}:{message})});if(!response.ok)throw Error('Request rejected: '+response.status);
    const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='';
    while(true){const {value,done}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});let i;
-    while((i=buffer.indexOf('\n'))>=0){const e=JSON.parse(buffer.slice(0,i));buffer=buffer.slice(i+1);
+    while((i=buffer.indexOf('\n'))>=0){const e=JSON.parse(buffer.slice(0,i));buffer=buffer.slice(i+1);if(['selection','tool','answer'].includes(e.type))run.traceEvents.push(e);
      if(e.type==='selection'){
       run.selection=e;run.prompt=e.policies.map(p=>p.title).join(' + ');run.policy=e.policies.map(p=>p.rule).join(' ');run.title='Policy selected';run.reason=run.prompt;
       run.tools=e.selected_tools.map(name=>({id:name,name,state:'Selected',reason:'Included by the selected policy.',output:''}));render();

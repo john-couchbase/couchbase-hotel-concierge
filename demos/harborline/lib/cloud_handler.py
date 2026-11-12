@@ -10,6 +10,7 @@ from distributed import Lease
 from runtime import configured,get_runtime
 from engine import new_session,run,confirm
 from storage import public_state
+from trace_evidence import record_event
 LOGIN='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Harborline demo access</title><style>body{margin:0;background:#f5f3ef;color:#191919;font:16px system-ui;display:grid;min-height:100svh;place-items:center}main{width:min(340px,80vw);padding:32px;background:white;border:1px solid #ddd;border-radius:16px}h1{font-size:24px;margin:0 0 12px}input,button{box-sizing:border-box;width:100%;padding:14px;margin-top:12px;border:1px solid #bbb;border-radius:8px;font:inherit}button{background:#ea2328;color:white;border:0}p{line-height:1.5;color:#555}</style><main><h1>Harborline demo</h1><p>Enter your demo passphrase to try the live concierge.</p><form method="post" action="/api/login"><label for="password">Demo passphrase</label><input id="password" name="password" type="password" autocomplete="current-password" required maxlength="200"><button>Open demo</button></form><p id="login-error" role="alert"></p></main><script>document.querySelector('form').addEventListener('submit',async e=>{e.preventDefault();const form=e.currentTarget;const button=form.querySelector('button');button.disabled=true;try{const r=await fetch(form.action,{method:'POST',body:new URLSearchParams(new FormData(form)),credentials:'same-origin',mode:'cors'});if(r.ok){location.assign('/');return;}const text=await r.text();let message;try{message=JSON.parse(text).error;}catch{}document.getElementById('login-error').textContent=message||('Sign-in unavailable ('+r.status+'). Please try again.');}catch{document.getElementById('login-error').textContent='Connection unavailable. Please try again.';}button.disabled=false;});</script></html>'''
 class handler(BaseHTTPRequestHandler):
  def log_message(self,*args):pass
@@ -84,8 +85,7 @@ class handler(BaseHTTPRequestHandler):
    except Exception:s.clear();s.update(deepcopy(last_saved));raise ValueError('Save failed. Review your bookings before retrying.')
    last_saved=deepcopy(s)
   def trace(e):
-   try:s['services']['tracing']=services.trace(sid,{**e,'run_id':runid})
-   except Exception:s['services']['tracing']='Trace save failed'
+   s['services']['tracing']=record_event(services,sid,runid,e)
   def emit(e):
    if e['type']=='tool' and e['state']=='Returned':
     persist()
@@ -98,14 +98,14 @@ class handler(BaseHTTPRequestHandler):
   try:
    if route=='reset':s.clear();s.update(new_session());s['services']=dict(services.status);persist();write({'type':'reset'})
    elif route=='confirm':
-    selection=s.get('selection')
+    selection=deepcopy(s.get('selection'))
     if selection:emit(selection)
     name,out=confirm(s,body.get('approval'));callid=uuid.uuid4().hex
-    trace({'type':'tool','name':name,'state':'Running','call_id':callid,'arguments':{'guest_approved':True}})
+    started={'type':'tool','name':name,'state':'Running','call_id':callid,'arguments':{'guest_approved':True}};emit(started)
     event={'type':'tool','name':name,'state':'Returned','call_id':callid,'output':out};emit(event)
     text='Demo cancellation saved: '+out['reference'] if out.get('cancelled') else 'Demo booking saved: '+out['reference']+' · '+out['name']+' · $'+format(out['total'],'.2f')+' total. No real booking or payment.'
     s['messages'].append({'role':'user','content':'Approved demo action result: '+json.dumps(out)})
-    answer={'type':'answer','text':text,'pending':None};s['history'].append({'request':'Confirm demo action','events':([selection] if selection else [])+[event,answer]});emit(answer)
+    answer={'type':'answer','text':text,'pending':None};s['history'].append({'request':'Confirm demo action','events':([selection] if selection else [])+[started,event,answer]});emit(answer)
    else:trace({'type':'request','text':body['message']});run(s,client,body['message'],emit,services,sid,budget=budget)
    persist();write({'type':'state',**public_state(s,store.label)})
   except Exception as e:

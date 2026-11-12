@@ -92,7 +92,7 @@ class Services:
   if self.tracer.dropped_log_count!=before:raise RuntimeError('Trace write failed')
   saved=self.tracer.cb_coll.get(log.identifier).content_as[dict]
   if saved['span']['session']!=sid:raise RuntimeError('Trace readback failed')
-  return 'Saved in Agent Tracer'
+  return {'status':'Saved in Agent Tracer','record_id':str(log.identifier),'verified':True}
  def memory_session(self,sid):
   from agentmemory.exceptions import NotFoundError
   uid='harborline-'+hashlib.sha256(sid.encode()).hexdigest()[:24]

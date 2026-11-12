@@ -20,7 +20,7 @@ Ask for a room, an upgrade, or dinner plans. Follow the checks, tools, and decis
 - Capella stores sessions, receipts, history, and usage counters.
 - Vercel hosts the interface and Python backend.
 - Managed Agent Memory is not connected. Stored sessions are database records.
-- Inventory and reservations are fictional. The shared limit is 40 model calls per day.
+- Inventory and reservations are fictional. The shared limit is 100 model calls per day.
 
 ## Run locally
 
@@ -35,3 +35,14 @@ The [technical reference](README-REFERENCE.md#verification) records the last ver
 - [Couchbase setup skill](https://github.com/john-couchbase/couchbase-aidp-setup)
 
 When reporting an issue, include the request or input, what you expected, and a screenshot. Mention whether you used a phone, tablet, or computer.
+
+### Decision evidence
+
+Activity details separates the selected policy, tool calls, returned results, and trace records. The policy explanation is a short model-provided summary, not private reasoning. Tool inputs and outputs remain available on demand.
+
+- **Policy:** selected instructions, content revision, and available alternatives.
+- **Tools:** selected versus called, with each call ID and input.
+- **Results:** guest response and the tool evidence supporting review.
+- **Trace:** run ID and Agent Tracer records verified by readback. Failed or unavailable writes are shown explicitly.
+
+Saved activity can reopen a request's decision trace. Static previews label their events as scripted and do not claim Agent Tracer persistence. Upgrade and dinner were verified against the live Oregon model, Agent Catalog, and Agent Tracer on November 12, 2026. All 14 decision/tool/response records passed trace readback, and booking changes persisted. Managed Agent Memory remains disconnected.
