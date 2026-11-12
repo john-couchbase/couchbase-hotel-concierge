@@ -34,3 +34,5 @@ const ToolsHub=(()=>{
  }
  return {update(run){current=run;if(dialog.open)render();}};
 })();
+const clearBeforeToolsHub=clearActivity;
+clearActivity=function(...args){ToolsHub.update(null);return clearBeforeToolsHub(...args);};
