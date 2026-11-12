@@ -50,3 +50,7 @@ Saved activity can reopen a request's decision trace. Static previews label thei
 ### Simulation and live mode
 
 Use the top-right control to switch modes. Simulation is the default and uses browser-only sample decisions, bookings, and traces without model calls. Live data connects to the existing Couchbase backend and uses the shared daily model allowance. Both modes retain the same chat and decision-trace layout; simulated records are never represented as verified Agent Tracer writes. Switching reloads the view, and live bookings remain in their separate server session.
+
+### Visual session trace
+
+The Trace tab follows the same request, policy, call, result, and reply sequence in both modes. Records expand to show payloads and identifiers. The active handoff highlights as events arrive; reading or scrolling pauses automatic following. Upgrade and dinner sample scenarios share the backend policy names, revisions and tool sets. Sample values remain explicitly labeled and never claim remote persistence. See [the video comparison](docs/audits/2026-11-12-session-trace.md).

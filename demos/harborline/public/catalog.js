@@ -1,8 +1,8 @@
 /* Browser-only catalog and event ledger. No network, embeddings or SQL execution. */
 const DemoCatalog=(()=>{
  const definitions=[
-  ['loyalty-upgrade','Upgrade','guided-scenario.js',['check_loyalty_tier','find_reservations','apply_upgrade']],
-  ['dining-and-spa','Dinner','guided-scenario.js',['get_outlet_hours','book_restaurant','get_menu']],
+  ['harborline_upgrade_policy','Upgrade','guided-scenario.js',['check_loyalty_tier','find_reservations','apply_upgrade']],
+  ['harborline_dining_policy','Dinner','guided-scenario.js',['get_outlet_hours','book_restaurant']],
   ['late-checkout','Late checkout','guided-scenario.js',['find_reservations','check_departure_schedule','update_checkout']],
   ['cancel-reservation','Cancel a booking','guided-run.js',['search_memory','find_reservations','cancel_reservation','update_memory']],
   ['room_search_policy','Find a room','app.js',['validate_stay','search_rooms','quote_room']],
@@ -19,7 +19,7 @@ const DemoCatalog=(()=>{
   let record=records.get(run.traceId);
   if(!record){interrupt();record={id:run.traceId,request,policy:run.prompt,revision:'demo-v'+revision,source:definitions.find(p=>p.name===run.prompt)?.source||'demo fixture',rule:run.policy,selected:run.tools.map(t=>t.name),excluded:tools.filter(n=>!run.tools.some(t=>t.name===n)),events:[],states:{},status:'Running',result:'',response:'',saved:'',mode:'Scripted simulation · browser memory only'};records.set(record.id,record);}
   if(record.status==='Complete'){if(run.saved)record.saved=run.saved;return record;}
-  for(const t of run.tools){if(record.states[t.name]!==t.state){record.events.push({time:new Date().toISOString(),tool:t.name,state:t.state,output:t.state==='Returned'?t.output:t.state==='Not called'?t.reason:''});record.states[t.name]=t.state;}}
+  for(const t of run.tools){if(record.states[t.name]!==t.state){record.events.push({time:new Date().toISOString(),tool:t.name,state:t.state,arguments:t.arguments,result:t.result,output:t.state==='Returned'?t.output:t.state==='Not called'?t.reason:''});record.states[t.name]=t.state;}}
   if(run.result){record.result=run.result;record.response=run.response||run.result;record.saved=run.saved||'';record.status='Complete';}
   return record;
  }

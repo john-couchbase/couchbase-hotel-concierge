@@ -107,7 +107,10 @@ class handler(BaseHTTPRequestHandler):
     text='Demo cancellation saved: '+out['reference'] if out.get('cancelled') else 'Demo booking saved: '+out['reference']+' · '+out['name']+' · $'+format(out['total'],'.2f')+' total. No real booking or payment.'
     s['messages'].append({'role':'user','content':'Approved demo action result: '+json.dumps(out)})
     answer={'type':'answer','text':text,'pending':None};s['history'].append({'request':'Confirm demo action','events':([selection] if selection else [])+[started,event,answer]});emit(answer)
-   else:trace({'type':'request','text':body['message']});run(s,client,body['message'],emit,services,sid,budget=budget)
+   else:
+    request={'type':'request','text':body['message']};emit(request)
+    run(s,client,body['message'],emit,services,sid,budget=budget)
+    s['history'][-1]['events'].insert(0,request)
    persist();write({'type':'state',**public_state(s,store.label)})
   except Exception as e:
    print('HOSTED_REQUEST_ERROR',type(e).__name__,[(f.filename.rsplit('/',1)[-1],f.lineno) for f in traceback.extract_tb(e.__traceback__)],flush=True)

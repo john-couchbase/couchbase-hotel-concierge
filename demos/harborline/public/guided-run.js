@@ -7,9 +7,11 @@ execute=async function(intent){
  if(!['upgrade','dining','checkout'].includes(intent))return executeBeforeGuided(intent);
  pending=null;const id=++version,data=plan(intent);
  if(intent==='upgrade'&&data.decision!=='Upgrade approved'&&($('used').value==='yes'||reservation?.upgradeUsed))data.decision='No second upgrade';
- const fixture=GuidedScenario.create(intent,{tier:$('tier').value,used:$('used').value==='yes'||!!reservation?.upgradeUsed,available:$('availability').value==='yes',ref:reservation?.code||'',day:diningSlot?.day||'Saturday',guests:diningSlot?.guests||2,departure:reservation?dateLabel(reservation.stay.end):'Monday'});
+ const fixture=GuidedScenario.create(intent,{tier:$('tier').value,used:$('used').value==='yes'||!!reservation?.upgradeUsed,available:$('availability').value==='yes',ref:reservation?.code||'',dinnerRef:'DEMO-'+crypto.randomUUID().slice(0,8).toUpperCase(),date:diningSlot?.date||reservation?.stay?.start||localToday(),day:diningSlot?.day||'Saturday',guests:diningSlot?.guests||2,departure:reservation?dateLabel(reservation.stay.end):'Monday'});
  clearActivity();stateBusy(true);$('activity-context').textContent=labels[intent];$('status').textContent='Selecting policy';
  const run={...fixture,intent,phase:0,title:'Using the '+(intent==='upgrade'?'upgrade':intent==='checkout'?'checkout':'dining')+' policy',reason:fixture.context,tools:fixture.tools.map(t=>({...t,state:'Selected'})),result:'',saved:''};guidedRun=run;
+ const match=HotelPolicies.find(p=>p.id===intent);
+ if(match){run.selection={type:'selection',policies:[{name:match.name,title:match.title,rule:match.content,version:match.version}],selected_tools:match.tools,selection_summary:intent==='upgrade'?'The upgrade request uses membership and the one-upgrade-per-stay policy.':intent==='dining'?'The dinner request uses restaurant hours and table booking.':run.reason,candidates:HotelPolicies.map(p=>({name:p.name,title:p.title,description:p.description,selected:p.id===intent})),excluded_tools:[...new Set(HotelPolicies.flatMap(p=>p.tools))].filter(n=>!match.tools.includes(n))};run.policy=match.content;}
  showDecisionRoute(intent,run.tools.map(t=>[t.name,'Selected',t.reason]));
  activity('Policy selected',fixture.policy,'finding',fixture.prompt+' · Simulated catalog');
  if(!await wait(1000,id))return;
@@ -31,8 +33,8 @@ execute=async function(intent){
   reservation.room={...reservation.room,name:'Deluxe Harbor View'};
   const stay=receipts.find(r=>r.id===reservation.code);if(stay){stay.room.room={...reservation.room};stay.summary=`Deluxe Harbor View · ${Booking.money(reservation.quote.total)} · complimentary upgrade`;stay.revision=(stay.revision||1)+1;stay.savedAt=new Date().toISOString();}
  }
- saveReceipt(intent,data.result);
- run.saved=intent==='upgrade'?(data.decision==='Upgrade approved'?'Saved to this stay: complimentary upgrade used.':'Saved allowance retained; booking unchanged.'):intent==='checkout'?'Checkout result saved for this session.':'Dinner result saved for this session.';
+ if(intent!=='dining'||run.tools.find(t=>t.name==='book_restaurant')?.result?.booked)saveReceipt(intent,data.result,intent==='dining'?run.tools.find(t=>t.name==='book_restaurant')?.result?.reference:undefined);
+ run.saved=intent==='upgrade'?(data.decision==='Upgrade approved'?'Saved to this stay: complimentary upgrade used.':'Saved allowance retained; booking unchanged.'):intent==='checkout'?'Checkout result saved for this session.':(run.tools.find(t=>t.name==='book_restaurant')?.result?.booked?'Dinner booking saved for this session.':'No dinner booking was saved.');
  const receipt=receipts.find(r=>r.id===focusedReceipt);if(receipt)receipt.guidedRun=structuredClone(run);
  $('status').textContent='Complete';stateBusy(false);renderGuidedRun($('decision-route'));$('chat-input').focus();
  if(intent==='upgrade'){

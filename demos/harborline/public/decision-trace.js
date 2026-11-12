@@ -11,21 +11,19 @@
   const body=el('div','','dt-body');body.id='decision-evidence';body.setAttribute('role','tabpanel');body.tabIndex=0;
   const follow=el('button','Follow steps','dt-follow');follow.type='button';follow.hidden=true;
   const buttons=['Policy','Tools','Results','Trace'].map((name,i)=>{const b=el('button',name);b.type='button';b.id='dt-tab-'+i;b.setAttribute('role','tab');b.setAttribute('aria-controls',body.id);b.onclick=()=>{view.selected=i;view.follow=false;follow.hidden=false;draw(run,true);};b.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?3:(i+(e.key==='ArrowRight'?1:3))%4;buttons[next].click();buttons[next].focus();};tabs.append(b);return b;});
+  body.addEventListener('wheel',()=>{view.follow=false;follow.hidden=false;},{passive:true});body.addEventListener('touchstart',()=>{view.follow=false;follow.hidden=false;},{passive:true});
+  body.addEventListener('click',e=>{if(e.target.closest('summary')){view.follow=false;follow.hidden=false;}});
   follow.onclick=()=>{view.follow=true;follow.hidden=true;draw(run,true);};
   top.append(follow);box.append(top,tabs,body);host.append(box);
   view={box,body,buttons,selected:0,follow:true,key:'',run};
  }
  function line(parent,title,value,kind=''){const row=el('section','','dt-evidence '+kind);row.append(el('h4',title),el('p',value));parent.append(row);return row;}
  function code(parent,title,value){const d=el('details','','dt-payload');d.append(el('summary',title),el('pre',typeof value==='string'?value:JSON.stringify(value,null,2)));parent.append(d);return d;}
- function evidence(run){
-  if(run.live)return run.traceEvents||[];
-  const r=DemoCatalog.list().find(x=>x.id===run.traceId);
-  return (r?.events||[]).map((e,i)=>({type:'tool',name:e.tool,state:e.state,call_id:'example-'+e.tool,timestamp:e.time,output:e.output?{summary:e.output}:undefined,example:true}));
- }
+ function evidence(run){return TraceModel.events(run,run.live?null:DemoCatalog.list().find(x=>x.id===run.traceId));}
  function draw(run,force=false){
   const events=evidence(run),selection=run.selection;
   const active=run.phase===2?2:run.tools.some(t=>t.state==='Running')?1:0;
-  if(view.follow)view.selected=active;
+  if(view.follow)view.selected=3;
   const key=JSON.stringify([view.selected,events,selection,run.result,run.saved,run.phase]);if(!force&&key===view.key)return;view.key=key;
   view.buttons.forEach((b,i)=>{b.setAttribute('aria-selected',String(i===view.selected));b.tabIndex=i===view.selected?0:-1;b.dataset.active=String(i===active);});
   view.body.setAttribute('aria-labelledby',view.buttons[view.selected].id);
@@ -60,12 +58,35 @@
    if(results.length)line(content,'What supports the outcome','Compare the returned facts above with the selected policy. These are execution records, not private model thoughts.');
   }
   if(view.selected===3){
-   if(!run.live)line(content,'Example trace','These events are stored in this browser only. No Agent Tracer write is made.','dt-trace');
-   else{const traced=events.filter(e=>e.trace),saved=traced.filter(e=>e.trace.verified),failed=traced.filter(e=>!e.trace.verified);line(content,'Couchbase Agent Tracer',saved.length+' records verified'+(failed.length?', '+failed.length+' not verified':''),'dt-trace');line(content,'Request ID',events.find(e=>e.run_id)?.run_id||'Waiting for the first traced event');}
-   for(const [i,e] of events.entries()){const row=line(content,e.type==='tool'?label(e.name)+' — '+e.state:e.type==='selection'?'Policy selected':e.type==='answer'?'Guest response':e.type,e.example?'Scripted event':e.trace?.verified?'Saved and read back':e.trace?.status||'Not verified');if(e.timestamp)row.append(el('time',new Date(e.timestamp).toLocaleTimeString()));const d=code(row,'Record details',{record_id:e.trace?.record_id||'Not available',run_id:e.run_id,call_id:e.call_id,timestamp:e.timestamp});d.dataset.key='trace-'+i;}
-   if(!events.length)line(content,'No events yet','Start a guest request to see its trace.');
+   const summary=el('div','','dt-session-head');
+   const saved=events.filter(e=>e.trace?.verified).length;
+   summary.append(el('strong','Session trace'),el('span',run.live?saved+' records verified':'Sample records','dt-mode'));content.append(summary);
+   const flow=el('div','','dt-handoff');flow.setAttribute('aria-label','Backend handoff');
+   const stages=['Request','Catalog','Tools','Reply'];
+   const latest=events.at(-1),position=latest?.type==='answer'?3:latest?.type==='tool'?2:latest?.type==='selection'?1:0;
+   stages.forEach((name,i)=>{const n=el('span',name);n.dataset.current=String(i===position);n.dataset.complete=String(i<position);flow.append(n);});content.append(flow);
+   const ledger=el('ol','','dt-ledger');ledger.setAttribute('aria-label','Ordered execution records');
+   events.forEach((e,i)=>{
+    const item=el('li'),d=el('details','','dt-log'),description=TraceModel.describe(e);
+    d.dataset.key='event-'+(e.call_id||e.type)+'-'+e.state+'-'+i;d.dataset.tone=description.tone;d.dataset.current=String(i===events.length-1);
+    const head=el('summary'),text=el('span','','dt-log-label');text.append(el('span',description.kind,'dt-kind'),el('strong',e.type==='tool'?label(e.name):description.title));
+    head.append(text,el('span',String(i+1).padStart(2,'0'),'dt-order'));d.append(head);
+    const payload=el('div','','dt-log-body');payload.append(el('p',description.text));
+    if(e.type==='selection'){
+     payload.append(el('p',(e.selected_tools||[]).map(label).join(', '),'dt-log-tools'));
+     const raw=code(payload,'Policy record',{policies:e.policies,selected_tools:e.selected_tools});raw.dataset.key=d.dataset.key+'-raw';
+    }else if(e.type==='tool'){
+     const raw=code(payload,e.state==='Running'?'Input':'Returned data',e.state==='Running'?e.arguments:e.output);raw.dataset.key=d.dataset.key+'-raw';
+    }
+    payload.append(el('span',e.example?'Sample event, not saved in Agent Tracer':e.trace?.verified?'Saved and read back from Agent Tracer':e.trace?.status||'Trace not verified','dt-log-status'));
+    const meta=code(payload,'Record identifiers',{run_id:e.run_id,call_id:e.call_id,record_id:e.trace?.record_id||'Sample only',timestamp:e.timestamp});meta.dataset.key=d.dataset.key+'-meta';
+    d.append(payload);item.append(d);ledger.append(item);
+   });content.append(ledger);
+   if(!events.length)line(content,'Waiting for the first record','The request, policy and tool calls appear here as they happen.');
   }
   view.body.replaceChildren(content);for(const d of view.body.querySelectorAll('details'))if(opened.has(d.dataset.key))d.open=true;view.body.scrollTop=scroll;
+  if(view.follow&&view.selected===3&&events.length!==view.eventCount){const last=view.body.querySelector('.dt-ledger li:last-child');if(last)view.body.scrollTop=Math.max(0,last.offsetTop-view.body.offsetTop-view.body.clientHeight+last.offsetHeight);}
+  view.eventCount=events.length;
  }
  StableActivity.render=function(root,run){original(root,run);const host=root._stableView?.review?.querySelector('.sa-review-content');if(!host)return;
   if(current!==run||!view||!host.contains(view.box)){current=run;host.classList.add('dt-host');mount(host,run);}

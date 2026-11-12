@@ -132,7 +132,7 @@
    const response=await fetch(approval?'/api/confirm':'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(approval?{approval}:{message})});if(!response.ok)throw Error('Request rejected: '+response.status);
    const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='';
    while(true){const {value,done}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});let i;
-    while((i=buffer.indexOf('\n'))>=0){const e=JSON.parse(buffer.slice(0,i));buffer=buffer.slice(i+1);if(['selection','tool','answer'].includes(e.type))run.traceEvents.push(e);
+    while((i=buffer.indexOf('\n'))>=0){const e=JSON.parse(buffer.slice(0,i));buffer=buffer.slice(i+1);if(['request','selection','tool','answer'].includes(e.type))run.traceEvents.push(e);
      if(e.type==='selection'){
       run.selection=e;run.prompt=e.policies.map(p=>p.title).join(' + ');run.policy=e.policies.map(p=>p.rule).join(' ');run.title='Policy selected';run.reason=run.prompt;
       run.tools=e.selected_tools.map(name=>({id:name,name,state:'Selected',reason:'Included by the selected policy.',output:''}));render();
