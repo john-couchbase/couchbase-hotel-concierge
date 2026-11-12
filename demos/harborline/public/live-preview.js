@@ -1,6 +1,6 @@
 /* Local-only live integration preview; uses the approved chat and activity panels. */
 (()=>{
- const badge=document.querySelector('.topbar span')||document.querySelector('header span');
+ const badge=document.querySelector('.demo-label');
  if(badge)badge.textContent='Live model · Sample hotel';
  document.querySelector('.footer-legal').textContent='Live Couchbase model · Fictional hotel tools';
  document.querySelector('.catalog-open')?.setAttribute('hidden','');

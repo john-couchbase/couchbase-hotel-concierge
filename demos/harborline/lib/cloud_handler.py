@@ -40,7 +40,8 @@ class handler(BaseHTTPRequestHandler):
     sid=secrets.token_urlsafe(32);token=sign_session(key,sid)
     cookie=f'hotel_access={token}; Path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=86400'
    from page_template import PAGE
-   page=PAGE.replace('</body>','<script src="/live-preview.js"></script></body>')
+   live=parse_qs(urlparse(self.path).query).get('mode',['simulation'])[0]=='live'
+   page=PAGE.replace('<body>','<body data-live="true">').replace('</body>','<script src="/live-preview.js"></script></body>') if live else PAGE
    self.headers_reply(200,'text/html; charset=utf-8',cookie);self.wfile.write(page.encode());return
   if not sid:self.error(401,'Open the demo first to start your session.');return
   if route!='state':self.error(404,'Not found');return

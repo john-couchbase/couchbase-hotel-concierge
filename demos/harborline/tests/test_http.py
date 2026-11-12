@@ -45,3 +45,13 @@ class HttpTests(unittest.TestCase):
   cookie=error.exception.headers['Set-Cookie']
   for flag in ['Secure','HttpOnly','SameSite=Strict']:self.assertIn(flag,cookie)
   self.assertNotIn('correct-demo-passphrase',cookie)
+
+ def test_mode_defaults_to_simulation_without_backend(self):
+  from types import SimpleNamespace
+  with patch.dict(os.environ,{'HOTEL_SESSION_KEY':'k'*48}),patch.dict(sys.modules,{'page_template':SimpleNamespace(PAGE='<body>Concierge</body>')}),patch('cloud_handler.get_runtime') as runtime:
+   for suffix in ('page','page&mode=simulation'):
+    html=urllib.request.urlopen(self.url+suffix).read().decode()
+    self.assertNotIn('live-preview.js',html);self.assertNotIn('data-live',html)
+   html=urllib.request.urlopen(self.url+'page&mode=live').read().decode()
+   self.assertIn('live-preview.js',html);self.assertIn('data-live="true"',html)
+   runtime.assert_not_called()

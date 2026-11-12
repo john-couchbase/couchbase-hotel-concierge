@@ -46,3 +46,7 @@ Activity details separates the selected policy, tool calls, returned results, an
 - **Trace:** run ID and Agent Tracer records verified by readback. Failed or unavailable writes are shown explicitly.
 
 Saved activity can reopen a request's decision trace. Static previews label their events as scripted and do not claim Agent Tracer persistence. Upgrade and dinner were verified against the live Oregon model, Agent Catalog, and Agent Tracer on November 12, 2026. All 14 decision/tool/response records passed trace readback, and booking changes persisted. Managed Agent Memory remains disconnected.
+
+### Simulation and live mode
+
+Use the top-right control to switch modes. Simulation is the default and uses browser-only sample decisions, bookings, and traces without model calls. Live data connects to the existing Couchbase backend and uses the shared daily model allowance. Both modes retain the same chat and decision-trace layout; simulated records are never represented as verified Agent Tracer writes. Switching reloads the view, and live bookings remain in their separate server session.
