@@ -54,3 +54,9 @@ Use the top-right control to switch modes. Simulation is the default and uses br
 ### Visual session trace
 
 The Trace tab follows the same request, policy, call, result, and reply sequence in both modes. Records expand to show payloads and identifiers. The active handoff highlights as events arrive; reading or scrolling pauses automatic following. Upgrade and dinner sample scenarios share the backend policy names, revisions and tool sets. Sample values remain explicitly labeled and never claim remote persistence. See [the video comparison](docs/audits/2026-11-12-session-trace.md).
+
+### Meaning match and Tools Hub
+
+Click **Match** in Agent activity to inspect the guest request, the selected policy and its explanation, other available policies, and the tool set sent to the model. Live selection is model-based; this application does not return vector similarity scores. Simulation labels its match as scripted.
+
+**Tools Hub** lists the 12 application functions, input contracts, associated policy revisions, and selected/called status for the current request. Search or filter to selected tools. Static definitions describe the application contract; loaded catalog descriptions appear when supplied by a live selection event. The hub does not claim to be a live Capella administration console.

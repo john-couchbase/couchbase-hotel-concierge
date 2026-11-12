@@ -10,7 +10,7 @@
   const tabs=el('div','','dt-tabs');tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label','Decision evidence');
   const body=el('div','','dt-body');body.id='decision-evidence';body.setAttribute('role','tabpanel');body.tabIndex=0;
   const follow=el('button','Follow steps','dt-follow');follow.type='button';follow.hidden=true;
-  const buttons=['Policy','Tools','Results','Trace'].map((name,i)=>{const b=el('button',name);b.type='button';b.id='dt-tab-'+i;b.setAttribute('role','tab');b.setAttribute('aria-controls',body.id);b.onclick=()=>{view.selected=i;view.follow=false;follow.hidden=false;draw(run,true);};b.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?3:(i+(e.key==='ArrowRight'?1:3))%4;buttons[next].click();buttons[next].focus();};tabs.append(b);return b;});
+  const buttons=['Match','Tools','Results','Trace'].map((name,i)=>{const b=el('button',name);b.type='button';b.id='dt-tab-'+i;b.setAttribute('role','tab');b.setAttribute('aria-controls',body.id);b.onclick=()=>{view.selected=i;view.body.scrollTop=0;view.follow=false;follow.hidden=false;draw(run,true);};b.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?3:(i+(e.key==='ArrowRight'?1:3))%4;buttons[next].click();buttons[next].focus();};tabs.append(b);return b;});
   body.addEventListener('wheel',()=>{view.follow=false;follow.hidden=false;},{passive:true});body.addEventListener('touchstart',()=>{view.follow=false;follow.hidden=false;},{passive:true});
   body.addEventListener('click',e=>{if(e.target.closest('summary')){view.follow=false;follow.hidden=false;}});
   follow.onclick=()=>{view.follow=true;follow.hidden=true;draw(run,true);};
@@ -23,23 +23,28 @@
  function draw(run,force=false){
   const events=evidence(run),selection=run.selection;
   const active=run.phase===2?2:run.tools.some(t=>t.state==='Running')?1:0;
-  if(view.follow)view.selected=3;
+  if(view.follow)view.selected=run.phase===0?0:3;
   const key=JSON.stringify([view.selected,events,selection,run.result,run.saved,run.phase]);if(!force&&key===view.key)return;view.key=key;
   view.buttons.forEach((b,i)=>{b.setAttribute('aria-selected',String(i===view.selected));b.tabIndex=i===view.selected?0:-1;b.dataset.active=String(i===active);});
   view.body.setAttribute('aria-labelledby',view.buttons[view.selected].id);
   const scroll=view.body.scrollTop,opened=new Set([...view.body.querySelectorAll('details[open]')].map(d=>d.dataset.key));
   const content=el('div');
   if(view.selected===0){
-   const policies=selection?.policies||[{title:run.prompt,rule:run.policy,version:run.live?'Not recorded':DemoCatalog.version()}];
-   if(run.live&&!selection)line(content,'Matching the request','Waiting for policy selection from the server.');
+   const request=events.find(e=>e.type==='request')?.text||DemoCatalog.list().find(x=>x.id===run.traceId)?.request||'Guest request';
+   const policies=selection?.policies||[];
+   line(content,'You asked',request,'dt-match-request');
+   if(!selection)line(content,'Matching the request','Waiting for a policy selection.');
    else{
-    line(content,'Chosen instructions',policies.map(p=>p.title).join(' + '),'dt-policy');
-    const candidates=selection?.candidates||[];
-    for(const p of policies){const match=candidates.find(c=>c.name===p.name);if(match)line(content,'Policy purpose',match.description);const d=code(content,'Rule and version',{policy:p.title,version:p.version,rule:p.rule});d.dataset.key='policy-'+p.title;}
-    line(content,'How it was selected',run.live?'Nova Lite selected the policy from request context. The app loaded its matching version from Agent Catalog.':'This example uses a scripted policy match.');
-    if(candidates.length){const d=code(content,'Other available policies',candidates.filter(c=>!c.selected).map(c=>({policy:c.title,purpose:c.description})));d.dataset.key='alternatives';}
-    line(content,run.live?'Selection summary':'Why this policy',selection?.selection_summary||(run.live?'No selection explanation was recorded for this request.':run.intent==='upgrade'?'The guest asked for an upgrade, so the example checks membership and this stay’s upgrade allowance.':run.intent==='dining'?'The guest asked for dinner, so the example switches to restaurant hours and reservations.':'This request uses the policy and checks shown above.'));
-    if(selection?.selection_summary)content.append(el('p','Model-provided summary. Check it against the recorded policy and results.','dt-mode'));
+    line(content,'Matched meaning',selection.selection_summary||policies.map(p=>p.title).join(' + '),'dt-policy');
+    const options=el('div','','dt-match-options');options.setAttribute('aria-label','Available policy matches');
+    const candidates=selection.candidates||HotelPolicies.map(p=>({name:p.name,title:p.title,description:p.description,selected:policies.some(x=>x.name===p.name)}));
+    [...candidates].sort((a,b)=>Number(b.selected)-Number(a.selected)).forEach(p=>{
+     const row=el('details','','dt-match-option');row.dataset.selected=String(p.selected);row.dataset.key='match-'+p.name;
+     const head=el('summary');head.append(el('strong',p.title),el('span',p.selected?'Selected':'Not selected'));row.append(head,el('p',p.description));
+     const chosen=policies.find(x=>x.name===p.name);if(chosen){row.append(el('p',chosen.rule),el('code',chosen.version));}options.append(row);
+    });content.append(options);
+    const tools=el('div','','dt-match-tools');tools.append(el('strong','Sent to the model'));for(const name of selection.selected_tools||[])tools.append(el('span',label(name)));content.append(tools);
+    content.append(el('p',run.live?'Model-selected policy; no similarity scores are returned.':'Scripted meaning match using the backend’s policy definitions.','dt-mode'));
    }
   }
   if(view.selected===1){
@@ -90,6 +95,9 @@
  }
  StableActivity.render=function(root,run){original(root,run);const host=root._stableView?.review?.querySelector('.sa-review-content');if(!host)return;
   if(current!==run||!view||!host.contains(view.box)){current=run;host.classList.add('dt-host');mount(host,run);}
+  if(typeof ToolsHub!=='undefined')ToolsHub.update(run);
+  const matchStep=root.querySelector('.sa-stage');
+  if(matchStep){matchStep.setAttribute('role','button');matchStep.tabIndex=0;matchStep.setAttribute('aria-label','Inspect meaning match');matchStep.onclick=()=>{view.selected=0;view.follow=false;view.buttons[0].click();const d=host.closest('details');if(d)d.open=true;};matchStep.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();matchStep.click();}};}
   draw(run);
  };
 })();

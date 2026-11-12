@@ -8,7 +8,7 @@ const StableActivity=(()=>{
  function mount(root,run){
   root.replaceChildren();root.className='stable-activity';
   const stages=element('div','sa-stages');stages.setAttribute('aria-label','Simulated decision stages');
-  ['Context','Tools','Decision'].forEach((name,i)=>{const step=element('div','sa-stage');step.dataset.stage=i;step.innerHTML='<span class="sa-symbol"><svg viewBox="0 0 40 40" aria-hidden="true">'+glyphs[i]+'</svg></span><span>'+name+'</span>';stages.append(step);});
+  ['Match','Tools','Decision'].forEach((name,i)=>{const step=element('div','sa-stage');step.dataset.stage=i;step.innerHTML='<span class="sa-symbol"><svg viewBox="0 0 40 40" aria-hidden="true">'+glyphs[i]+'</svg></span><span>'+name+'</span>';stages.append(step);});
   const summary=element('section','sa-summary');summary.setAttribute('aria-label','Current activity');const title=element('h3'),description=element('p');const currentTool=element('code','sa-current-tool');summary.append(title,description,currentTool);
   const tools=element('section','sa-tools');tools.append(element('h3','', 'Tools selected'));
   const rows=new Map();for(const t of run.tools){const row=element('div','sa-tool');row.dataset.tool=t.name;const head=element('div','sa-tool-head'),name=element('code','',t.name+'()'),state=element('span','sa-state');const identity=element('div','sa-tool-identity');identity.append(element('strong','',label(t.name)),name);head.append(identity,state);const output=element('p','sa-output');row.append(head,output);tools.append(row);rows.set(t.id||t.name,{row,state,output});}
