@@ -54,7 +54,9 @@
    const key=h.events.find(e=>e.call_id)?.call_id||index+':'+h.request;
    const card=node('details','','history-card');card.dataset.entry=key;card.open=expanded.has(key);
    const summary=node('summary'),heading=node('span','','history-entry-heading');
-   heading.append(node('strong',names[last?.name]||'Guest question'),node('small',(steps.length?steps.length+' '+(steps.length===1?'step':'steps')+' · ':'')+(awaiting?'Awaiting approval':blocked?blocked+' blocked':'Complete')));summary.append(heading);card.append(summary);
+   heading.append(node('strong',names[last?.name]||'Guest question'),node('small',(steps.length?steps.length+' '+(steps.length===1?'step':'steps')+' · ':'')+(awaiting?'Awaiting approval':blocked?blocked+' blocked':'Complete')));const usage=h.events.filter(e=>e.type==='usage').at(-1);
+   if(usage){const amount=Number.isFinite(usage.estimated_usd)?'$'+usage.estimated_usd.toFixed(6)+' est.':'Cost unavailable';const line=node('small',(usage.complete?'':'Partial: ')+(usage.input_tokens+usage.output_tokens).toLocaleString()+' tokens · '+amount,'history-usage');line.title=usage.input_tokens+' input, '+usage.output_tokens+' output. '+usage.basis;heading.append(line);}
+   summary.append(heading);card.append(summary);
    const body=node('div','','history-content');
    const selection=h.events.find(e=>e.type==='selection');
    if(selection){const evidence=node('section','','history-actions');evidence.append(node('h4','Policy & tools','history-section-title'));for(const p of selection.policies)evidence.append(node('p',p.title+' · '+p.version));const used=new Set(steps.map(e=>e.name));evidence.append(node('p',selection.selected_tools.length+' selected · '+used.size+' called'));const unused=selection.selected_tools.filter(n=>!used.has(n));if(unused.length)evidence.append(node('p','Not called: '+unused.map(DemoCatalog.label).join(', '),'trace-caption'));body.append(evidence);}
