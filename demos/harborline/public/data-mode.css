@@ -6,3 +6,5 @@
 .top-right>a.quiet-button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 14px;border:1px solid #b7c5cc;border-radius:6px;background:transparent;color:inherit;font:500 13px/1.2 Inter,sans-serif;text-decoration:none;white-space:nowrap}
 .top-right>a.quiet-button:hover{background:#e5edf0}.dark .top-right>a.quiet-button:hover{background:#304650}
 @media(max-width:600px){.top{flex-wrap:wrap;gap:12px}.top-right{flex-wrap:wrap;justify-content:flex-end;gap:8px}.top-right>a.quiet-button{min-height:40px}}
+/* Phone toolbar: logo above; hub left, mode centered, theme right. */
+@media(max-width:600px){.top{display:grid!important;grid-template-columns:1fr!important;gap:12px!important}.top>.top-right{display:grid!important;grid-template-columns:1fr auto 1fr;width:100%;margin:0!important;gap:6px!important;align-items:center}.top-right>a.quiet-button{justify-self:start;padding:9px 10px;font-size:12px}.top-right .data-mode{justify-self:center}.top-right>#theme{justify-self:end}.top-right .demo-label[hidden]{display:none}.top-right .data-mode a{padding:0 7px;font-size:11px}}
