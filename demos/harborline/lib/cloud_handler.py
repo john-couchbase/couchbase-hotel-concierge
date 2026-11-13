@@ -146,7 +146,8 @@ class handler(BaseHTTPRequestHandler):
     event={'type':'tool','name':name,'state':'Returned','call_id':callid,'output':out};emit(event)
     text='Demo cancellation saved: '+out['reference'] if out.get('cancelled') else 'Demo booking saved: '+out['reference']+' · '+out['name']+' · $'+format(out['total'],'.2f')+' total. No real booking or payment.'
     s['messages'].append({'role':'user','content':'Approved demo action result: '+json.dumps(out)})
-    answer={'type':'answer','text':text,'pending':None};s['history'].append({'request':'Confirm demo action','events':([selection] if selection else [])+[started,event,answer]});emit(answer)
+    usage={'type':'usage','calls':0,'reported_calls':0,'input_tokens':0,'output_tokens':0,'complete':True,'estimated_usd':0,'basis':'Confirmation executes an approved tool without calling the model.'};emit(usage)
+    answer={'type':'answer','text':text,'pending':None};s['history'].append({'request':'Confirm demo action','events':([selection] if selection else [])+[started,event,usage,answer]});emit(answer)
    else:
     request={'type':'request','text':body['message']};emit(request)
     run(s,client,body['message'],emit,services,sid,budget=budget)

@@ -16,7 +16,7 @@
  StableActivity.render=function(root,run){
   previous(root,run);root.classList.add('simple-activity');document.body.classList.add('simple-agent');
   const v=root._simple?.run===run&&root.contains(root._simple.flow)?root._simple:mount(root,run);
-  if(run.live){const u=run.usage;set(v.cost,u?(u.estimated_usd===null?'Model usage unavailable':(u.complete?'Cheaper cost · est. $':'Partial model est. $')+u.estimated_usd.toFixed(6)+' · '+(u.input_tokens+u.output_tokens).toLocaleString()+' tokens'):run.phase===2?'Usage not recorded':'Model usage pending');v.cost.title=u?u.input_tokens+' input tokens, '+u.output_tokens+' output tokens; '+u.reported_calls+' of '+u.calls+' calls reported. '+u.basis:'Waiting for provider token counts.';}
+  if(run.live){const u=run.usage;set(v.cost,u?(u.calls===0?'No model call':u.estimated_usd===null?'Model usage unavailable':(u.complete?'Cheaper cost · est. $':'Partial model est. $')+u.estimated_usd.toFixed(6)+' · '+(u.input_tokens+u.output_tokens).toLocaleString()+' tokens'):run.phase===2?'Usage not recorded':'Model usage pending');v.cost.title=u?u.input_tokens+' input tokens, '+u.output_tokens+' output tokens; '+u.reported_calls+' of '+u.calls+' calls reported. '+u.basis:'Waiting for provider token counts.';}
   const selection=run.selection,policies=selection?.policies||[],active=run.tools.find(t=>t.state==='Running'),done=run.phase===2;
   set(v.policy,policies.map(p=>p.title).join(' + ')||'Finding the right policy');
   set(v.reason,selection?.selection_summary||'Matching your request to the available instructions.');
