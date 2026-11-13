@@ -7,7 +7,7 @@
   const flow=el('div','simple-flow');flow.dataset.size=run.tools.length<=2?'compact':'full';
   const match=el('section','sf-section sf-match'),matchHead=el('h3','','Matching'),policy=el('strong'),reason=el('p');match.append(matchHead,policy,reason);
   const tools=el('section','sf-section sf-tools'),heading=el('div','sf-heading'),status=el('span','sf-status');status.setAttribute('role','status');heading.append(el('h3','','Tools'),status);const list=el('div','sf-tool-list');list.addEventListener('wheel',()=>{root._simple.follow=false;},{passive:true});list.addEventListener('touchstart',()=>{root._simple.follow=false;},{passive:true});tools.append(heading,list);
-  const decision=el('section','sf-section sf-decision'),title=el('strong'),why=el('p');const usedLink=el('a','sf-used-link','View tools used');usedLink.target='_blank';usedLink.rel='noopener';decision.append(el('h3','','Decision'),title,why,usedLink);
+  const decision=el('section','sf-section sf-decision'),title=el('strong'),why=el('p');const usedLink=el('a','sf-used-link','View tools used');decision.append(el('h3','','Decision'),title,why,usedLink);
   const details=el('div','sf-actions'),hub=el('button','','Tools Hub'),trace=el('button','','Session trace');hub.type=trace.type='button';hub.onclick=()=>ToolsHub.open();trace.onclick=()=>ActivityTracer.open(run);details.append(hub,trace);const payload=el('span');
   const handoff=el('div','sf-handoff'),handoffText=el('span');handoff.append(handoffText);match.append(handoff);
   flow.append(match,tools,decision,details);root.append(flow);
