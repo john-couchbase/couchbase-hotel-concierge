@@ -72,7 +72,7 @@
     if(busy)return;
     const events=h.events,answer=events.find(e=>e.type==='answer');
     const chosen=selection?.selected_tools||[...new Set(steps.map(e=>e.name))];
-    const replay={live:true,traceEvents:events,selection,phase:2,intent:'live',prompt:selection?.policies.map(p=>p.title).join(' + ')||'Saved request',policy:selection?.policies.map(p=>p.rule).join(' ')||'',title:'Saved decision',reason:h.request,result:answer?.text||'No response recorded',saved:'Saved activity',tools:chosen.map(name=>{const e=steps.filter(x=>x.name===name).at(-1);return {id:name,name,state:e?.state||'Not called',reason:'Recorded in this request',output:e?.output?brief(e.output):''};})};
+    const replay={live:true,usage:events.filter(e=>e.type==='usage').at(-1),traceEvents:events,selection,phase:2,intent:'live',prompt:selection?.policies.map(p=>p.title).join(' + ')||'Saved request',policy:selection?.policies.map(p=>p.rule).join(' ')||'',title:'Saved decision',reason:h.request,result:answer?.text||'No response recorded',saved:'Saved activity',tools:chosen.map(name=>{const e=steps.filter(x=>x.name===name).at(-1);return {id:name,name,state:e?.state||'Not called',reason:'Recorded in this request',output:e?.output?brief(e.output):''};})};
     selectInspector('now');guidedRun=replay;StableActivity.render($('decision-route'),replay);const details=document.querySelector('.activity-details-card .sa-review');if(details)details.open=true;
    }));
    card.append(body);history.append(card);
@@ -132,7 +132,8 @@
    const response=await fetch(approval?'/api/confirm':'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(approval?{approval}:{message})});if(!response.ok)throw Error('Request rejected: '+response.status);
    const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='';
    while(true){const {value,done}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});let i;
-    while((i=buffer.indexOf('\n'))>=0){const e=JSON.parse(buffer.slice(0,i));buffer=buffer.slice(i+1);if(['request','selection','tool','answer'].includes(e.type))run.traceEvents.push(e);
+    while((i=buffer.indexOf('\n'))>=0){const e=JSON.parse(buffer.slice(0,i));buffer=buffer.slice(i+1);if(['request','selection','tool','answer','usage'].includes(e.type))run.traceEvents.push(e);
+     if(e.type==='usage'){run.usage=e;render();}
      if(e.type==='selection'){
       run.selection=e;run.prompt=e.policies.map(p=>p.title).join(' + ');run.policy=e.policies.map(p=>p.rule).join(' ');run.title='Policy selected';run.reason=run.prompt;
       run.tools=e.selected_tools.map(name=>({id:name,name,state:'Selected',reason:'Included by the selected policy.',output:''}));render();

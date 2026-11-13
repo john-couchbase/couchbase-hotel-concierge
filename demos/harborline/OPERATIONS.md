@@ -37,3 +37,9 @@ The displayed policy version is a SHA-256 content revision, not a Git commit. Se
 See [verification-status.json](verification-status.json) for the latest evidence and [memory-diagnostics.md](memory-diagnostics.md) for memory troubleshooting history. Historical records are not current health checks.
 
 Public access: opening the page creates a signed visitor session without a passphrase. API requests still require that session. Origin checks and the shared daily budget remain enforced.
+
+## Model usage
+
+Live requests record provider input/output token counts for policy selection and every model turn. The session retains the latest 500 call records; request totals also appear in saved activity events. Missing usage stays unknown, and partial totals are marked partial.
+
+The small live cost label uses measured tokens with Nova Lite reference rates of $0.06 per million input tokens and $0.24 per million output tokens (AWS Bedrock reference, November 13, 2026). It is an estimate, not an invoice: Capella services, hosting, database work and unreported calls are excluded. Tool execution has no invented per-tool price. Simulation keeps illustrative cheaper/expensive tags and sanitized live-derived response templates in `public/live-response-fixtures.js`; it never replays live usage or booking IDs.

@@ -25,6 +25,8 @@ execute=async function(intent){
  }
  run.phase=2;run.title=data.decision;run.reason=data.reason;$('status').textContent='Decision';activity('Decision',data.decision,'decision',data.reason);
  if(!await wait(300,id))return;
+ const dinnerResult=run.tools.find(t=>t.name==='book_restaurant')?.result;
+ if(intent==='dining'&&dinnerResult?.booked)data.reply=LiveResponseFixtures.dinner(dinnerResult);
  run.response=data.reply;run.result=data.result;activity('Result',data.result,'result');bubble(data.reply);
  showPolicy(fixture.policy);renderTools(intent,data);
  // Authoritative tool statuses come from executed fixture events, including unsuccessful calls.

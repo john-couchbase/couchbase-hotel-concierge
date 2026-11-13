@@ -67,7 +67,7 @@ async function searchRooms(stay){stayDraft=stay;roomStage='searching';const id=+
  run.phase=2;run.title=options.length?`${options.length} rooms fit your stay`:'No matching rooms';run.result=options.length?'Choose a room to review the total.':'Nothing booked. Try different dates or availability.';run.saved=editingId?'Your existing booking is unchanged.':'No reservation created yet.';renderGuidedRun($('decision-route'));
  showPolicy('Fictional USD rates: King $189/night, Twin $219/night, Suite $289/night. 10% demo tax; no other fees. Capacity: King 2; Twin/Suite 4. Rates are fixed demo fixtures, not live prices.');
  stateBusy(false);$('status').textContent=options.length?'Choose a room':'No availability';roomStage=options.length?'choice':'dates';
- bubble(options.length?'Choose a room. Totals include 10% tax.':'No rooms are available in this demo scenario. Nothing was booked.');
+ bubble(options.length?LiveResponseFixtures.rooms(options):'No rooms are available in this demo scenario. Nothing was booked.');
  if(options.length)renderRooms(options);else dateForm();
 }
 function renderRooms(options){const root=$('chat-action');root.replaceChildren();const list=document.createElement('div');list.className='room-options';
