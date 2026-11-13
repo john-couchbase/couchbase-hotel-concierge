@@ -11,3 +11,12 @@ details>summary{min-height:44px;box-sizing:border-box;padding-block:10px;gap:10p
 .inline-process .ma-box[data-long=true] .ma-sentence{align-content:start}
 .inline-process .ma-group-words{overflow:auto;pointer-events:auto}.inline-process .ma-group .ma-word{font-size:12px}
 .inline-process .ma-matches{pointer-events:auto}.inline-process .ma-meaning{justify-content:center}.inline-process .ma-meaning strong{font-size:17px;line-height:1.4;overflow-wrap:anywhere;max-width:100%;box-sizing:border-box}
+
+/* Base-select supplies its own indicator in both themes. */
+@supports(appearance:base-select){body select,body.dark select{background-image:none;display:flex;align-items:center;justify-content:space-between;gap:12px}select::picker-icon{margin-left:auto;flex:none}}
+.workspace-tabs{display:flex;gap:6px;margin:18px 0;padding:4px;border:1px solid var(--line,#b8c7ce);border-radius:8px;width:fit-content;background:var(--surface,#f3f4f2)}
+.workspace-tabs button{min-height:44px;padding:10px 18px;border:0;border-radius:5px;background:transparent;color:inherit;font:500 14px/1.2 Inter,sans-serif;cursor:pointer}
+.workspace-tabs button[aria-selected=true]{background:#c92127;color:white}.dark .workspace-tabs{background:#242424;border-color:#535353}
+.hub-tab-frame{display:block;width:100%;border:1px solid #b8c7ce;border-radius:8px;min-height:680px;height:calc(100vh - 160px);background:#f5f4f0}.dark .hub-tab-frame{background:#14181b;border-color:#535353}
+[hidden]{display:none!important}
+@media(max-width:600px){.workspace-tabs{width:100%}.workspace-tabs button{flex:1}.hub-tab-frame{min-height:580px}}

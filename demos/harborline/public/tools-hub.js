@@ -8,7 +8,7 @@ const ToolsHub=(()=>{
  const controls=el('div','','hub-controls'),search=el('input');search.type='search';search.placeholder='Find a tool';search.setAttribute('aria-label','Find a tool');
  const filter=el('button','Selected tools','quiet-button');filter.type='button';filter.setAttribute('aria-pressed','false');filter.onclick=()=>{selectedOnly=!selectedOnly;filter.setAttribute('aria-pressed',String(selectedOnly));render();};
  controls.append(search,filter);const counts=el('p','','hub-counts'),body=el('div','','hub-tools');search.oninput=render;dialog.append(header,controls,counts,body);document.body.append(dialog);
- const open=el('button','Tools Hub','quiet-button hub-open');open.type='button';open.onclick=()=>window.open('/hub','_blank','noopener');document.querySelector('.decision-head').append(open);
+ const open=el('button','Tools Hub','quiet-button hub-open');open.type='button';open.onclick=()=>window.HotelWorkspace.openHub();document.querySelector('.decision-head').append(open);
  function render(){
   const scroll=dialog.scrollTop;const focused=document.activeElement?.closest('.hub-tool')?.dataset.tool;
   const expanded=new Set([...body.querySelectorAll('details[open]')].map(d=>d.dataset.tool));body.replaceChildren();
@@ -32,7 +32,7 @@ const ToolsHub=(()=>{
   if(!body.children.length)body.append(el('p','No tools match this filter.'));
   if(focused){const item=[...body.querySelectorAll('.hub-tool')].find(x=>x.dataset.tool===focused);item?.querySelector('summary').focus({preventScroll:true});}dialog.scrollTop=scroll;
  }
- return {open(){window.open('/hub','_blank','noopener');},update(run){current=run;if(dialog.open)render();}};
+ return {open(){window.HotelWorkspace.openHub();},update(run){current=run;if(dialog.open)render();}};
 })();
 const clearBeforeToolsHub=clearActivity;
 clearActivity=function(...args){ToolsHub.update(null);return clearBeforeToolsHub(...args);};
