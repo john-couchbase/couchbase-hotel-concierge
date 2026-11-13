@@ -1,14 +1,14 @@
 /* Compact presentation of recorded events; never delays or fabricates backend calls. */
 (()=>{
  const original=StableActivity.render;let current=null,dispose=null,advanceTimer=null,view=null,story=null,toolTimer=null;
- let presenting=false;
+ let presenting=false;const explained=new Set();
  const lockedSelectors='#chat-form,#quick-replies,#chat-action,#receipt-actions,#saved-activity,[data-intent],.receipt-card';
  function lock(value){
   presenting=value;
   document.querySelectorAll(lockedSelectors).forEach(n=>n.inert=value);
   if(view){view.buttons.forEach(b=>b.disabled=value);view.toolNav.inert=value;view.details.disabled=value;view.root.dataset.presenting=String(value);}
  }
- document.addEventListener('click',e=>{if(presenting&&e.target.closest(lockedSelectors)){e.preventDefault();e.stopImmediatePropagation();}},true);
+ document.addEventListener('click',e=>{if(e.target.closest('#restart'))explained.clear();if(presenting&&e.target.closest(lockedSelectors)){e.preventDefault();e.stopImmediatePropagation();}},true);
  const sendRequest=submit;
  submit=function(...args){if(presenting)return;return sendRequest(...args);};
  function clean(){lock(false);view?.nav.remove();view?.animation.remove();view?.details.remove();view?.toolNav.remove();clearInterval(toolTimer);if(view?.dialog){view.dialog.close();view.dialog.remove();}story?.dispose();story=null;dispose?.();dispose=null;clearTimeout(advanceTimer);}
@@ -43,7 +43,10 @@ view.root.dataset.screen=screen;view.buttons.forEach((b,i)=>b.setAttribute('aria
    const events=TraceModel.events(run,run.live?null:DemoCatalog.list().find(r=>r.id===run.traceId));
    let text=events.find(e=>e.type==='request')?.text||document.querySelector('#chat-log .user:last-child p')?.textContent||'Guest request';
    if(['room','dining'].includes(run.intent)&&!/(room|dinner|table|restaurant)/i.test(text)){const previous=[...document.querySelectorAll('#chat-log .user p')].map(n=>n.textContent).reverse().find(t=>/(room|dinner|table|restaurant)/i.test(t));if(previous)text=previous;}
-   dispose=MeaningAnimation.mount(animation,{text,run,durations:[1200,1600,1800,1100],holdMs:1400,onComplete:()=>{if(current!==run||view.manual)return;show('tools');advanceTimer=setTimeout(()=>{if(current===run&&!view.manual&&ready(run))show('decision');else if(current===run)view.awaitingDecision=true;},2400);}});
+   const explanationKey=run.selection?.policies?.map(p=>p.name).sort().join('|')||run.intent;
+   const skipExplanation=run.phase===2||explained.has(explanationKey)||(run.live&&!run.selection);
+   if(skipExplanation){show('tools');lock(false);view.awaitingDecision=true;}
+   else dispose=MeaningAnimation.mount(animation,{text,run,durations:[1200,1600,1800,1100],holdMs:1400,onComplete:()=>{explained.add(explanationKey);if(current!==run||view.manual)return;show('tools');advanceTimer=setTimeout(()=>{if(current===run&&!view.manual&&ready(run))show('decision');else if(current===run)view.awaitingDecision=true;},2400);}});
    const playback=animation.querySelector('.ma-head button');if(playback)playback.hidden=true;
   }
   lock(presenting);
@@ -52,5 +55,6 @@ view.root.dataset.screen=screen;view.buttons.forEach((b,i)=>b.setAttribute('aria
   // The real calls may finish before the slower explanatory animation.
   if(view.root.dataset.screen==='tools'&&run.phase===2){const status=root.querySelector('.sf-status');if(status)status.textContent='Recorded checks';}
  };
+ const restartBefore=restart;restart=function(...args){explained.clear();return restartBefore(...args);};
  const reset=clearActivity;clearActivity=function(...args){clean();current=null;view=null;return reset(...args);};
 })();
