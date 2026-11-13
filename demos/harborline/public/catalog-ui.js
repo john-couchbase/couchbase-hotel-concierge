@@ -33,5 +33,5 @@
   }
  }
  dialog.querySelector('header button').onclick=()=>dialog.close();dialog.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{view=b.dataset.view;render();});
- const open=document.createElement('button');open.type='button';open.className='quiet-button catalog-open';open.textContent='Explore the demo';open.onclick=()=>{render();dialog.showModal();};document.querySelector('.intro>div').append(open);
+ const open=document.createElement('button');open.type='button';open.className='quiet-button catalog-open';open.textContent='Walkthrough';open.onclick=()=>{view='walkthrough';render();dialog.showModal();};document.querySelector('.intro>div').append(open);
 })();
