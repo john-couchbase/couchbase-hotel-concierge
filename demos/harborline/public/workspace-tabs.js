@@ -7,7 +7,7 @@
  workspace.before(nav);workspace.after(frame);
  function syncTheme(){frame.contentDocument?.body?.classList.toggle('dark',document.body.classList.contains('dark'));}
  function select(i,url){buttons.forEach((b,n)=>{b.setAttribute('aria-selected',String(n===i));b.tabIndex=n===i?0:-1;});workspace.hidden=!!i;frame.hidden=!i;if(i){const path=url||'/hub?mode='+(document.body.dataset.live==='true'?'live':'simulation');if(!frame.getAttribute('src')||url)frame.src=path;} }
- frame.onload=()=>{const doc=frame.contentDocument;if(!doc)return;doc.querySelector('header')?.remove();doc.querySelector('.hero')?.remove();doc.querySelector('footer')?.remove();const style=doc.createElement('style');style.textContent='main{padding:16px;max-width:none}';doc.head.append(style);syncTheme();};
+ frame.onload=()=>{const doc=frame.contentDocument;if(!doc)return;const header=doc.querySelector('header');if(header)header.hidden=true;doc.querySelector('.hero')?.remove();doc.querySelector('footer')?.remove();const style=doc.createElement('style');style.textContent='main{padding:16px;max-width:none}';doc.head.append(style);syncTheme();};
  new MutationObserver(syncTheme).observe(document.body,{attributes:true,attributeFilter:['class']});
  nav.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const i=e.key==='Home'?0:e.key==='End'?1:buttons[0].getAttribute('aria-selected')==='true'?1:0;select(i);buttons[i].focus();};
  window.HotelWorkspace={openHub(url){select(1,url);nav.scrollIntoView({block:'nearest'});buttons[1].focus({preventScroll:true});}};
