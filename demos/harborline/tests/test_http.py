@@ -55,3 +55,9 @@ class HttpTests(unittest.TestCase):
    html=urllib.request.urlopen(self.url+'page&mode=live').read().decode()
    self.assertIn('live-preview.js',html);self.assertIn('data-live="true"',html)
    runtime.assert_not_called()
+ def test_hub_reads_require_session(self):
+  with patch('cloud_handler.get_runtime') as runtime:
+   for endpoint in ('catalog','hub-history','trace-record&id=unknown'):
+    with self.assertRaises(urllib.error.HTTPError) as error:urllib.request.urlopen(self.url+endpoint)
+    self.assertEqual(error.exception.code,401)
+   runtime.assert_not_called()

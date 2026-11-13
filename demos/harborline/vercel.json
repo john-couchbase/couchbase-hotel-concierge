@@ -15,6 +15,10 @@
   ],
   "routes": [
     {
+      "src": "/hub",
+      "dest": "/api/index.py?route=hub"
+    },
+    {
       "src": "/live",
       "dest": "/api/index.py?route=page&mode=live"
     },
@@ -23,7 +27,7 @@
       "dest": "/api/index.py?route=page"
     },
     {
-      "src": "/api/(state|chat|confirm|reset|login|health)",
+      "src": "/api/(state|chat|confirm|reset|login|health|catalog|tool-run|hub-history|trace-record)",
       "dest": "/api/index.py?route=$1"
     },
     {

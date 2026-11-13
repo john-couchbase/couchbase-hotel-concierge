@@ -33,20 +33,46 @@ class handler(BaseHTTPRequestHandler):
   route=self.route()
   if route=='health':self.headers_reply();self.wfile.write(json.dumps({'runtime':'ready','configured':configured(),'backend_verified':False}).encode());return
   sid=self.auth();cookie=None
-  if route=='page':
+  if route in ('page','hub'):
    key=os.environ.get('HOTEL_SESSION_KEY','')
    if len(key)<32:self.error(503,'Hosting setup is incomplete');return
    if not sid:
     sid=secrets.token_urlsafe(32);token=sign_session(key,sid)
     cookie=f'hotel_access={token}; Path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=86400'
    from page_template import PAGE
+   if route=='hub':
+    from hub_template import PAGE
    live=parse_qs(urlparse(self.path).query).get('mode',['simulation'])[0]=='live'
    page=PAGE.replace('<body>','<body data-live="true">').replace('</body>','<script src="/live-preview.js"></script></body>') if live else PAGE
    self.headers_reply(200,'text/html; charset=utf-8',cookie);self.wfile.write(page.encode());return
   if not sid:self.error(401,'Open the demo first to start your session.');return
-  if route!='state':self.error(404,'Not found');return
+  if route=='trace-record':
+   try:
+    services,store,_,_=get_runtime()
+    record_id=parse_qs(urlparse(self.path).query).get('id',[''])[0]
+    allowed=set()
+    for key in (sid,sid+'::tool-hub'):
+     saved=store.load(key) or new_session()
+     for run_record in saved['history']:
+      for event in run_record['events']:
+       ref=event.get('trace')
+       if isinstance(ref,dict):allowed.add(ref.get('record_id'))
+    if not record_id or record_id not in allowed:self.error(404,'Trace is not part of this visitor session.');return
+    record=services.tracer.cb_coll.get(record_id).content_as[dict]
+    if record.get('span',{}).get('session') not in (sid,sid+'::tool-hub'):self.error(404,'Trace not found.');return
+    self.headers_reply();self.wfile.write(json.dumps(record,default=str).encode())
+   except Exception:self.error(503,'Stored trace is unavailable.')
+   return
+  if route=='catalog':
+   try:
+    from hub import catalog
+    services,_,_,_=get_runtime();payload=catalog(services)
+    self.headers_reply();self.wfile.write(json.dumps(payload).encode())
+   except Exception:self.error(503,'Published catalog unavailable. No simulation substituted.')
+   return
+  if route not in ('state','hub-history'):self.error(404,'Not found');return
   try:
-   services,store,_,_=get_runtime();s=store.load(sid) or new_session();s['services']=dict(services.status)
+   services,store,_,_=get_runtime();s=store.load(sid+('::tool-hub' if route=='hub-history' else '')) or new_session();s['services']=dict(services.status)
    self.headers_reply();self.wfile.write(json.dumps(public_state(s,store.label)).encode())
   except Exception:self.error(503,'Couchbase connection is not ready. No simulated response substituted.')
  def do_POST(self):
@@ -66,12 +92,13 @@ class handler(BaseHTTPRequestHandler):
    self.send_response(303);self.send_header('Location','/');self.send_header('Cache-Control','no-store');self.send_header('Set-Cookie',f'hotel_access={token}; Path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=86400');self.end_headers();return
   sid=self.auth()
   if not sid:self.error(401,'Sign in to the demo first.');return
-  if route not in ('chat','confirm','reset'):self.error(404,'Not found');return
+  if route not in ('chat','confirm','reset','tool-run'):self.error(404,'Not found');return
   try:
    body=json.loads(raw)
    if not isinstance(body,dict):raise ValueError()
    if route=='chat' and (not isinstance(body.get('message'),str) or not 0<len(body['message'].strip())<=2000):raise ValueError()
   except (ValueError,TypeError):self.error(400,'Enter a message up to 2000 characters');return
+  if route=='tool-run':sid+='::tool-hub'
   try:services,store,client,budget=get_runtime();lease=Lease(services.collection,sid);acquired=lease.acquire()
   except Exception:self.error(503,'Couchbase connection is not ready.');return
   if not acquired:self.error(409,'A request is already running.');return
@@ -97,7 +124,20 @@ class handler(BaseHTTPRequestHandler):
       except Exception:s['services']['memory']='Memory save not verified'
    trace(e);write(e)
   try:
-   if route=='reset':s.clear();s.update(new_session());s['services']=dict(services.status);persist();write({'type':'reset'})
+   if route=='tool-run':
+    from hub import execute,fixture
+    from distributed import Budget
+    Budget(services.collection,'tool-hub',120).consume()
+    if body.get('reset'):s.clear();s.update(fixture(body.get('fixture','empty')));s['services']=dict(services.status)
+    name=s['pending']['name'] if body.get('approval') and s.get('pending') else body.get('name');args=body.get('arguments',{});callid=uuid.uuid4().hex
+    events=[]
+    started={'type':'tool','name':name,'state':'Running','call_id':callid,'arguments':args};emit(started);events.append(started)
+    try:out=confirm(s,body['approval'])[1] if body.get('approval') else execute(services,s,name,args);state='Returned'
+    except (ValueError,TypeError,KeyError) as exc:out={'error':str(exc)};state='Failed'
+    result={'type':'tool','name':name,'state':state,'call_id':callid,'output':out};emit(result);events.append(result)
+    s['history'].append({'request':'Tool Hub: '+str(name),'events':events});persist()
+    if s.get('pending'):write({'type':'approval','token':s['pending']['id'],'summary':s['pending']['summary']})
+   elif route=='reset':s.clear();s.update(new_session());s['services']=dict(services.status);persist();write({'type':'reset'})
    elif route=='confirm':
     selection=deepcopy(s.get('selection'))
     if selection:emit(selection)
