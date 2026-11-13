@@ -14,17 +14,17 @@ execute=async function(intent){
  if(match){run.selection={type:'selection',policies:[{name:match.name,title:match.title,rule:match.content,version:match.version}],selected_tools:match.tools,selection_summary:intent==='upgrade'?'The upgrade request uses membership and the one-upgrade-per-stay policy.':intent==='dining'?'The dinner request uses restaurant hours and table booking.':run.reason,candidates:HotelPolicies.map(p=>({name:p.name,title:p.title,description:p.description,selected:p.id===intent})),excluded_tools:[...new Set(HotelPolicies.flatMap(p=>p.tools))].filter(n=>!match.tools.includes(n))};run.policy=match.content;}
  showDecisionRoute(intent,run.tools.map(t=>[t.name,'Selected',t.reason]));
  activity('Policy selected',fixture.policy,'finding',fixture.prompt+' · Simulated catalog');
- if(!await wait(1000,id))return;
+ if(!await wait(500,id))return;
  for(const tool of run.tools){
   if(!tool.call){tool.state='Not called';continue;}
   run.phase=1;tool.state='Running';run.title='Checking '+tool.name.replaceAll('_',' ');run.reason=tool.reason;$('status').textContent='Checking';
   const row=activity(tool.name,'Checking…','active',tool.reason);renderGuidedRun($('decision-route'));
-  if(!await wait(1100,id))return;
+  if(!await wait(600,id))return;
   row.remove();tool.state='Returned';activity(tool.name,tool.output,'finding','Simulated tool result');renderGuidedRun($('decision-route'));
-  if(!await wait(400,id))return;
+  if(!await wait(150,id))return;
  }
  run.phase=2;run.title=data.decision;run.reason=data.reason;$('status').textContent='Decision';activity('Decision',data.decision,'decision',data.reason);
- if(!await wait(700,id))return;
+ if(!await wait(300,id))return;
  run.response=data.reply;run.result=data.result;activity('Result',data.result,'result');bubble(data.reply);
  showPolicy(fixture.policy);renderTools(intent,data);
  // Authoritative tool statuses come from executed fixture events, including unsuccessful calls.
