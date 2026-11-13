@@ -1,7 +1,7 @@
 """Live Capella inference with server-owned fictional hotel tools.
 Local sessions are explicitly NOT Couchbase Agent Memory.
 """
-import datetime as dt,json,re,uuid,threading
+import datetime as dt,json,re,uuid,threading,html
 BUDGET_LOCK=threading.Lock()
 MODEL_CALLS=0
 MAX_MODEL_CALLS=125
@@ -31,6 +31,14 @@ def call(s,name,args,approved=False):
  for k,t in fields.items():
   if t=='integer' and type(args[k]) is not int:raise ValueError('Expected integer')
   if t=='string' and not isinstance(args[k],str):raise ValueError('Expected text')
+ args=dict(args)
+ for key in ('start','end','date'):
+  if key in args:
+   value=html.unescape(args[key]).strip()
+   if len(value)>1 and value[0]==value[-1] and value[0] in ('"',"'"):value=value[1:-1]
+   if not re.fullmatch(r'\d{4}-\d{2}-\d{2}',value):raise ValueError('Use dates in YYYY-MM-DD format')
+   dt.date.fromisoformat(value)
+   args[key]=value
  b=active(s)
  if name=='check_loyalty_tier':s['checks']['tier']=True;return {'tier':s['tier']}
  if name=='find_reservations':s['checks']['stay']=True;return {'bookings':deepcopy(s['bookings'])}
