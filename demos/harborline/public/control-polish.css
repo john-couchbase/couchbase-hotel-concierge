@@ -14,3 +14,4 @@ details>summary{min-height:44px;box-sizing:border-box;padding-block:10px;gap:10p
 .inline-process .ma-candidate{font-size:13px;min-height:40px}
 .inline-process .ma-tool{font-size:13px;padding:9px}
 @media(max-width:600px){.inline-process .ma-matches{grid-template-columns:1fr;grid-template-rows:1fr 1fr;overflow:auto;align-content:start}.inline-process .ma-policy,.inline-process .ma-selected-tools{overflow:visible}.inline-process .ma-candidate{min-height:30px}.inline-process .ma-tool{display:inline-block;margin:3px;padding:6px 8px}.inline-process .ma-meaning{height:115px;padding:12px}.inline-process .ma-matches{inset:125px 0 0}}
+.inline-process .ip-animation{width:100%;min-width:0;align-items:stretch}.inline-process .ip-animation .ma-box{width:100%;min-width:0;flex:1}
