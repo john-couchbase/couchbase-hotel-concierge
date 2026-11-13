@@ -26,3 +26,5 @@ details>summary{min-height:44px;box-sizing:border-box;padding-block:10px;gap:10p
 .dark .sf-cost-note{color:#b3bfc5}.sf-tool-head{flex-wrap:wrap;gap:4px 8px}.sf-tool-state{font-size:11px!important;line-height:1.4;white-space:nowrap}
 
 .sf-tool-cost{display:block;width:fit-content;margin:6px 0 0 auto;padding:2px 6px;border:1px solid #bbc7cc;border-radius:4px;font:400 11px/1.4 Inter,sans-serif;color:#586a73;background:#f0f3f4}.dark .sf-tool-cost{color:#bdc9cf;background:#273238;border-color:#4e6069}.sf-return:empty{display:none}.sf-cost-note{width:fit-content;padding:2px 6px;border:1px solid #bbc7cc;border-radius:4px}.dark .sf-cost-note{border-color:#4e6069}
+
+.sf-tool-cost[data-tier=lower]{color:#365c48;border-color:#afc5b6;background:#edf3ef}.sf-tool-cost[data-tier=higher]{color:#775b31;border-color:#cfbf9e;background:#f5f0e6}.dark .sf-tool-cost[data-tier=lower]{color:#b8d2c1;border-color:#52695a;background:#28372e}.dark .sf-tool-cost[data-tier=higher]{color:#dbc8a8;border-color:#736346;background:#383126}
