@@ -54,7 +54,7 @@ function startUpgradeExample(){
   $('tier').value='Gold';$('used').value='no';$('availability').value='yes';$('guest-context').textContent='Fictional hotel · Maya Chen, Gold member';
   clearActivity();activity('Sample stay',`${room.name} · ${dateLabel(start)}–${dateLabel(stay.end)} · 2 guests`,'finding');showPolicy('Fictional stay loaded for this walkthrough. No live booking or payment.');
   saveReceipt('room',`${room.name} · ${Booking.money(reservation.quote.total)}`,reservation.code);
-  bubble(`Sample stay loaded: ${room.name}, ${dateLabel(start)}–${dateLabel(stay.end)}, 2 guests. I’ll use this fictional booking for the upgrade example.`);
+  bubble(`Sample stay: ${room.name}, ${dateLabel(start)}–${dateLabel(stay.end)}, 2 guests.`);
  }
  submit(prompts.upgrade);
 }

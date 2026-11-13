@@ -52,3 +52,6 @@ body.dark .inline-process[data-screen=tools] .sf-tool code{color:#b6cfdb}
 #decision-route.inline-process[data-screen=decision] .sf-decision{background:#f4ecdc;border:1px solid #cbbb99;border-radius:5px;padding:12px;flex:none}
 body.dark #decision-route.inline-process[data-screen=decision] .sf-tool{background:#293238;border-color:#4c5a62}
 body.dark #decision-route.inline-process[data-screen=decision] .sf-decision{background:#403a2e;border-color:#786b50}
+
+/* Compact conversation; full text stays available in a bounded disclosure. */
+.chat-bubble{min-width:0;max-width:100%;overflow-wrap:anywhere}.chat-bubble p{white-space:pre-wrap;line-height:1.55}.message-more{margin-top:8px}.message-more summary{font-size:13px;cursor:pointer;color:var(--muted)}.message-more p{max-height:180px;overflow:auto;overscroll-behavior:contain;padding-right:6px}#chat-input{max-height:112px!important;overflow-y:auto!important;resize:none;overflow-wrap:anywhere}.sf-used-link{display:inline-flex;align-items:center;justify-content:center;min-height:40px;margin-top:10px;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--control);color:var(--text);font-size:14px;text-decoration:none;font-weight:600}.sf-used-link[hidden]{display:none}.sf-used-link:hover{border-color:#ea2328}.sf-used-link:focus-visible{outline:2px solid #ea2328;outline-offset:2px}

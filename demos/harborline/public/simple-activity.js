@@ -7,11 +7,11 @@
   const flow=el('div','simple-flow');flow.dataset.size=run.tools.length<=2?'compact':'full';
   const match=el('section','sf-section sf-match'),matchHead=el('h3','','Matching'),policy=el('strong'),reason=el('p');match.append(matchHead,policy,reason);
   const tools=el('section','sf-section sf-tools'),heading=el('div','sf-heading'),status=el('span','sf-status');status.setAttribute('role','status');heading.append(el('h3','','Tools'),status);const list=el('div','sf-tool-list');list.addEventListener('wheel',()=>{root._simple.follow=false;},{passive:true});list.addEventListener('touchstart',()=>{root._simple.follow=false;},{passive:true});tools.append(heading,list);
-  const decision=el('section','sf-section sf-decision'),title=el('strong'),why=el('p');decision.append(el('h3','','Decision'),title,why);
+  const decision=el('section','sf-section sf-decision'),title=el('strong'),why=el('p');const usedLink=el('a','sf-used-link','View tools used');usedLink.target='_blank';usedLink.rel='noopener';decision.append(el('h3','','Decision'),title,why,usedLink);
   const details=el('div','sf-actions'),hub=el('button','','Tools Hub'),trace=el('button','','Session trace');hub.type=trace.type='button';hub.onclick=()=>ToolsHub.open();trace.onclick=()=>ActivityTracer.open(run);details.append(hub,trace);const payload=el('span');
   const handoff=el('div','sf-handoff'),handoffText=el('span');handoff.append(handoffText);match.append(handoff);
   flow.append(match,tools,decision,details);root.append(flow);
-  root._simple={run,flow,match,policy,reason,status,list,rows:new Map(),follow:true,decision,title,why,payload,handoff,handoffText};return root._simple;
+  root._simple={run,flow,match,policy,reason,status,list,rows:new Map(),follow:true,decision,title,why,usedLink,payload,handoff,handoffText};return root._simple;
  }
  StableActivity.render=function(root,run){
   previous(root,run);root.classList.add('simple-activity');document.body.classList.add('simple-agent');
@@ -31,6 +31,8 @@
   }
   if(active&&v.lastActive!==(active.id||active.name)){v.lastActive=active.id||active.name;const box=v.rows.get(v.lastActive)?.box;if(box&&v.follow)v.list.scrollTop=Math.max(0,box.offsetTop-v.list.offsetTop-v.list.clientHeight+box.offsetHeight);}
   v.decision.dataset.active=String(done);set(v.title,done?run.title:'Waiting for the checks');set(v.why,done?run.reason||run.result||'Response ready.':'The decision appears here when the tools return.');
+  const used=[...new Set(run.tools.filter(t=>['Returned','Failed'].includes(t.state)).map(t=>t.name))];
+  v.usedLink.hidden=!done||!used.length;v.usedLink.href='/hub?'+new URLSearchParams({mode:run.live?'live':'simulation',tools:used.join(',')});
   const events=TraceModel.events(run,run.live?null:DemoCatalog.list().find(r=>r.id===run.traceId));
   ActivityTracer.update(run,events);
   set(v.payload,JSON.stringify({source:run.live?'Live backend':'Scripted example',policies:policies.map(p=>({name:p.name,version:p.version,rule:p.rule})),selected:selection?.selected_tools||run.tools.map(t=>t.name),events},null,2));
