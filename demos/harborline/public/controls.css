@@ -347,3 +347,8 @@ select:disabled{opacity:.55;cursor:not-allowed}
  .activity-details-card .sa-state{justify-self:start;max-width:100%;white-space:normal}
  .activity-details-card .sa-review>summary{min-height:88px}
 }
+
+/* Compact response previews; full wording remains in the disclosure. */
+.response-block>summary{min-width:0;padding:10px 12px;font:400 14px/1.5 Inter,sans-serif}
+.response-preview{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.response-block>.response-request{font-size:12px;color:var(--muted);padding-bottom:0}

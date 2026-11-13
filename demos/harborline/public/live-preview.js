@@ -98,7 +98,7 @@
   if(!recent.length)return;
   responseList.append(node('h3','Recent responses'));
   for(const r of recent){const card=node('details','','response-block');card.dataset.entry=String(r.index);card.open=expanded.has(card.dataset.entry);
-   const summary=node('summary',r.h.request);card.append(summary,node('p',r.answer));responseList.append(card);
+   const summary=node('summary',''),preview=node('span',r.answer.replace(/\s+/g,' ').trim(),'response-preview');summary.append(preview);summary.title=r.answer;card.append(summary,node('p',r.h.request,'response-request'),node('p',r.answer));responseList.append(card);
   }
  }
  function acceptState(data){savedState=data;hasRoom=data.bookings.some(b=>b.kind==='room'&&!b.cancelled);document.querySelector('.footer-legal').textContent='Live Couchbase model · Fictional hotel tools · '+data.storage;renderSaved();renderResponses();}

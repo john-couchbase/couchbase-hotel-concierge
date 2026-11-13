@@ -43,7 +43,7 @@ class handler(BaseHTTPRequestHandler):
    if route=='hub':
     from hub_template import PAGE
    live=parse_qs(urlparse(self.path).query).get('mode',['simulation'])[0]=='live'
-   page=PAGE.replace('<body>','<body data-live="true">').replace('</body>','<script src="/live-preview.js?v=conversation-usage-3"></script></body>') if live else PAGE
+   page=PAGE.replace('<body>','<body data-live="true">').replace('</body>','<script src="/live-preview.js?v=recent-rows-4"></script></body>') if live else PAGE
    self.headers_reply(200,'text/html; charset=utf-8',cookie);self.wfile.write(page.encode());return
   if not sid:self.error(401,'Open the demo first to start your session.');return
   if route=='trace-record':
