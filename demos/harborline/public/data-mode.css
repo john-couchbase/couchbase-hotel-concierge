@@ -3,3 +3,6 @@
 .data-mode a[aria-current=page]{background:var(--surface);color:var(--ink);border-color:var(--line);box-shadow:0 1px 3px #0000000d}
 .data-mode a:hover{color:var(--ink)}.data-mode a:focus-visible{outline:2px solid #ea2328;outline-offset:2px}
 @media(max-width:600px){.top{flex-wrap:wrap;height:auto!important;min-height:75px;padding-top:12px!important;padding-bottom:12px!important;gap:12px}.top .top-right{margin-left:auto;gap:10px}.data-mode a{min-height:38px;padding:0 9px;font-size:12px}.top .logo{width:116px}}
+.top-right>a.quiet-button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 14px;border:1px solid #b7c5cc;border-radius:6px;background:transparent;color:inherit;font:500 13px/1.2 Inter,sans-serif;text-decoration:none;white-space:nowrap}
+.top-right>a.quiet-button:hover{background:#e5edf0}.dark .top-right>a.quiet-button:hover{background:#304650}
+@media(max-width:600px){.top{flex-wrap:wrap;gap:12px}.top-right{flex-wrap:wrap;justify-content:flex-end;gap:8px}.top-right>a.quiet-button{min-height:40px}}
