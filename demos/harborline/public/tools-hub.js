@@ -32,7 +32,7 @@ const ToolsHub=(()=>{
   if(!body.children.length)body.append(el('p','No tools match this filter.'));
   if(focused){const item=[...body.querySelectorAll('.hub-tool')].find(x=>x.dataset.tool===focused);item?.querySelector('summary').focus({preventScroll:true});}dialog.scrollTop=scroll;
  }
- return {update(run){current=run;if(dialog.open)render();}};
+ return {open(){render();dialog.showModal();search.focus();},update(run){current=run;if(dialog.open)render();}};
 })();
 const clearBeforeToolsHub=clearActivity;
 clearActivity=function(...args){ToolsHub.update(null);return clearBeforeToolsHub(...args);};
