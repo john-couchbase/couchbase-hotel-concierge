@@ -20,7 +20,7 @@ Ask for a room, an upgrade, or dinner plans. Follow the checks, tools, and decis
 - Capella stores sessions, receipts, history, and usage counters.
 - Vercel hosts the interface and Python backend.
 - Managed Agent Memory is not connected. Stored sessions are database records.
-- Inventory and reservations are fictional. The shared limit is 100 model calls per day.
+- Inventory and reservations are fictional. The shared limit is 125 model calls per day.
 
 ## Run locally
 
