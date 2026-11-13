@@ -43,7 +43,7 @@ view.root.dataset.screen=screen;view.buttons.forEach((b,i)=>b.setAttribute('aria
    const events=TraceModel.events(run,run.live?null:DemoCatalog.list().find(r=>r.id===run.traceId));
    let text=events.find(e=>e.type==='request')?.text||document.querySelector('#chat-log .user:last-child p')?.textContent||'Guest request';
    if(['room','dining'].includes(run.intent)&&!/(room|dinner|table|restaurant)/i.test(text)){const previous=[...document.querySelectorAll('#chat-log .user p')].map(n=>n.textContent).reverse().find(t=>/(room|dinner|table|restaurant)/i.test(t));if(previous)text=previous;}
-   dispose=MeaningAnimation.mount(animation,{text,run,durations:[500,650,800,650],holdMs:900,onComplete:()=>{if(current!==run||view.manual)return;show('tools');advanceTimer=setTimeout(()=>{if(current===run&&!view.manual&&ready(run))show('decision');else if(current===run)view.awaitingDecision=true;},2400);}});
+   dispose=MeaningAnimation.mount(animation,{text,run,durations:[1200,1600,1800,1100],holdMs:1400,onComplete:()=>{if(current!==run||view.manual)return;show('tools');advanceTimer=setTimeout(()=>{if(current===run&&!view.manual&&ready(run))show('decision');else if(current===run)view.awaitingDecision=true;},2400);}});
    const playback=animation.querySelector('.ma-head button');if(playback)playback.hidden=true;
   }
   lock(presenting);

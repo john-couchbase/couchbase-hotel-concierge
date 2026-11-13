@@ -13,7 +13,7 @@ class Node {
 const root=new Node(),tools=new Node();tools.className='sf-tools';root.append(tools);
 let completion,submitted=0,disposed=0;const timers=new Map();let serial=0;
 const body=new Node(),controls=new Node();
-const context=vm.createContext({busy:false,document:{body,createElement:()=>new Node(),querySelectorAll:()=>[controls],querySelector:()=>null,addEventListener(){}},StableActivity:{render(){}},submit(){submitted++;},clearActivity(){},HotelPolicies:[],TraceModel:{events:()=>[]},DemoCatalog:{list:()=>[]},BackendStory:{mount:()=>({dispose(){},show(){}})},MeaningAnimation:{mount:(host,options)=>{completion=options.onComplete;assert.equal(options.durations.reduce((a,b)=>a+b,0)+options.holdMs+2400+100,6000);return()=>disposed++;}},setTimeout:fn=>{timers.set(++serial,fn);return serial;},clearTimeout:id=>timers.delete(id),setInterval:()=>++serial,clearInterval(){}});
+const context=vm.createContext({busy:false,document:{body,createElement:()=>new Node(),querySelectorAll:()=>[controls],querySelector:()=>null,addEventListener(){}},StableActivity:{render(){}},submit(){submitted++;},clearActivity(){},HotelPolicies:[],TraceModel:{events:()=>[]},DemoCatalog:{list:()=>[]},BackendStory:{mount:()=>({dispose(){},show(){}})},MeaningAnimation:{mount:(host,options)=>{completion=options.onComplete;assert.equal(options.durations.reduce((a,b)=>a+b,0)+options.holdMs+2400+100,9600);return()=>disposed++;}},setTimeout:fn=>{timers.set(++serial,fn);return serial;},clearTimeout:id=>timers.delete(id),setInterval:()=>++serial,clearInterval(){}});
 vm.runInContext(fs.readFileSync('public/inline-process.js','utf8'),context);
 const run={live:false,intent:'room',phase:2,tools:[]};
 context.StableActivity.render(root,run);
@@ -27,4 +27,4 @@ assert.equal(root.dataset.screen,'decision');assert.equal(root.dataset.presentin
 context.submit('next');assert.equal(submitted,1);
 for(let i=0;i<20;i++){context.StableActivity.render(root,run);assert.equal(root.querySelectorAll('.ip-nav').length,1);}
 context.clearActivity();assert.equal(body.children.length,0);assert.equal(root.querySelectorAll('.ip-nav').length,0);
-console.log('Passed: reset/remount singleton, repeated updates, request lock, six-second timing, unlock, disposal.');
+console.log('Passed: reset/remount singleton, repeated updates, request lock, paced timing, unlock, disposal.');

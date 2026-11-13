@@ -5,6 +5,7 @@ const MeaningAnimation=(()=>{
   const box=el('section','','ma-box'),head=el('div','','ma-head'),label=el('strong','Read the request'),control=el('button','Pause');control.type='button';head.append(label,control);
   const stage=el('div','','ma-stage'),sentence=el('div','','ma-sentence'),groups=el('div','','ma-groups'),meaning=el('div','','ma-meaning'),matches=el('div','','ma-matches');
   sentence.tabIndex=0;sentence.setAttribute('aria-label','Full request');
+  box.dataset.long=String(text.length>140);
   const words=text.match(/\S+/g)||['Guest','request'];words.forEach(w=>sentence.append(el('span',w,'ma-word')));
   const policies=run.selection?.policies||[];
   const selectedNames=run.selection?.selected_tools||run.tools.map(t=>t.name);
