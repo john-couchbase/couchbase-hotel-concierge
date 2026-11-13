@@ -5,7 +5,7 @@
  document.querySelector('.footer-legal').textContent='Live Couchbase model · Fictional hotel tools';
  document.querySelector('.catalog-open')?.setAttribute('hidden','');
  $('quick-replies').replaceChildren();$('chat-action').replaceChildren();
- $('chat-log').replaceChildren();bubble('Live Couchbase model connected. Ask to find a room, plan dinner, upgrade, or cancel. Hotel data is fictional. Confirmed demo bookings are saved for review.');
+ $('chat-log').replaceChildren();bubble('How can I help with your stay? Try a room, dinner, or an upgrade.');
  document.querySelector('.demo-settings')?.setAttribute('hidden','');
  document.querySelector('#other-requests')?.setAttribute('hidden','');
  function brief(o){

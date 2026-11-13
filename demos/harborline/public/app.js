@@ -5,6 +5,7 @@ let roomStage=null,stayDraft=null,selectedRoom=null,reservation=null,diningSlot=
 const prompts={room:'I’d like to find a room.',upgrade:'Can I upgrade my room?',dining:'Can you help me book dinner?',checkout:'Could I have a late checkout?'};
 const labels={room:'Find a room',upgrade:'Room upgrade',dining:'Dinner reservation',checkout:'Late checkout'};
 function bubble(text,who='assistant'){
+ if(who==='assistant')text=text.replace(/\s*[—–]\s*/g,', ').replace(/\s+-\s+/g,', ').replace(/^\s*-\s+/gm,'').replace(/,\s*,/g,',');
  const li=document.createElement('div');li.className=`chat-bubble ${who}`;
  const label=document.createElement('span');label.className='chat-author';label.textContent=who==='user'?'You':'Concierge';
  const body=document.createElement('p');body.textContent=text;li.append(label,body);
