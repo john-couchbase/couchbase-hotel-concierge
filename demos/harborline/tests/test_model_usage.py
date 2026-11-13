@@ -29,3 +29,21 @@ class UsageTests(unittest.TestCase):
  def test_invalid_counts_not_accepted(self):
   m,s,e=self.meter([NS(usage={'prompt_tokens':-1,'completion_tokens':True})]);m.create(model='amazon.nova-lite-v1:0')
   self.assertIsNone(e[-1]['estimated_usd'])
+ def test_conversation_totals_survive_ledger_limit(self):
+  from model_usage import conversation_usage
+  m,s,e=self.meter([NS(usage={'prompt_tokens':10,'completion_tokens':2})]*502)
+  for _ in range(502):m.create(model='amazon.nova-lite-v1:0')
+  total=conversation_usage(s)
+  self.assertEqual(len(s['model_usage']),500)
+  self.assertEqual(total['input_tokens'],5020)
+  self.assertEqual(total['calls'],502)
+  self.assertTrue(total['complete'])
+ def test_legacy_history_is_marked_partial(self):
+  from model_usage import conversation_usage
+  self.assertFalse(conversation_usage({'history':[{'events':[]} ]})['complete'])
+ def test_totals_accumulate_across_requests(self):
+  from model_usage import conversation_usage
+  m,s,e=self.meter([NS(usage={'prompt_tokens':10,'completion_tokens':2})]*2)
+  m.create(model='amazon.nova-lite-v1:0')
+  Meter(m.client,s,e.append).create(model='amazon.nova-lite-v1:0')
+  self.assertEqual(conversation_usage(s)['input_tokens'],20)

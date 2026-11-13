@@ -34,5 +34,6 @@ class CouchbaseStore:
   if self.mirror:self.mirror.save(sid,s)
 
 def public_state(s,label):
- return {'bookings':deepcopy(s['bookings']),'storage':label,'services':deepcopy(s.get('services',{})),
+ from model_usage import conversation_usage
+ return {'usage':conversation_usage(s),'bookings':deepcopy(s['bookings']),'storage':label,'services':deepcopy(s.get('services',{})),
          'history':[{'request':r['request'],'events':[{k:v for k,v in e.items() if k!='pending'} for e in r['events']]} for r in s['history'][-20:]]}

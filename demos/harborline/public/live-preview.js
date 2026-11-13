@@ -26,6 +26,11 @@
  function node(tag,text,cls){const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n;}
  function receiptText(b){return b.kind==='room'?`${b.start}–${b.end} · ${b.guests} guests · $${b.total.toFixed(2)} total`:`${b.date} · ${b.hour}:00 · ${b.guests} guests`;}
  function renderSaved(){
+  let total=$('view-memory').querySelector('.conversation-usage');
+  if(!total){total=node('p','','conversation-usage trace-caption');$('view-memory').prepend(total);}
+  const u=savedState.usage;total.hidden=!u?.reported_calls;
+  if(u?.reported_calls){total.textContent=(u.complete?'Conversation total: ':'Recorded total: ')+(u.input_tokens+u.output_tokens).toLocaleString()+' tokens · $'+u.estimated_usd.toFixed(6)+' est.';total.title='Model cost only. '+(u.complete?'All calls included.':'Some earlier or unreported usage is excluded.');}
+
   const open=new Set([...$('memory-facts').querySelectorAll('details[open]')].map(d=>d.dataset.id));
   const list=$('memory-facts');list.replaceChildren();$('memory-count').textContent=savedState.bookings.length+' bookings';
   $('view-memory').querySelector('.archive-heading').textContent='Your bookings';$('stay-memory').querySelector('summary span').textContent='Saved receipts';
