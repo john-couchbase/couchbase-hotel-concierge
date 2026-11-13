@@ -20,3 +20,7 @@ details>summary{min-height:44px;box-sizing:border-box;padding-block:10px;gap:10p
 .hub-tab-frame{display:block;width:100%;border:1px solid #b8c7ce;border-radius:8px;min-height:680px;height:calc(100vh - 160px);background:#f5f4f0}.dark .hub-tab-frame{background:#14181b;border-color:#535353}
 [hidden]{display:none!important}
 @media(max-width:600px){.workspace-tabs{width:100%}.workspace-tabs button{flex:1}.hub-tab-frame{min-height:580px}}
+
+/* Quiet decision context, shared by simulation and live activity. */
+.sf-cost-note{display:block;color:#5b6b73;font:400 11px/1.4 Inter,sans-serif;margin:2px 0 6px;overflow-wrap:anywhere}
+.dark .sf-cost-note{color:#b3bfc5}.sf-tool-head{flex-wrap:wrap;gap:4px 8px}.sf-tool-state{font-size:11px!important;line-height:1.4;white-space:nowrap}
